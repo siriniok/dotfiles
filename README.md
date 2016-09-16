@@ -2,14 +2,14 @@
 
 ## Instalation
 
-1. Install Git
+Install Git
 
 ```
 $ sudo apt-get update
 $ sudo apt-get install git
 ```
 
-2. Install the Dotfiles
+Install the Dotfiles
 
 ```
 curl --silent https://raw.githubusercontent.com/siriniok/dotfiles/master/setup/install.sh | sh
