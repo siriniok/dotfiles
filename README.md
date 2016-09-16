@@ -1,5 +1,20 @@
 # Vladyslav Siriniok's Dotfiles
 
+## Instalation
+
+1. Install Git
+
+```
+$ sudo apt-get update
+$ sudo apt-get install git
+```
+
+2. Install the Dotfiles
+
+```
+curl --silent https://raw.githubusercontent.com/siriniok/dotfiles/master/setup/install.sh | sh
+```
+
 ## Resources & Inspiration
 
 * [A Beginner’s Guide to the Best Command Line Tools](https://webdevstudios.com/2015/02/10/a-beginners-guide-to-the-best-command-line-tools/)
