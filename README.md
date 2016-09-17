@@ -1,13 +1,6 @@
 # Vladyslav Siriniok's Dotfiles
 
-## Instalation
-
-Install Git
-
-```
-$ sudo apt-get update
-$ sudo apt-get install git
-```
+## Installation
 
 Install the Dotfiles
 
