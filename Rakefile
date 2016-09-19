@@ -2,7 +2,9 @@ require 'rake'
 require 'fileutils'
 
 # These are all the files we want to symlink to ~
-FILES = '.gitconfig .zshrc .zlogin .env .tmux.conf .vimrc'
+DOTFILES_FOLDER = 'home'
+FILES = Dir.entries(DOTFILES_FOLDER).map { |f| File.join(DOTFILES_FOLDER, f) }.
+  select { |f| File.file? f }
 
 task :default => 'install'
 
