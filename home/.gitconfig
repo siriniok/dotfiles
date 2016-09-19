@@ -1,0 +1,36 @@
+[user]
+    name = Vladyslav Siriniok
+    email = siriniok@gmail.com
+
+[github]
+    user = siriniok
+
+[core]
+    editor = vim
+
+[alias]
+    # List files ignored by .gitignore and friends
+    show-ignored = "! git clean -ndX | perl -pe 's/Would remove/Ignored:/'"
+    wtf     = !$ZSH/bin/git-wtf
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
