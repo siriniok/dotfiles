@@ -8,6 +8,17 @@ Install the Dotfiles
 curl --silent https://raw.githubusercontent.com/siriniok/dotfiles/master/setup/install.sh | sh
 ```
 
+## Features
+
+## Structure
+
+* `bin` — files that are symlinked to any directory with binaries in `$PATH`
+* `editors` — files for different text editors
+    * `sublime` - files for Sublime Text 3
+    * `vim` - files for Vim
+* `home` — files that are symlinked to `$HOME` directory
+* `setup` - different setup scripts
+
 ## Resources & Inspiration
 
 * [A Beginner’s Guide to the Best Command Line Tools](https://webdevstudios.com/2015/02/10/a-beginners-guide-to-the-best-command-line-tools/)
