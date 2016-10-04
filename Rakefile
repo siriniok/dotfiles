@@ -3,14 +3,13 @@ require 'fileutils'
 
 # These are all the files we want to symlink to ~
 DOTFILES_FOLDER = 'home'
-FILES = Dir.entries(DOTFILES_FOLDER).map { |f| File.join(DOTFILES_FOLDER, f) }.
-  select { |f| File.file? f }
+FILES = Dir.entries(DOTFILES_FOLDER).select { |f| File.file? File.join(DOTFILES_FOLDER, f) }
 
 task :default => 'install'
 
 desc "Hook our dotfiles into system-standard positions."
 task :install do
-  FILES.split.each do |file|
+  FILES.each do |file|
     symlink_file( file )
   end
 end
@@ -29,7 +28,7 @@ task :setup_file, [:file ] do |t, file|
 end
 
 def symlink_file( file )
-  source = "#{ENV["PWD"]}/#{file}"
+  source = "#{ENV["PWD"]}/#{DOTFILES_FOLDER}/#{file}"
   target = "#{ENV["HOME"]}/#{file}"
 
   puts "Source: #{source}"
