@@ -8,16 +8,22 @@ Install the Dotfiles
 curl --silent https://raw.githubusercontent.com/siriniok/dotfiles/master/setup/install.sh | sh
 ```
 
+This repo contains a Rakefile that does some magic things:
+
+* `rake` - symlink all dotfiles
+* `rake setup_file[.file1 .file2]` - symlink specific files
+
 ## Features
 
 ## Structure
 
-* `bin` — files that are symlinked to any directory with binaries in `$PATH`
+* `bin` — miscellaneous scripts. Will be added to your `$PATH`
 * `editors` — files for different text editors
     * `sublime` - files for Sublime Text 3
     * `vim` - files for Vim
 * `home` — files that are symlinked to `$HOME` directory
 * `setup` - different setup scripts
+* `zsh` - my custom Zsh files
 
 ## Resources & Inspiration
 
