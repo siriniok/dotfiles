@@ -28,6 +28,7 @@ This repo contains a Rakefile that does some magic things:
 ## Resources & Inspiration
 
 * [A Beginner’s Guide to the Best Command Line Tools](https://webdevstudios.com/2015/02/10/a-beginners-guide-to-the-best-command-line-tools/)
+* [Bash Handbook](https://github.com/denysdovhan/bash-handbook)
 * [GitHub ❤ ~/ - Your unofficial guide to dotfiles on GitHub](https://dotfiles.github.io/)
 * [Brad Parbs's Dotfiles](https://github.com/bradp/dotfiles)
 * [Paul Miller's Dotfiles](https://github.com/paulmillr/dotfiles)
