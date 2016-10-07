@@ -29,6 +29,11 @@ This repo contains a Rakefile that does some magic things:
 
 * [A Beginner’s Guide to the Best Command Line Tools](https://webdevstudios.com/2015/02/10/a-beginners-guide-to-the-best-command-line-tools/)
 * [Bash Handbook](https://github.com/denysdovhan/bash-handbook)
+* [From TextMate to Vim](http://pchm.co/posts/from-textmate-to-vim)
+* [Remote Pair Programming Made Easy with SSH and tmux](http://www.hamvocke.com/blog/remote-pair-programming-with-tmux/)
+* [Hints for Writing Unix Tools](https://monkey.org/~marius/unix-tools-hints.html)
+* [Efficiency With Sublime Text and Ruby](http://thunderboltlabs.com/blog/2013/11/19/efficiency-with-sublime-text-and-ruby/)
+* [Useful One-Line Scripts for Perl](http://www.catonmat.net/download/perl1line.txt)
 * [GitHub ❤ ~/ - Your unofficial guide to dotfiles on GitHub](https://dotfiles.github.io/)
 * [Brad Parbs's Dotfiles](https://github.com/bradp/dotfiles)
 * [Paul Miller's Dotfiles](https://github.com/paulmillr/dotfiles)
