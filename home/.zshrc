@@ -61,12 +61,6 @@ do
   source $file
 done
 
-# load config files for different utilities (like git, npm, travis, etc)
-for file in $DOTFILES/util/*
-do
-  source $file
-done
-
 # autoenv
 source `which activate.sh`
 
