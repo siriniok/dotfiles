@@ -38,6 +38,7 @@ This repo contains a Rakefile that does some magic things:
 * [GitHub ❤ ~/ - Your unofficial guide to dotfiles on GitHub](https://dotfiles.github.io/)
 * [Brad Parbs's Dotfiles](https://github.com/bradp/dotfiles)
 * [Paul Miller's Dotfiles](https://github.com/paulmillr/dotfiles)
+* [Ben Alman's Dotfiles](https://github.com/cowboy/dotfiles)
 
 ## License
 
