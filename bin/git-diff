@@ -1,2 +1,5 @@
 #!/bin/bash
+
+# Origin: https://github.com/bradp/dotfiles/blob/master/bin/git-diff
+
 git difftool --no-prompt --extcmd icdiff "$@"

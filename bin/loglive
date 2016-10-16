@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Origin: https://github.com/bradp/dotfiles/blob/master/bin/loglive
+
 while :
 do
     clear

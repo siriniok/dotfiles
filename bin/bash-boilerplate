@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Origin: https://github.com/bradp/dotfiles/blob/master/bin/bash_boilerblate
+
 normal=$(tput sgr0)
 bold=$(tput bold)
 red=$(tput setaf 1)
