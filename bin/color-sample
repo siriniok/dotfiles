@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+# Origin: https://github.com/bradp/dotfiles/blob/master/bin/colors-sample
+#
 #   This file echoes a bunch of color codes to the
 #   terminal to demonstrate what's available.  Each
 #   line is the color code of one forground color,
