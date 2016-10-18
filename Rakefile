@@ -2,7 +2,7 @@ require 'rake'
 require 'fileutils'
 
 # These are all the files we want to symlink to ~
-DOTFILES_FOLDER = 'home'
+DOTFILES_FOLDER = 'tilde'
 FILES = Dir.entries(DOTFILES_FOLDER).select { |f| File.file? File.join(DOTFILES_FOLDER, f) }
 
 task :default => 'install'
