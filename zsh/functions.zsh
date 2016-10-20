@@ -57,3 +57,16 @@ function lol() {
 function download_site() {
     wget --limit-rate=200k --no-clobber --convert-links --random-wait -r -p -E -e robots=off -U mozilla $1
 }
+
+function gi()  {
+    curl http://www.gitignore.io/api/$@;
+}
+
+function mkd()  {
+    mkdir -p -- "$@" && cd -- "$@"
+}
+
+# find shorthand
+function f()  {
+    find . -name "$1"
+}
