@@ -35,7 +35,7 @@ def symlink_file( file )
   puts "Target: #{target}"
 
   if File.exists?(target) || File.symlink?(target)
-  puts "[Overwriting] #{target}..."
+    puts "[Overwriting] #{target}..."
   end
 
   `ln -nfvs "#{source}" "#{target}"`
