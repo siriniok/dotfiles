@@ -37,6 +37,9 @@ COMPLETION_WAITING_DOTS="true"
 # This will add a 10 second wait before you can confirm a wildcard deletion.
 setopt RM_STAR_WAIT
 
+# Instead of overwriting the history file, it appends lines. This helps if there are multiple zsh sessions, so that they don't just overwrite the history.
+setopt APPEND_HISTORY
+
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
