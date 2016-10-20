@@ -20,6 +20,7 @@ alias aptins="sudo apt-get install"
 alias aptupd="sudo apt-get update"
 alias _="sudo"
 alias v="vim"
+alias vi="vim"
 
 
 # List declared aliases, functions
@@ -33,14 +34,11 @@ alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non 
 alias c="cd"
 alias to="cd"
 alias ..="cd .."
+alias "cd.."="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias -- -="cd -"
 alias cd.='cd $(readlink -f .)'
-
-alias bd=". bd -s"
-
-alias wd="cd ~/code"
 
 
 # tree
@@ -88,3 +86,4 @@ alias stest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/te
 # Directories
 
 alias dotfiles="cd $DOTFILES"
+alias wd="cd ~/code"
