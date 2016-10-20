@@ -1,7 +1,7 @@
 # Editor
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nano'
+  export EDITOR='vim'
 else
   export EDITOR='subl'
 fi
@@ -23,12 +23,11 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 # export LSCOLORS="exfxcxdxbxegedabagacad"
+# export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
 # Prefer US English and use UTF-8
-
-export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
-
+export LC_ALL="en_US.UTF-8"
 
 # your project folder
 export PROJECTS=~/code
@@ -63,3 +62,6 @@ export MANPATH=${MANPATH}
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# 10 second wait if you do something that will delete everything.  I wish I'd had this before...
+setopt RM_STAR_WAIT
