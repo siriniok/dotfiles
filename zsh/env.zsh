@@ -45,7 +45,7 @@ PATH=${PATH}:/usr/local/git/bin
 PATH=${PATH}:/usr/local/heroku/bin
 PATH=${PATH}:$HOME/.rvm/bin
 PATH=${PATH}:$HOME/.local/bin
-PATH=${PATH}:~/.dotfiles/bin
+PATH=${PATH}:$HOME/.dotfiles/bin
 
 export PATH=${PATH}
 
@@ -62,6 +62,3 @@ export MANPATH=${MANPATH}
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 export PATH="$PATH:$HOME/.rvm/bin"
-
-# 10 second wait if you do something that will delete everything.  I wish I'd had this before...
-setopt RM_STAR_WAIT
