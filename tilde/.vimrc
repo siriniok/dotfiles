@@ -5,7 +5,7 @@ set number
 syntax on
 
 " Set a colorscheme
-colorscheme darkblue
+" colorscheme darkblue
 
 " Enable info about the current command in the bottom line of the editor
 set showcmd
