@@ -7,6 +7,7 @@
 
 [core]
     editor = vim
+    excludesfile = ~/.gitignore_global
 
 [alias]
     # List files ignored by .gitignore and friends
@@ -25,10 +26,10 @@
     remote = green
 
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+    meta = cyan
+    frag = yellow reverse
+    old = red
+    new = green
 
 [color "status"]
     added = yellow
