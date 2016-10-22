@@ -1,9 +1,15 @@
 # Editor
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+if [[ -n "$SSH_CONNECTION" ]]; then
+  # on the server
+  if [ command -v vim >/dev/null 2>&1 ]; then
+    export EDITOR='vim'
+  else
+    export EDITOR='vi'
+  fi
 else
-  export EDITOR='subl'
+  # local
+  export EDITOR='vim' # change to 'subl' if needed
 fi
 
 # History
