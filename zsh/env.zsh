@@ -25,9 +25,10 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 # export LSCOLORS="exfxcxdxbxegedabagacad"
 # export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
-# Prefer US English and use UTF-8
-export LANG="en_US"
-export LC_ALL="en_US.UTF-8"
+# Locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 
 # your project folder
 export PROJECTS=~/code
