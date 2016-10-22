@@ -33,23 +33,14 @@ export LANGUAGE=en_US.UTF-8
 # your project folder
 export PROJECTS=~/code
 
-# Path & Manpath
+# Add custom bin to $PATH
+[ -d /usr/local/heroku/bin ]      && _extend_path /usr/local/heroku/bin
+[ -d $HOME ]                      && _extend_path $HOME/.bin
+[ -d $HOME/.rvm/bin ]             && _extend_path $HOME/.rvm/bin
+[ -d $HOME/.local/bin ]           && _extend_path $HOME/.local/bin
+[ -d $HOME/.dotfiles/bin ]        && _extend_path $HOME/.dotfiles/bin
 
-PATH=${PATH}:/usr/local/bin
-PATH=${PATH}:/usr/local/sbin
-PATH=${PATH}:/usr/bin
-PATH=${PATH}:/bin
-PATH=${PATH}:/usr/sbin
-PATH=${PATH}:/sbin
-PATH=${PATH}:/usr/local/git/bin
-# PATH=${PATH}:/opt
-PATH=${PATH}:/usr/local/heroku/bin
-PATH=${PATH}:$HOME/.rvm/bin
-PATH=${PATH}:$HOME/.local/bin
-PATH=${PATH}:$HOME/.dotfiles/bin
-
-export PATH=${PATH}
-
+# Add custom bin to $MANPATH
 MANPATH=${MANPATH}:/usr/local/man
 MANPATH=${MANPATH}:/usr/local/mysql/man
 MANPATH=${MANPATH}:/usr/local/git/man
@@ -61,5 +52,3 @@ export MANPATH=${MANPATH}
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-export PATH="$PATH:$HOME/.rvm/bin"
