@@ -1,4 +1,11 @@
+#
+# ~/.zshrc
+#
+
+# Export path to root of oh-my-zsh directory
 export ZSH=$HOME/.oh-my-zsh
+
+# Export path to root of dotfiles directory
 export DOTFILES=$HOME/.dotfiles
 
 # Set name of the theme to load.
@@ -20,7 +27,7 @@ CASE_SENSITIVE="true"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=2
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -40,6 +47,9 @@ setopt RM_STAR_WAIT
 # Instead of overwriting the history file, it appends lines. This helps if there are multiple zsh sessions, so that they don't just overwrite the history.
 setopt APPEND_HISTORY
 
+# Do not override files using `>`, but it's still possible using `>!`
+set -o noclobber
+
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
@@ -50,8 +60,33 @@ setopt APPEND_HISTORY
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# Custom folder than $ZSH/custom
+# ZSH_CUSTOM="$DOTFILES/zsh"
+
+# Extend $PATH without duplicates
+function _extend_path() {
+  if ! $( echo "$PATH" | tr ":" "\n" | grep -qx "$1" ) ; then
+    PATH="$1:$PATH"
+  fi
+}
+
+# Default pager
+export PAGER='less'
+
+# less options
+less_opts=(
+  # Quit if entire file fits on first screen.
+  --quit-if-one-screen
+  # Ignore case in searches that do not contain uppercase.
+  --ignore-case
+  # Allow ANSI colour escapes, but no other escapes.
+  --RAW-CONTROL-CHARS
+  # Quiet the terminal bell. (when trying to scroll past the end of the buffer)
+  --quiet
+  # Do not complain when we are on a dumb terminal.
+  --dumb
+)
+export LESS="${less_opts[*]}"
 
 # This will highlight the patterns you specify in a color of your choice.
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
@@ -112,8 +147,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 # source $DOTFILES/version.zsh
 
-test -f $DOTFILES/.secret && $DOTFILES/.secret
+# Load extra (private) settings
+[ -f $HOME/.zshlocal ] && source $HOME/.zshlocal
 
-export NODE_PATH=$NODE_PATH:$HOME/.nvm/versions/node/v5.9.1/lib/node_modules
-
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+# Add travis gem
+TRAVIS="$HOME/.travis/travis.sh"
+[ -f "$TRAVIS" ] && source $TRAVIS
