@@ -3,7 +3,8 @@ require 'fileutils'
 
 # These are all the files we want to symlink to ~
 DOTFILES_FOLDER = 'tilde'
-FILES = Dir.entries(DOTFILES_FOLDER).select { |f| File.file? File.join(DOTFILES_FOLDER, f) }
+FILES = Dir.chdir(DOTFILES_FOLDER) { Dir.glob('**/*', File::FNM_DOTMATCH) }.
+  select { |f| File.file? File.join(DOTFILES_FOLDER, f) }
 
 task :default => 'install'
 
