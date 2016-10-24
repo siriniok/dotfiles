@@ -21,7 +21,7 @@ This repo contains a Rakefile that does some magic things:
 * `editors` — files for different text editors
     * `sublime` - files for Sublime Text 3
     * `vim` - files for Vim
-* `home` — files that are symlinked to `$HOME` directory
+* `tilde` — files that are symlinked to `$HOME` directory
 * `setup` - different setup scripts
 * `zsh` - my custom Zsh files
 
