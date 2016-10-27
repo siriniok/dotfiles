@@ -45,6 +45,7 @@ set wrap                      " Wrap lines when they are too long
 syntax enable                 " Enable syntax highlighting
 set background=dark
 colorscheme solarized
+set antialias
 
 set scrolloff=3               " Display at least 3 lines around you cursor
                               " (for scrolling)
