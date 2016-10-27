@@ -18,55 +18,55 @@ set history=500
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Display
 
-set title                 " Update the title of your window or your terminal
-set number                " Display line numbers
-set ruler                 " Display cursor position
-set wrap                  " Wrap lines when they are too long
-syntax on                 " Enable syntax highlighting
+set title                     " Update the title of your window or terminal
+set number                    " Display line numbers
+set ruler                     " Display cursor position
+set wrap                      " Wrap lines when they are too long
+syntax enable                 " Enable syntax highlighting
 
-set scrolloff=3           " Display at least 3 lines around you cursor
-                          " (for scrolling)
+set scrolloff=3               " Display at least 3 lines around you cursor
+                              " (for scrolling)
 
 " Show matching brackets when text indicator is over them
 set showmatch
 
-set guioptions=T          " Enable the toolbar
+set guioptions=T              " Enable the toolbar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Search
 
-set ignorecase            " Ignore case when searching
-set smartcase             " If there is an uppercase in your search term
-                          " search case sensitive again
-set incsearch             " Highlight search results when typing
-set hlsearch              " Highlight search results
+set ignorecase                " Ignore case when searching
+set smartcase                 " If there is an uppercase in your search term
+                              " search case sensitive again
+set incsearch                 " Highlight search results when typing
+set hlsearch                  " Highlight search results
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Beep
 
-set visualbell            " Prevent Vim from beeping
-set noerrorbells          " Prevent Vim from beeping
+set visualbell                " Prevent Vim from beeping
+set noerrorbells              " Prevent Vim from beeping
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- Tabs
+" -- Indentation
 
-set expandtab             " Use spaces instead of tabs
-set shiftwidth=2          " 1 tab == 2 spaces
+set expandtab                 " Use spaces instead of tabs
+set shiftwidth=2              " 1 tab == 2 spaces
 set tabstop=2
-set smarttab              " Be smart when using tabs ;)
-set ai                    " Auto indent
-set si                    " Smart indent
+set smarttab                  " Be smart when using tabs ;)
+set ai                        " Auto indent
+set si                        " Smart indent
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Status Line
 
-set showcmd               " Enable info about the current command
-set cmdheight=2           " Heigh of command bar
-set laststatus=2          " Always show the status line
+set showcmd                   " Enable info about the current command
+set cmdheight=2               " Height of command bar
+set laststatus=2              " Always show the status line
 
 " Returns true if paste mode is enabled
 function! HasPaste()
@@ -90,6 +90,6 @@ set wildmenu
 " Backspace behaves as expected
 set backspace=indent,eol,start
 
-:imap kj <Esc>                             " Escape on kj keybinding
-command W w !sudo tee % > /dev/null        " :W sudo saves the file
+:imap kj <Esc>                " Escape on kj keybinding
+command W w !sudo tee % > /dev/null  " :W sudo saves the file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
