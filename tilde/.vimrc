@@ -26,6 +26,7 @@ call vundle#begin()           " keep Plugin commands between vundle#begin/end
 " -- List of Plugins
 
 Plugin 'VundleVim/Vundle.vim'             " let Vundle manage Vundle, required
+Plugin 'altercation/vim-colors-solarized' " Solarized theme
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()
@@ -42,6 +43,8 @@ set number                    " Display line numbers
 set ruler                     " Display cursor position
 set wrap                      " Wrap lines when they are too long
 syntax enable                 " Enable syntax highlighting
+set background=dark
+colorscheme solarized
 
 set scrolloff=3               " Display at least 3 lines around you cursor
                               " (for scrolling)
