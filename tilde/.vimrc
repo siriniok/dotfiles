@@ -120,6 +120,17 @@ set backspace=indent,eol,start
 
 :imap kj <Esc>                " Escape on kj keybinding
 command W w !sudo tee % > /dev/null  " :W sudo saves the file
+
+" Don't be a noob, join the no arrows key movement
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
