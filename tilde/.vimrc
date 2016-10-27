@@ -28,6 +28,7 @@ call vundle#begin()           " keep Plugin commands between vundle#begin/end
 Plugin 'VundleVim/Vundle.vim'             " let Vundle manage Vundle, required
 Plugin 'altercation/vim-colors-solarized' " Solarized theme
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
+Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()
@@ -48,6 +49,8 @@ set background=dark
 colorscheme solarized
 colorscheme solarized
 set antialias
+
+set updatetime=250            " More frequent updates for, e.g. signs.
 
 set scrolloff=3               " Display at least 3 lines around you cursor
                               " (for scrolling)
