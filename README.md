@@ -13,15 +13,13 @@ This repo contains a Rakefile that does some magic things:
 * `rake` - symlink all dotfiles
 * `rake setup_file[.file1 .file2]` - symlink specific files
 
-## Features
-
 ## Structure
 
-* `bin` — miscellaneous scripts. Will be added to your `$PATH`
-* `editors` — files for different text editors
+* `bin` - miscellaneous scripts. Will be added to your `$PATH`
+* `editors` - files for different text editors
     * `sublime` - files for Sublime Text 3
     * `vim` - files for Vim
-* `tilde` — files that are symlinked to `$HOME` directory
+* `tilde` - files for symlinking to your `$HOME` directory
 * `setup` - different setup scripts
 * `zsh` - my custom Zsh files
 
