@@ -28,6 +28,8 @@ This repo contains a Rakefile that does some magic things:
 * [A Beginner’s Guide to the Best Command Line Tools](https://webdevstudios.com/2015/02/10/a-beginners-guide-to-the-best-command-line-tools/)
 * [Bash Handbook](https://github.com/denysdovhan/bash-handbook)
 * [From TextMate to Vim](http://pchm.co/posts/from-textmate-to-vim)
+* [Vim for Humans](https://vimebook.com/)
+* [Walkthrough of my .vimrc file for Ruby development](http://janjiss.com/walkthrough-of-my-vimrc-file-for-ruby-development/)
 * [Remote Pair Programming Made Easy with SSH and tmux](http://www.hamvocke.com/blog/remote-pair-programming-with-tmux/)
 * [Defensive BASH Programming](http://www.kfirlavi.com/blog/2012/11/14/defensive-bash-programming)
 * [Hints for Writing Unix Tools](https://monkey.org/~marius/unix-tools-hints.html)
