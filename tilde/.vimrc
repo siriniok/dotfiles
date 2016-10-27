@@ -27,6 +27,7 @@ call vundle#begin()           " keep Plugin commands between vundle#begin/end
 
 Plugin 'VundleVim/Vundle.vim'             " let Vundle manage Vundle, required
 Plugin 'altercation/vim-colors-solarized' " Solarized theme
+Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()
@@ -44,6 +45,7 @@ set ruler                     " Display cursor position
 set wrap                      " Wrap lines when they are too long
 syntax enable                 " Enable syntax highlighting
 set background=dark
+colorscheme solarized
 colorscheme solarized
 set antialias
 
@@ -115,4 +117,17 @@ set backspace=indent,eol,start
 
 :imap kj <Esc>                " Escape on kj keybinding
 command W w !sudo tee % > /dev/null  " :W sudo saves the file
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  Plugins                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- NERDTree
+
+autocmd vimenter * NERDTree   " Activate the NERDTree on launching vim
+let NERDTreeShowHidden=1      " enable displaying hidden files
+autocmd VimEnter * wincmd p   " focus on file after launching
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
