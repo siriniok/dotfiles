@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                            Vim Configuration                               "
+"                             Vim Configuration                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Cancel the compatibility with Vi. Essential if you want
@@ -14,6 +14,25 @@ set hidden
 
 " Set how many lines of history VIM should remember
 set history=500
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Vundle                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim  " set the runtime path to include Vundle
+call vundle#begin()           " keep Plugin commands between vundle#begin/end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- List of Plugins
+
+Plugin 'VundleVim/Vundle.vim'             " let Vundle manage Vundle, required
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call vundle#end()
+filetype plugin indent on     " required
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Display
