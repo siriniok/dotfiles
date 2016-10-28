@@ -29,6 +29,16 @@ Plugin 'VundleVim/Vundle.vim'             " let Vundle manage Vundle, required
 Plugin 'altercation/vim-colors-solarized' " Solarized theme
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
 Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
+Plugin 'tpope/vim-fugitive'               " Git tools
+Plugin 'tpope/vim-rails.git'              " Rails :/
+Plugin 'tomtom/tcomment_vim'              " commenting and uncommenting stuff
+
+" Dependencies of snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'honza/vim-snippets'
+
+Plugin 'garbas/vim-snipmate'              " snippets for our use :)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()
