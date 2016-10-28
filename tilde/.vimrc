@@ -19,31 +19,41 @@ set history=500
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Vundle                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim  " set the runtime path to include Vundle
-call vundle#begin()           " keep Plugin commands between vundle#begin/end
+filetype off                  " Required
+set rtp+=~/.vim/bundle/Vundle.vim  " Set the runtime path to include Vundle
+call vundle#begin()           " Keep Plugin commands between vundle#begin/end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- List of Plugins
 
-Plugin 'VundleVim/Vundle.vim'             " let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
 Plugin 'altercation/vim-colors-solarized' " Solarized theme
-Plugin 'dhruvasagar/vim-railscasts-theme' " railscats or jgdavey/vim-railscasts
+Plugin 'dhruvasagar/vim-railscasts-theme' " Railscats or jgdavey/vim-railscasts
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
 Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
 Plugin 'tpope/vim-fugitive'               " Git tools
 Plugin 'tpope/vim-rails.git'              " Rails :/
-Plugin 'tomtom/tcomment_vim'              " commenting and uncommenting stuff
+Plugin 'tpope/vim-surround'               " Surround your code :)
+Plugin 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
+Plugin 'tomtom/tcomment_vim'              " Commenting and uncommenting stuff
+Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
+Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for "{[(
+Plugin 'ervandew/supertab'                " Tab completions
+Plugin 'kien/ctrlp.vim'                   " Fuzzy finder for vim (CTRL+P)
+Plugin 'janko-m/vim-test'                 " For tests
+
+" Dependencies of vim-markdown
+Plugin 'godlygeek/tabular'                " Aligning text
+Plugin 'plasticboy/vim-markdown'          " Improve the original Markdown
 
 " Dependencies of snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
-
-Plugin 'garbas/vim-snipmate'              " snippets for our use :)
+Plugin 'garbas/vim-snipmate'              " Snippets for our use :)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()
-filetype plugin indent on     " required
+filetype plugin indent on     " Required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
