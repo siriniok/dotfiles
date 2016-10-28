@@ -15,6 +15,8 @@ set hidden
 " Set how many lines of history VIM should remember
 set history=500
 
+" Set ctags directory
+set tags=./tags;
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Vundle                                   "
