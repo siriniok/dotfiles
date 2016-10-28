@@ -70,7 +70,7 @@ set wrap                      " Wrap lines when they are too long
 syntax enable                 " Enable syntax highlighting
 set background=dark
 colorscheme solarized         " Default colorscheme
-autocmd Filetype ruby colorscheme railscasts  " Ruby colorscheme
+" autocmd Filetype ruby colorscheme railscasts  " Ruby colorscheme
 set antialias
 
 set updatetime=250            " More frequent updates for, e.g. signs.
