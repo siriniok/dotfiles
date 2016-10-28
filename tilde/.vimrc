@@ -142,6 +142,7 @@ noremap   <Right>  <NOP>
 " -- NERDTree
 
 autocmd vimenter * NERDTree   " Activate the NERDTree on launching vim
-let NERDTreeShowHidden=1      " enable displaying hidden files
 autocmd VimEnter * wincmd p   " focus on file after launching
+let NERDTreeShowHidden=1      " enable displaying hidden files
+let g:NERDTreeWinSize=20
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
