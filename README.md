@@ -37,7 +37,6 @@ This repo contains a Rakefile that does some magic things:
 
 ### Tmux & Text Editors
 
-* [From TextMate to Vim](http://pchm.co/posts/from-textmate-to-vim)
 * [Vim for Humans](https://vimebook.com/)
 * [Walkthrough of my .vimrc file for Ruby development](http://janjiss.com/walkthrough-of-my-vimrc-file-for-ruby-development/)
 * [Remote Pair Programming Made Easy with SSH and tmux](http://www.hamvocke.com/blog/remote-pair-programming-with-tmux/)
