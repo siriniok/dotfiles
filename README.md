@@ -1,5 +1,7 @@
 # Vladyslav Siriniok's Dotfiles
 
+[![Gitter](https://badges.gitter.im/siriniok/dotfiles.svg)](https://gitter.im/siriniok)
+
 ## Installation
 
 Install the Dotfiles
