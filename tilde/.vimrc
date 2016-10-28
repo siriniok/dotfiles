@@ -27,6 +27,7 @@ call vundle#begin()           " keep Plugin commands between vundle#begin/end
 
 Plugin 'VundleVim/Vundle.vim'             " let Vundle manage Vundle, required
 Plugin 'altercation/vim-colors-solarized' " Solarized theme
+Plugin 'dhruvasagar/vim-railscasts-theme' " railscats or jgdavey/vim-railscasts
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
 Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
 Plugin 'tpope/vim-fugitive'               " Git tools
@@ -56,8 +57,8 @@ set ruler                     " Display cursor position
 set wrap                      " Wrap lines when they are too long
 syntax enable                 " Enable syntax highlighting
 set background=dark
-colorscheme solarized
-colorscheme solarized
+colorscheme solarized         " Default colorscheme
+autocmd Filetype ruby colorscheme railscasts  " Ruby colorscheme
 set antialias
 
 set updatetime=250            " More frequent updates for, e.g. signs.
