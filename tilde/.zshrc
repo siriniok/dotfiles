@@ -149,7 +149,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Load extra (private) settings
 [ -f $HOME/.zshlocal ] && source $HOME/.zshlocal
-
-# Add travis gem
-TRAVIS="$HOME/.travis/travis.sh"
-[ -f "$TRAVIS" ] && source $TRAVIS
