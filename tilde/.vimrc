@@ -128,7 +128,7 @@ set wildmenu
 " Backspace behaves as expected
 set backspace=indent,eol,start
 
-:imap kj <Esc>                " Escape on kj keybinding
+:imap jj <Esc>                " Escape on jj keybinding
 command W w !sudo tee % > /dev/null  " :W sudo saves the file
 
 " Don't be a noob, join the no arrows key movement
