@@ -134,6 +134,8 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Keybindings
 
+let mapleader=',' " My leader key
+
 " Enable wildmenu for command line completions
 " Hit <Tab> after : and see what will happen
 set wildmenu
@@ -142,7 +144,7 @@ set wildmenu
 set backspace=indent,eol,start
 
 :imap jj <Esc>                " Escape on jj keybinding
-command W w !sudo tee % > /dev/null  " :W sudo saves the file
+noremap <Leader>W :w !sudo tee % > /dev/null " ,W sudo saves the file
 
 " Don't be a noob, join the no arrows key movement
 inoremap  <Up>     <NOP>
