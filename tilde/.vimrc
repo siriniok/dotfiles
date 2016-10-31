@@ -81,6 +81,9 @@ set scrolloff=3               " Display at least 3 lines around you cursor
 " Show matching brackets when text indicator is over them
 set showmatch
 
+set cursorline                " Highlight the current line
+" set cuc cul                 " Highlight active column
+
 set guioptions=T              " Enable the toolbar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
