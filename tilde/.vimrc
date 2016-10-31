@@ -179,8 +179,9 @@ nnoremap <c-l> <c-w>l
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- NERDTree
 
-autocmd vimenter * NERDTree   " Activate the NERDTree on launching vim
-autocmd VimEnter * wincmd p   " focus on file after launching
+" autocmd vimenter * NERDTree   " Activate the NERDTree on launching vim
+" autocmd VimEnter * wincmd p   " focus on file after launching
+map <leader>q :NERDTreeToggle<CR> " Opens and closes Nerdtree with ,q
 let NERDTreeShowHidden=1      " enable displaying hidden files
 let g:NERDTreeWinSize=20
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
