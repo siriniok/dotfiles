@@ -136,6 +136,8 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 
 let mapleader=',' " My leader key
 
+noremap <Leader>W :w !sudo tee % > /dev/null " ,W sudo saves the file
+
 " Enable wildmenu for command line completions
 " Hit <Tab> after : and see what will happen
 set wildmenu
@@ -143,8 +145,10 @@ set wildmenu
 " Backspace behaves as expected
 set backspace=indent,eol,start
 
-:imap jj <Esc>                " Escape on jj keybinding
-noremap <Leader>W :w !sudo tee % > /dev/null " ,W sudo saves the file
+" Removing escape
+ino jj <Esc>
+cno jj <c-c>
+vno v <Esc>
 
 " Don't be a noob, join the no arrows key movement
 inoremap  <Up>     <NOP>
