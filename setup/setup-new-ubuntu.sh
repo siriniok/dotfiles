@@ -1,7 +1,20 @@
-#!/bin/bash
+#!/bin/sh
 
-# Apps
-apps=(
+# Ask for password
+sudo -v
+
+echo "Updating APT"
+sudo apt-get update
+
+echo "Updating Ubuntu"
+sudo apt-get dist-upgrade
+sudo apt-get upgrade
+
+echo "Updating APT"
+sudo apt-get update
+
+# Packages
+packages=(
   gimp
   xclip
 )
