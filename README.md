@@ -37,6 +37,8 @@ This repo contains a Rakefile that does some magic things:
 
 ### Tmux & Text Editors
 
+Vim Cheat Sheets ([First](http://www.viemu.com/vi-vim-cheat-sheet.gif) | [Second](http://www.fprintf.net/vimCheatSheet.html))
+
 * [Vim for Humans](https://vimebook.com/)
 * [Walkthrough of my .vimrc file for Ruby development](http://janjiss.com/walkthrough-of-my-vimrc-file-for-ruby-development/)
 * [Remote Pair Programming Made Easy with SSH and tmux](http://www.hamvocke.com/blog/remote-pair-programming-with-tmux/)
