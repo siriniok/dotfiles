@@ -42,6 +42,7 @@ Vim Cheat Sheets ([First](http://www.viemu.com/vi-vim-cheat-sheet.gif) | [Second
 * [Vim for Humans](https://vimebook.com/)
 * [Walkthrough of my .vimrc file for Ruby development](http://janjiss.com/walkthrough-of-my-vimrc-file-for-ruby-development/)
 * [Coming Home to Vim](http://stevelosh.com/blog/2010/09/coming-home-to-vim/#some-background-about-me)
+* [Vim: revisited](http://mislav.net/2011/12/vim-revisited/)
 * [Vim anti-patterns](https://sanctum.geek.nz/arabesque/vim-anti-patterns/)
 * [Remote Pair Programming Made Easy with SSH and tmux](http://www.hamvocke.com/blog/remote-pair-programming-with-tmux/)
 * [Making tmux Pretty and Usable - A Guide to Customizing your tmux.conf](http://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/)
