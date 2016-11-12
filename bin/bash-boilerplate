@@ -16,7 +16,7 @@ cyan=$(tput setaf 6)
 # Output (to STDOUT): [...] It's Working
 info ()
 {
-    printf "%b" "[${green}...${normal}] $1\n"
+  printf "%b" "[${green}...${normal}] $1\n"
 }
 
 # Usage: prompt "question"
@@ -24,7 +24,7 @@ info ()
 # Output (to STDOUT): [ ? ] What's Your Name?
 prompt ()
 {
-    printf "%b" "[${yellow} ? ${normal}] $1 "
+  printf "%b" "[${yellow} ? ${normal}] $1 "
 }
 
 # Usage: error ["message"]
@@ -32,26 +32,26 @@ prompt ()
 # Output (to STDERR): [ERROR] [TIME] /script/name: You're Ugly
 error ()
 {
-    printf "%b" "[${red}ERROR${normal}] [$(date +'%Y-%m-%dT%H:%M:%S%z')] ${0}: "\
-        "${1:-'Unkown Error'}\n" >&2
+  printf "%b" "[${red}ERROR${normal}] [$(date +'%Y-%m-%dT%H:%M:%S%z')] ${0}: "\
+    "${1:-'Unkown Error'}\n" >&2
 }
 
 # Usage: fail "message" [exit_code]
 # Example: fail "Unknown Option" 254
 fail ()
 {
-    error "$1"
+  error "$1"
 
-    case $2 in
-        ''|*[!0-9]*)
-            exit_code=1
-            ;;
-        *)
-            exit_code=$2
-        ;;
-    esac
+  case $2 in
+    ''|*[!0-9]*)
+      exit_code=1
+      ;;
+    *)
+      exit_code=$2
+    ;;
+  esac
 
-    exit $exit_code
+  exit $exit_code
 }
 
 # ask function https://gist.github.com/davejamesmiller/1965569
@@ -59,127 +59,127 @@ fail ()
 # Example: if "Yes or No?" Y; then
 ask ()
 {
-    while true; do
+  while true; do
 
-        if [ "${2:-}" = "Y" ]; then
-            prompt_tail="Y/n"
-            default=Y
-        elif [ "${2:-}" = "N" ]; then
-            prompt_tail="y/N"
-            default=N
-        else
-            prompt_tail="y/n"
-            default=
-        fi
+    if [ "${2:-}" = "Y" ]; then
+      prompt_tail="Y/n"
+      default=Y
+    elif [ "${2:-}" = "N" ]; then
+      prompt_tail="y/N"
+      default=N
+    else
+      prompt_tail="y/n"
+      default=
+    fi
 
-        # Ask the question
-        prompt "$1 [$prompt_tail]"
-        read REPLY
+    # Ask the question
+    prompt "$1 [$prompt_tail]"
+    read REPLY
 
-        # Default?
-        if [ -z "$REPLY" ]; then
-            REPLY=$default
-        fi
+    # Default?
+    if [ -z "$REPLY" ]; then
+      REPLY=$default
+    fi
 
-        # Check if the reply is valid
-        case "$REPLY" in
-            Y*|y*) return 0 ;;
-            N*|n*) return 1 ;;
-        esac
+    # Check if the reply is valid
+    case "$REPLY" in
+      Y*|y*) return 0 ;;
+      N*|n*) return 1 ;;
+    esac
 
-    done
+  done
 }
 
 # Usage: show_help [exit_code]
 # Example: show_help 254
 show_help ()
 {
-    cat <<HELP
-    Usage:
-        $0 [OPTION]...
-    OPTIONS:
-        --help, -h:    Show this help and exit
-    Example:
-        $0 **example**
+  cat <<HELP
+  Usage:
+    $0 [OPTION]...
+  OPTIONS:
+    --help, -h:    Show this help and exit
+  Example:
+    $0 **example**
 HELP
 
-    # Fail with general error if status code passed
-    case $1 in
-        ''|*[!0-9]*)
-            exit_code=1
-            ;;
-        *)
-            exit_code=$1
-        ;;
-    esac
+  # Fail with general error if status code passed
+  case $1 in
+    ''|*[!0-9]*)
+      exit_code=1
+      ;;
+    *)
+      exit_code=$1
+    ;;
+  esac
 
-    exit $exit_code
+  exit $exit_code
 }
 
 argument_expected()
 {
-    fail "$1 expected an argument"
+  fail "$1 expected an argument"
 }
 
 finally()
 {
-    if [ ! -z $example_one ]; then
-        info "Finally, Example One: \"$example_one\""
-    fi
+  if [ ! -z $example_one ]; then
+    info "Finally, Example One: \"$example_one\""
+  fi
 
-    if [ ! -z $example_two ]; then
-        info "Finally, Example Two: \"$example_two\""
-    fi
+  if [ ! -z $example_two ]; then
+    info "Finally, Example Two: \"$example_two\""
+  fi
 
 }
 
 check_args()
 {
-    while [ ! -z "$1" ]; do
-        local arg="$1"
-        case "$1" in
-            -h|--help)
-                local help=0
-                shift
-                ;;
-            -ex1|--example-one)
-                shift
+  while [ ! -z "$1" ]; do
+    local arg="$1"
+    case "$1" in
+      -h|--help)
+        local help=0
+        shift
+        ;;
+      -ex1|--example-one)
+        shift
 
-                if [ -z $1 ] || [[ "$1" == -* ]]; then
-                    argument_expected $arg
-                fi
+        if [ -z $1 ] || [[ "$1" == -* ]]; then
+          argument_expected $arg
+        fi
 
-                example_one=$1
-                shift
-                ;;
-            -ex2|--example-two)
-                # Simple boolean flag–call function here
-                example_two="Two"
-                shift
-                ;;
-            *)
-                fail "Unknown option $1"
-                shift
-                ;;
-        esac
-    done
+        example_one=$1
+        shift
+        ;;
+      -ex2|--example-two)
+        # Simple boolean flag–call function here
+        example_two="Two"
+        shift
+        ;;
+      *)
+        fail "Unknown option $1"
+        shift
+        ;;
+    esac
+  done
 
-    if [ ! -z $help ]; then
-        show_help $help
-    fi
+  if [ ! -z $help ]; then
+    show_help $help
+  fi
 
-    finally
+  finally
 
-    exit 0
+  exit 0
 }
 
 main()
 {
-    if [ -z $1 ]; then
-        show_help
-    fi
+  if [ -z $1 ]; then
+    show_help
+  fi
 
-    check_args "$@"
+  check_args "$@"
 }
 
 main "$@"
