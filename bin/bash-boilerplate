@@ -29,10 +29,11 @@ prompt ()
 
 # Usage: error ["message"]
 # Example: error "You're Ugly"
-# Output (to STDERR): [ERROR] /script/name: You're Ugly
+# Output (to STDERR): [ERROR] [TIME] /script/name: You're Ugly
 error ()
 {
-    printf "%b" "[${red}ERROR${normal}] ${0}: ${1:-'Unkown Error'}\n" >&2
+    printf "%b" "[${red}ERROR${normal}] [$(date +'%Y-%m-%dT%H:%M:%S%z')] ${0}: "\
+        "${1:-'Unkown Error'}\n" >&2
 }
 
 # Usage: fail "message" [exit_code]
