@@ -47,6 +47,7 @@ Vim Cheat Sheets ([First](http://www.viemu.com/vi-vim-cheat-sheet.gif) | [Second
 * [Remote Pair Programming Made Easy with SSH and tmux](http://www.hamvocke.com/blog/remote-pair-programming-with-tmux/)
 * [Making tmux Pretty and Usable - A Guide to Customizing your tmux.conf](http://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/)
 * [Efficiency With Sublime Text and Ruby](http://thunderboltlabs.com/blog/2013/11/19/efficiency-with-sublime-text-and-ruby/)
+* [Setting up Sublime Text 3 for Rails Development](https://mattbrictson.com/sublime-text-3-recommendations)
 
 ### Dotfiles
 
