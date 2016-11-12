@@ -1,9 +1,10 @@
-#!/bin/zsh
+#!/bin/bash
+#
 # Lifted from https://github.com/lukaszkorecki/DotFiles/blob/master/bins/faces
 faces=('ಠ_ಠ' 'ಠ_ರೃ' '﴾͡๏̯͡๏﴿' '๏_๏' 'ಠ▃ಠ' '(•‿•)' 'Ծ_Ծ' '¯\(°_o)/¯' '(✌ﾟ∀ﾟ)☞' '╚(•⌂•)╝' 't(-_-t)t' '(ツ)_/¯' '◔_◔' '◎⃝ _◎⃝' ';ლ(ಠ_ಠლ)' '(╯°□°）╯︵ ┻━┻' 'ᶘ ᵒᴥᵒᶅ')
 
 if [[ -z $1 ]]; then
-  echo 'Choose a face and | it to pbcopy'
+  echo 'Choose a face:'
   i=1
   for f in ${faces[@]}
   do
@@ -11,5 +12,6 @@ if [[ -z $1 ]]; then
     i=`expr $i + 1`
   done
 else
-  echo ${faces[$1]}
+  echo ${faces[$1]} | xclip -selection clipboard
+  echo "Face ${faces[$1]} copied to your buffer."
 fi
