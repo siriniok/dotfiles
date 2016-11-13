@@ -1,17 +1,34 @@
 #!/usr/bin/env bash
-#
-# Lifted from https://github.com/lukaszkorecki/DotFiles/blob/master/bins/faces
-faces=('ಠ_ಠ' 'ಠ_ರೃ' '﴾͡๏̯͡๏﴿' '๏_๏' 'ಠ▃ಠ' '(•‿•)' 'Ծ_Ծ' '¯\(°_o)/¯' '(✌ﾟ∀ﾟ)☞' '╚(•⌂•)╝' 't(-_-t)t' '(ツ)_/¯' '◔_◔' '◎⃝ _◎⃝' ';ლ(ಠ_ಠლ)' '(╯°□°）╯︵ ┻━┻' 'ᶘ ᵒᴥᵒᶅ')
+
+FACES=(
+  '¯\_(ツ)_/¯'
+  'ಠ_ಠ'
+  'ಠ_ರೃ'
+  '﴾͡๏̯͡๏﴿'
+  '๏_๏'
+  'ಠ▃ಠ'
+  '(•‿•)'
+  'Ծ_Ծ'
+  '¯\(°_o)/¯'
+  '(✌ﾟ∀ﾟ)☞'
+  '╚(•⌂•)╝'
+  't(-_-t)t'
+  '(ツ)_/¯'
+  '◔_◔'
+  '◎⃝_◎⃝'
+  ';ლ(ಠ_ಠლ)'
+  '(╯°□°）╯︵ ┻━┻'
+  'ᶘ ᵒᴥᵒᶅ'
+)
 
 if [[ -z $1 ]]; then
   echo 'Choose a face:'
-  i=1
-  for f in ${faces[@]}
-  do
-    echo $i $f
-    i=`expr $i + 1`
+  i=0
+  for face in ${FACES[@]}; do
+    echo $((i++)) $face
   done
 else
-  echo ${faces[$1]} | xclip -selection clipboard
-  echo "Face ${faces[$1]} copied to your buffer."
+  face="${FACES[$1]}"
+  echo "${face}" | xclip -selection clipboard
+  echo "Face ${face} copied to your buffer."
 fi
