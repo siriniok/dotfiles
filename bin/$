@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # props https://github.com/cowboy/dotfiles/blob/master/bin/%24
 

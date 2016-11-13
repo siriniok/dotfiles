@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Origin: https://github.com/bradp/dotfiles/blob/master/bin/replace
 #
