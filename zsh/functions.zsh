@@ -2,17 +2,17 @@
 # Source: https://github.com/ain/.dotfiles/commit/967a2e65a44708449b6e93f87daa2721929cb87a
 
 duplines() {
-    sort $1 | uniq -d
+    sort "$1" | uniq -d
 }
 
 uniqlines() {
-    sort $1 | uniq -u
+    sort "$1" | uniq -u
 }
 
 # Pretty print JSON
 
 json() {
-    local url=$1
+    local url="$1"
     if [[ "http" == $url[0,4] ]] ; then
         curl --silent $url | python -mjson.tool | pygmentize -O style=monokai -f console256 -g
     else
@@ -47,15 +47,15 @@ extract() {
 }
 
 function please() {
-    sudo $1
+    sudo "$1"
 }
 
 function lol() {
-    $@ | lolcat
+    "$@" | lolcat
 }
 
 function download_site() {
-    wget --limit-rate=200k --no-clobber --convert-links --random-wait -r -p -E -e robots=off -U mozilla $1
+    wget --limit-rate=200k --no-clobber --convert-links --random-wait -r -p -E -e robots=off -U mozilla "$1"
 }
 
 function gi()  {
