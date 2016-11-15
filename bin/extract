@@ -31,18 +31,21 @@ fi
 if [ -f "$1" ] ; then
   dir_name="${1%.*}"  # Filename without extension
   case "$1" in
-    *.tar.bz2)  tar xjf              "$1"   || not_found 'tar'        ;;
-    *.tar.gz)   tar xzf              "$1"   || not_found 'tar'        ;;
-    *.tar.xz)   tar Jxvf             "$1"   || not_found 'tar'        ;;
-    *.tar)      tar xf               "$1"   || not_found 'tar'        ;;
-    *.tbz2)     tar xjf              "$1"   || not_found 'tar'        ;;
-    *.tgz)      tar xzf              "$1"   || not_found 'tar'        ;;
-    *.bz2)      bunzip2              "$1"   || not_found 'bunzip'     ;;
-    *.rar)      unrar x              "$1" . || not_found 'unrar'      ;;
-    *.gz)       gunzip               "$1"   || not_found 'gunzip'     ;;
-    *.zip)      unzip -d "$dir_name" "$1"   || not_found 'unzip'      ;;
-    *.Z)        uncompress           "$1"   || not_found 'uncompress' ;;
-    *)          echo "'$1' cannot be extracted via extract()" ;;
+    *.tar.bz2)  tar xjvf             "$1"          || not_found 'tar'       ;;
+    *.tar.gz)   tar xzvf             "$1"          || not_found 'tar'       ;;
+    *.tar.xz)   tar Jxvf             "$1"          || not_found 'tar'       ;;
+    *.tar)      tar  xvf             "$1"          || not_found 'tar'       ;;
+    *.tbz2)     tar xjvf             "$1"          || not_found 'tar'       ;;
+    *.tgz)      tar xzvf             "$1"          || not_found 'tar'       ;;
+    *.bz2)      bunzip2              "$1"          || not_found 'bunzip'    ;;
+    *.rar)      unrar x              "$1" .        || not_found 'unrar'     ;;
+    *.gz)       gunzip               "$1"          || not_found 'gunzip'    ;;
+    *.zip)      unzip -d "$dir_name" "$1"          || not_found 'unzip'     ;;
+    *.Z)        uncompress           "$1"          || not_found 'uncompress';;
+    *.dmg)      hdiutil mount        "$1"          || not_found 'hdiutil'   ;;
+    *.pax)      cat                  "$1" | pax -r || not_found 'pax'       ;;
+    *.pax.Z)    uncompress "$1" --stdout  | pax -r || not_found 'utilities' ;;
+    *)          echo "'$1' cannot be extracted/mounted via extract()" ;;
   esac
 else
   echo "'$1' is not a valid file"
