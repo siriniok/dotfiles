@@ -9,27 +9,28 @@ alias sudo='sudo '
 
 # Zsh
 
-alias zshs="source ~/.zshrc"
+alias zshs='source ~/.zshrc'
 
-alias zshconfig="$EDITOR ~/.zshrc"
-alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+alias zshconfig="${EDITOR} ~/.zshrc"
+alias ohmyzsh="${EDITOR} ~/.oh-my-zsh"
 
 
 # Shortcuts
 
-alias lc="lolcat"
-alias fm="nautilus"
-alias aptins="sudo apt-get install"
-alias aptupd="sudo apt-get update"
-alias _="sudo"
-alias v="vim"
-alias vi="vim"
+alias lc='lolcat'
+alias fm='nautilus'
+alias aptins='sudo apt-get install'
+alias aptupd='sudo apt-get update'
+alias _='sudo'
+alias v='vim'
+alias vi='vim'
 
 
 # List declared aliases, functions
 
 alias listaliases="alias | sed 's/=.*//'"
-alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non _prefixed functions
+# Show non _prefixed functions
+alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 
 
 # cd
@@ -77,7 +78,7 @@ alias quit="exit"
 alias week="date +%V"
 alias currentdate='date "+%m/%d/%Y"'
 alias h="history"
-alias hosts="$EDITOR /etc/hosts"
+alias hosts="${EDITOR} /etc/hosts"
 alias ip="curl ipinfo.io/ip"
 alias localips='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
 alias my-ssh="xclip -sel clip < ~/.ssh/id_rsa.pub"
@@ -110,5 +111,5 @@ fi
 
 
 # Folders Shortcuts
-[ -d $DOTFILES ]              && alias dotfiles="cd $DOTFILES"
+[ -d $DOTFILES ]              && alias dotfiles="cd ${DOTFILES}"
 [ -d ~/code ]                 && alias dl='cd ~/code'
