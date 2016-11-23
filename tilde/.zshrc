@@ -38,6 +38,9 @@ DISABLE_AUTO_TITLE='true'
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS='true'
 
+# pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
+
 # This will add a 10 second wait before you can confirm a wildcard deletion.
 setopt RM_STAR_WAIT
 
