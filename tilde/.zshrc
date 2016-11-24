@@ -63,31 +63,6 @@ set -o noclobber
 # Custom folder than $ZSH/custom
 # ZSH_CUSTOM="$DOTFILES/zsh"
 
-# Extend $PATH without duplicates
-function _extend_path() {
-  if ! $( echo "$PATH" | tr ":" "\n" | grep -qx "$1" ) ; then
-    PATH="$1:$PATH"
-  fi
-}
-
-# Default pager
-export PAGER='less'
-
-# less options
-less_opts=(
-  # Quit if entire file fits on first screen.
-  --quit-if-one-screen
-  # Ignore case in searches that do not contain uppercase.
-  --ignore-case
-  # Allow ANSI colour escapes, but no other escapes.
-  --RAW-CONTROL-CHARS
-  # Quiet the terminal bell. (when trying to scroll past the end of the buffer)
-  --quiet
-  # Do not complain when we are on a dumb terminal.
-  --dumb
-)
-export LESS="${less_opts[*]}"
-
 # This will highlight the patterns you specify in a color of your choice.
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
