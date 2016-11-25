@@ -1,10 +1,15 @@
-# Base ZSH configuration
+##############################################################################
+#                           Base ZSH configuration                           #
+##############################################################################
 
-# Export path to root of oh-my-zsh directory
+# Path to root of oh-my-zsh directory
 export ZSH=$HOME/.oh-my-zsh
 
-# Export path to root of dotfiles directory
-export DOTFILES=$HOME/.dotfiles
+# Path to root of the development directory
+export CODE=~/code
+
+# Path to root of dotfiles directory
+export DOTFILES=$CODE/dotfiles
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -69,8 +74,7 @@ ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
 ZSH_HIGHLIGHT_PATTERNS=('git push origin master' 'fg=white,bold,bg=red')
 
 # load zsh config files
-for file in $DOTFILES/zsh/*
-do
+for file in $DOTFILES/zsh/* do
   source $file
 done
 
