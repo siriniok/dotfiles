@@ -74,7 +74,7 @@ ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
 ZSH_HIGHLIGHT_PATTERNS=('git push origin master' 'fg=white,bold,bg=red')
 
 # load zsh config files
-for file in $DOTFILES/zsh/* do
+for file in $DOTFILES/zsh/*; do
   source $file
 done
 
