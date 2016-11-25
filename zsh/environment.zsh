@@ -48,7 +48,6 @@ export LESS="${less_opts[*]}"
 
 
 # Path to your development directory
-export CODE=~/code
 export C=$CODE
 
 # Path to your dotfiles repo
