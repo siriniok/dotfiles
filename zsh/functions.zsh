@@ -1,8 +1,9 @@
-# Show duplicate/unique lines
+# Show duplicate lines
 duplines() {
   sort "$1" | uniq -d
 }
 
+# Show unique lines
 uniqlines() {
   sort "$1" | uniq -u
 }
@@ -10,34 +11,29 @@ uniqlines() {
 # Pretty print JSON
 json() {
   local url="$1"
-  if [[ "http" == $url[0,4] ]] ; then
+  if [[ "http" == $url[0,4] ]]; then
     curl --silent $url | python -mjson.tool | pygmentize -O style=monokai -f console256 -g
   else
     cat $url | python -mjson.tool | pygmentize -O style=monokai -f console256 -g
   fi
 }
 
-function please() {
-  sudo "$1"
-}
-
-function lol() {
-  "$@" | lolcat
-}
-
-function download_site() {
+# Donwload full copy of a site with wget
+download_site() {
   wget --limit-rate=200k --no-clobber --convert-links --random-wait -r -p -E -e robots=off -U mozilla "$1"
 }
 
-function gi() {
-  curl http://www.gitignore.io/api/$@;
+# Download .gitignore for specific language
+gi() {
+  curl -L -s https://www.gitignore.io/api/$@
 }
 
-function mkd() {
+# Make directory (with parent directories as needed) and move to it
+mkd() {
   mkdir -p -- "$@" && cd -- "$@"
 }
 
-# find shorthand
-function f() {
-  find . -name "$1"
+# Just for lulz ;)
+lol() {
+  "$@" | lolcat
 }
