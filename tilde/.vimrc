@@ -32,6 +32,7 @@ Plugin 'altercation/vim-colors-solarized' " Solarized theme
 Plugin 'dhruvasagar/vim-railscasts-theme' " Railscats or jgdavey/vim-railscasts
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
 Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
+Plugin 'sjbach/lusty'                     " LustyExplorer plugin
 Plugin 'tpope/vim-fugitive'               " Git tools
 Plugin 'tpope/vim-rails.git'              " Rails :/
 Plugin 'tpope/vim-surround'               " Surround your code :)
