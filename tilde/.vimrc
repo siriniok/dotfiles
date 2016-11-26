@@ -151,8 +151,8 @@ set wildmenu
 set backspace=indent,eol,start
 
 " Removing escape
-ino jj <Esc>
-cno jj <c-c>
+ino ii <Esc> " jj
+cno ii <c-c> " jj
 vno v <Esc>
 
 " Don't be a noob, join the no arrows key movement
