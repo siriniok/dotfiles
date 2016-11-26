@@ -33,6 +33,7 @@ Plugin 'dhruvasagar/vim-railscasts-theme' " Railscats or jgdavey/vim-railscasts
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
 Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
 Plugin 'sjbach/lusty'                     " LustyExplorer plugin
+Plugin 'mileszs/ack.vim'                  " Ack plugin for Vim
 Plugin 'tpope/vim-fugitive'               " Git tools
 Plugin 'tpope/vim-rails.git'              " Rails :/
 Plugin 'tpope/vim-surround'               " Surround your code :)
@@ -185,4 +186,16 @@ nnoremap <c-l> <c-w>l
 map <leader>q :NERDTreeToggle<CR> " Opens and closes Nerdtree with ,q
 let NERDTreeShowHidden=1      " enable displaying hidden files
 let g:NERDTreeWinSize=20
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Ack
+
+" Default params for ack
+let g:ackprg="ack -H --nocolor --nogroup --column"
+" Add a mark and search
+nmap <leader>j mA:Ack<space>
+" Add a mark and search for the word under the cursor
+nmap <leader>ja mA:Ack "<C-r>=expand("<cword>")<cr>"
+nmap <leader>jA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
