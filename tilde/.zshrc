@@ -119,6 +119,7 @@ plugins=(
   zsh-syntax-highlighting
   dircycle
   colorize
+  lein
   # last-working-dir
 )
 
