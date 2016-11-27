@@ -25,7 +25,7 @@ export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 
 # SSH
-export SSH_KEY_PATH=~/.ssh/dsa_id
+export SSH_KEY_PATH=~/.ssh/id_rsa.pub
 
 # Pager settings
 # Default pager
