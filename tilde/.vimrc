@@ -87,6 +87,9 @@ set cursorline                " Highlight the current line
 " set cuc cul                 " Highlight active column
 
 set guioptions=T              " Enable the toolbar
+
+set colorcolumn=78,80
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
