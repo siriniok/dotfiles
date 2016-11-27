@@ -44,6 +44,7 @@ Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for "{[(
 Plugin 'ervandew/supertab'                " Tab completions
 Plugin 'kien/ctrlp.vim'                   " Fuzzy finder for vim (CTRL+P)
 Plugin 'janko-m/vim-test'                 " For tests
+Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
@@ -201,4 +202,13 @@ nmap <leader>j mA:Ack<space>
 " Add a mark and search for the word under the cursor
 nmap <leader>ja mA:Ack "<C-r>=expand("<cword>")<cr>"
 nmap <leader>jA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- rainbow_parentheses
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax   * RainbowParenthesesLoadRound
+au Syntax   * RainbowParenthesesLoadSquare
+au Syntax   * RainbowParenthesesLoadBraces
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
