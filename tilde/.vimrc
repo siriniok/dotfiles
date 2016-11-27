@@ -45,6 +45,8 @@ Plugin 'ervandew/supertab'                " Tab completions
 Plugin 'kien/ctrlp.vim'                   " Fuzzy finder for vim (CTRL+P)
 Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
+Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
+Plugin 'tpope/vim-fireplace'              " Clojure REPL support
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
