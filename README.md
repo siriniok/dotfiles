@@ -37,7 +37,7 @@ This repo contains a Rakefile that does some magic things:
 
 ### Tmux & Text Editors
 
-Vim Cheat Sheets ([First](http://www.viemu.com/vi-vim-cheat-sheet.gif) | [Second](http://www.fprintf.net/vimCheatSheet.html))
+Vim Cheat Sheets ([First](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html) | [Second](http://www.fprintf.net/vimCheatSheet.html))
 
 * [Vim for Humans](https://vimebook.com/)
 * [Walkthrough of my .vimrc file for Ruby development](http://janjiss.com/walkthrough-of-my-vimrc-file-for-ruby-development/)
