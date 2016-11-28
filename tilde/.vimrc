@@ -47,6 +47,7 @@ Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
 Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
 Plugin 'tpope/vim-fireplace'              " Clojure REPL support
+Plugin 'paredit.vim'                      " Paredit for Vim
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
