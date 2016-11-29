@@ -42,6 +42,7 @@ Plugin 'tomtom/tcomment_vim'              " Commenting and uncommenting stuff
 Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
 Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for "{[(
 Plugin 'ervandew/supertab'                " Tab completions
+Plugin 'mattn/emmet-vim'                  " Emmet for Vim
 Plugin 'kien/ctrlp.vim'                   " Fuzzy finder for vim (CTRL+P)
 Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
@@ -214,4 +215,12 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Emmet
+
+let g:user_emmet_leader_key = '<c-z>'
+let g:user_emmet_expandabbr_key='<Tab>'
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
