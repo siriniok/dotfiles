@@ -28,7 +28,7 @@ call vundle#begin()           " Keep Plugin commands between vundle#begin/end
 " -- List of Plugins
 
 Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
-Plugin 'altercation/vim-colors-solarized' " Solarized theme
+Plugin 'siriniok/vim-colors-solarized'    " Solarized theme
 Plugin 'dhruvasagar/vim-railscasts-theme' " Railscats or jgdavey/vim-railscasts
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
 Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
