@@ -39,8 +39,16 @@ ENABLE_CORRECTION='true'
 # Display red dots whilst waiting for completion
 COMPLETION_WAITING_DOTS='true'
 
-# pasting with tabs doesn't perform completion
-zstyle ':completion:*' insert-tab pending
+# Pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pend
+
+# Formatting and messages
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format "$fg[yellow]%B--- %d%b"
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*' group-name ''
 
 ##############################################################################
 
