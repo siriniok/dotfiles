@@ -40,7 +40,7 @@ Plugin 'tpope/vim-surround'               " Surround your code :)
 Plugin 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
 Plugin 'scrooloose/nerdcommenter'         " Commenting and uncommenting stuff
 Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
-Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for "{[(
+Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
 Plugin 'ervandew/supertab'                " Tab completions
 Plugin 'mattn/emmet-vim'                  " Emmet for Vim
 Plugin 'kien/ctrlp.vim'                   " Fuzzy finder for vim (CTRL+P)
@@ -95,6 +95,9 @@ set guioptions=T              " Enable the toolbar
 
 set colorcolumn=78,80
 
+" Display tabs and spaces
+set list
+set listchars=tab:▸\ ,space:·,nbsp:·
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
