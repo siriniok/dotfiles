@@ -38,7 +38,7 @@ Plugin 'tpope/vim-fugitive'               " Git tools
 Plugin 'tpope/vim-rails.git'              " Rails :/
 Plugin 'tpope/vim-surround'               " Surround your code :)
 Plugin 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
-Plugin 'tomtom/tcomment_vim'              " Commenting and uncommenting stuff
+Plugin 'scrooloose/nerdcommenter'         " Commenting and uncommenting stuff
 Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
 Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for "{[(
 Plugin 'ervandew/supertab'                " Tab completions
@@ -223,4 +223,11 @@ au Syntax   * RainbowParenthesesLoadBraces
 let g:user_emmet_leader_key = '<c-z>'
 let g:user_emmet_expandabbr_key='<Tab>'
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- NERDCommenter
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
