@@ -43,6 +43,7 @@ Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
 Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
 Plugin 'ervandew/supertab'                " Tab completions
 Plugin 'mattn/emmet-vim'                  " Emmet for Vim
+Plugin 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
 Plugin 'kien/ctrlp.vim'                   " Fuzzy finder for vim (CTRL+P)
 Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
