@@ -84,6 +84,9 @@ alias vic='${EDITOR} ~/.vimrc'
 ##############################################################################
 # Miscellaneous
 
+# Restark network services
+alias rntwrk='sudo service network-manager restart'
+
 # Display number of the current week and current date
 alias week='date +%V'
 alias currentdate='date "+%m/%d/%Y"'
@@ -109,6 +112,9 @@ alias myssh='cat ${SSH_KEY_PATH} | xc'
 
 # Password generator
 alias password='openssl rand -base64 ${1:-9} | xc ; echo "$(xp)"'
+
+# Increase the amount of inotify watches
+alias incinotify='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
 
 ##############################################################################
 
