@@ -50,6 +50,7 @@ Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
 Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
 Plugin 'tpope/vim-fireplace'              " Clojure REPL support
 Plugin 'paredit.vim'                      " Paredit for Vim
+Plugin 'joukevandermaas/vim-ember-hbs'    " Support for Ember Handlebars
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
