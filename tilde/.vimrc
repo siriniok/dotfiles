@@ -51,6 +51,7 @@ Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
 Plugin 'tpope/vim-fireplace'              " Clojure REPL support
 Plugin 'paredit.vim'                      " Paredit for Vim
 Plugin 'joukevandermaas/vim-ember-hbs'    " Support for Ember Handlebars
+Plugin 'pangloss/vim-javascript'          " Improved JS support
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
