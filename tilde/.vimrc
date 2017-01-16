@@ -238,3 +238,10 @@ autocmd FileType html,css EmmetInstall
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- CtrlP
+
+" Ignore files
+set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
