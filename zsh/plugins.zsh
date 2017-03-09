@@ -39,5 +39,4 @@ plugins=(
   dircycle
   colorize
   lein
-  # last-working-dir
 )
