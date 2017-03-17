@@ -30,7 +30,7 @@ success() {
 }
 
 # Preinstall
-if [ `uname` == 'Linux' ]; then
+if [ $(uname) == 'Linux' ]; then
   # Retrieve new lists of packages
   sudo apt-get update
 
