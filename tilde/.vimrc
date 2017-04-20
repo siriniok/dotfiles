@@ -18,6 +18,15 @@ set history=500
 " Set ctags directory
 set tags=./tags;
 
+" Set backup directory
+set backupdir=~/.vim/backup//
+
+" Set swap directory
+set directory=~/.vim/swap//
+
+" Set undo directory
+set undodir=~/.vim/undo//
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Vundle                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
