@@ -31,10 +31,3 @@ ehthumbs.db
 Thumbs.db
 .idea/
 .vagrant/
-
-# Editor files #
-################
-
-.*.swp
-.*.swo
-*.vim
