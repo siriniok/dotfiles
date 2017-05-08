@@ -17,8 +17,8 @@ env:
 # Window dimensions in character columns and lines
 # (changes require restart)
 dimensions:
-  columns: 80
-  lines: 24
+  columns: 90
+  lines: 25
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
@@ -27,7 +27,7 @@ dpi:
   y: 96.0
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 8
+tabspaces: 4
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
@@ -36,24 +36,27 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: monospace # should be "Menlo" or something on macOS.
+    # should be "Menlo" or something on macOS.
+    family: "Liberation Mono for Powerline"
     # Style can be specified to pick a specific face.
     # style: Regular
 
   # The bold font face
   bold:
-    family: monospace # should be "Menlo" or something on macOS.
+    # should be "Menlo" or something on macOS.
+    family: "Liberation Mono for Powerline"
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: monospace # should be "Menlo" or something on macOS.
+    # should be "Menlo" or something on macOS.
+    family: "Liberation Mono for Powerline"
     # Style can be specified to pick a specific face.
     # style: Italic
 
   # Point size of the font
-  size: 11.0
+  size: 10.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
