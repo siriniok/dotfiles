@@ -60,6 +60,11 @@ Emacs Cheat Sheets ([First](http://www.ic.unicamp.br/~helio/disciplinas/MC102/Em
 * [Ben Alman's Dotfiles](https://github.com/cowboy/dotfiles)
 * [Denys Dovhan's Dotfiles](https://github.com/denysdovhan/dotfiles)
 
+## Utilities
+
+* [pgcli](https://www.pgcli.com/) - a CLI for Postgres with auto-completion and syntax highlighting
+* [jq](https://stedolan.github.io/jq/) - a lightweight and flexible command-line JSON processor
+
 ## License
 
 [MIT](https://github.com/siriniok/dotfiles/blob/master/LICENSE) (c) 2015-2016 Vladyslav Siriniok (http://siriniok.com)
