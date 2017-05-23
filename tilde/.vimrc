@@ -162,6 +162,9 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Keybindings
 
+" Enable mouse in all modes
+set mouse=a
+
 let mapleader=',' " My leader key
 
 noremap <Leader>W :w !sudo tee % > /dev/null " ,W sudo saves the file
