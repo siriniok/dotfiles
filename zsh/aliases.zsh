@@ -84,6 +84,9 @@ alias vic='${EDITOR} ~/.vimrc'
 ##############################################################################
 # Miscellaneous
 
+# Fix this stupid snake
+alias python=python3
+
 # Restark network services
 alias rntwrk='sudo service network-manager restart'
 
