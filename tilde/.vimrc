@@ -49,6 +49,7 @@ Plugin 'tpope/vim-surround'               " Surround your code :)
 Plugin 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
 Plugin 'scrooloose/nerdcommenter'         " Commenting and uncommenting stuff
 Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
+Plugin 'ngmy/vim-rubocop'                 " Rubocop Integration
 Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
 Plugin 'ervandew/supertab'                " Tab completions
 Plugin 'mattn/emmet-vim'                  " Emmet for Vim
