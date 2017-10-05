@@ -38,7 +38,7 @@ if [ $(uname) = 'Linux' ]; then
   sudo apt-get update
 
   # Install latest git, zsh and ruby dependencies
-  sudo apt-get install -y git zsh vim vim-gtk tmux google-chrome-stable unity-tweak-tool
+  sudo apt-get install -y git zsh vim vim-gtk tmux xclip google-chrome-stable unity-tweak-tool
 
   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   curl -sSL https://get.rvm.io | bash -s stable --ruby --gems=bundler,rake --ignore-dotfiles
