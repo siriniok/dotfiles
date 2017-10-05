@@ -30,26 +30,29 @@ success() {
 }
 
 # Preinstall
-if [ $(uname) == 'Linux' ]; then
+if [ $(uname) = 'Linux' ]; then
+  wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
   # Retrieve new lists of packages
   sudo apt-get update
 
   # Install latest git, zsh and ruby dependencies
-  sudo apt-get install git zsh zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+  sudo apt-get install -y git zsh vim vim-gtk tmux google-chrome-stable unity-tweak-tool
 
-  # Install latest RVM
-  gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  curl -sSL https://get.rvm.io | bash -s stable
-  source ~/.rvm/scripts/rvm
+  gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+  curl -sSL https://get.rvm.io | bash -s stable --ruby --gems=bundler,rake --ignore-dotfiles
+  ~/.rvm/scripts/rvm
 
-  # Install latest Ruby
-  rvm install 2.3.1
-  rvm use 2.3.1 --default
-  ruby -v
+  git clone https://github.com/powerline/fonts.git --depth=1
+  cd fonts
+  ./install.sh
+  cd ..
+  rm -rf fonts
 
-  # Install bundler and rake
-  gem install bundler
-  gem install rake
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
   error "Error: Your OS is not Linux."
   exit
@@ -62,13 +65,13 @@ chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
 dir="$HOME/code/"
 mkdir -p $dir
 cd $dir
-git clone --recursive git://github.com/siriniok/dotfiles.git
+git clone git://github.com/siriniok/dotfiles.git
 cd dotfiles
 
 # Symlink the dotfiles
 rake install
 
-success "Please restart your terminal!"
+success "Please restart your PC!"
 
 echo
 echo -n $RED'-_-_-_-_-_-_-_'
@@ -80,3 +83,5 @@ echo    $RESET$BOLD'~|__( ^ .^)'$RESET
 echo -n $CYAN'-_-_-_-_-_-_-_-'
 echo    $RESET$BOLD'""  ""'$RESET
 echo
+
+exit 0
