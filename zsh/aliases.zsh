@@ -49,6 +49,12 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cd.='cd $(readlink -f .)'
 
+# Directories
+
+[ -d $DOTFILES ]              && alias dotfiles="cd ${DOTFILES}"
+[ -d $CODE ]                  && alias wd="cd ${CODE}"
+[ -d /work/code ]             && alias dw="cd /work/code"
+
 ##############################################################################
 
 
@@ -126,14 +132,5 @@ alias password='openssl rand -base64 ${1:-9} | xc ; echo "$(xp)"'
 
 # Increase the amount of inotify watches
 alias incinotify='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
-
-##############################################################################
-
-
-##############################################################################
-# Shortcuts for changing to specific directory
-
-[ -d $DOTFILES ]              && alias dotfiles="cd ${DOTFILES}"
-[ -d $CODE ]                  && alias wd="cd ${CODE}"
 
 ##############################################################################
