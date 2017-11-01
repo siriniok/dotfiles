@@ -40,7 +40,7 @@ This repo contains a Rakefile that does some magic things:
 
 Vim Cheat Sheets ([First](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html) | [Second](http://www.fprintf.net/vimCheatSheet.html))
 
-Emacs Cheat Sheets ([First](http://www.ic.unicamp.br/~helio/disciplinas/MC102/Emacs_Reference_Card.pdf) | [Second](http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs8.png))
+Emacs Cheat Sheets ([First](http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs8.png) | [Survival](https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf) | [Refcard](https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf))
 
 * [Vim for Humans](https://vimebook.com/)
 * [Walkthrough of my .vimrc file for Ruby development](http://janjiss.com/walkthrough-of-my-vimrc-file-for-ruby-development/)
