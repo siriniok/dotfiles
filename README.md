@@ -33,7 +33,6 @@ This repo contains a Rakefile that does some magic things:
 * [Bash Handbook](https://github.com/denysdovhan/bash-handbook)
 * [Defensive BASH Programming](http://www.kfirlavi.com/blog/2012/11/14/defensive-bash-programming)
 * [Hints for Writing Unix Tools](https://monkey.org/~marius/unix-tools-hints.html)
-* [Useful One-Line Scripts for Perl](http://www.catonmat.net/download/perl1line.txt)
 * [Unix Toolbox](http://cb.vu/unixtoolbox.xhtml)
 
 ### Tmux & Text Editors
