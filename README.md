@@ -57,10 +57,11 @@ Emacs Cheat Sheets ([First](http://sachachua.com/blog/wp-content/uploads/2013/05
 * [Ben Alman's Dotfiles](https://github.com/cowboy/dotfiles)
 * [Denys Dovhan's Dotfiles](https://github.com/denysdovhan/dotfiles)
 
-## Utilities
+## Tools
 
 * [pgcli](https://www.pgcli.com/) - a CLI for Postgres with auto-completion and syntax highlighting
 * [jq](https://stedolan.github.io/jq/) - a lightweight and flexible command-line JSON processor
+* [ranger](http://ranger.nongnu.org/) - a console file manager with Vi keybindings
 
 ## License
 
