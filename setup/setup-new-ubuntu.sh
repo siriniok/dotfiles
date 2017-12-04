@@ -3,25 +3,38 @@
 # Ask for password
 sudo -v
 
-echo "Updating APT"
-sudo apt-get update
-
-echo "Updating Ubuntu"
-sudo apt-get dist-upgrade
-sudo apt-get upgrade
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 
 echo "Updating APT"
 sudo apt-get update
 
 # Packages
 packages=(
+  build-essential
+  clipit
+  caffeine
+  cowsay
+  httpie
   gimp
-  xclip
-)
+  grub-customizer
+  inkscape
+  gparted
+  unetbootin
+  vlc
+  mc
+  python-pip
+  redshift
+  silversearcher-ag
+  tig
+  tree
+  )
 
 echo "Installing apps with apt-get..."
-sudo apt-get install ${apps[@]}
+sudo apt-get install -y -qq ${apps[@]}
 
-sudo apt-get clean
+wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+
+sudo apt-get autoremove
+sudo apt-get autoclean
 
 echo "Done!"
