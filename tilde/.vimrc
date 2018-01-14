@@ -201,6 +201,9 @@ nnoremap <c-l> <c-w>l
 " Insert new line without entering insert mode
 nmap oo o<Esc>
 nmap OO O<Esc>
+
+" Puts the caller in Ruby code
+nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
