@@ -8,6 +8,7 @@
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global
+    autocrlf = input
 
 [alias]
     # List files ignored by .gitignore and friends
