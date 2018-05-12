@@ -1,16 +1,14 @@
 require 'rake'
 require 'fileutils'
 
-# These are all the files we want to symlink to ~
-DOTFILES_FOLDER = 'tilde'
-FILES = Dir.chdir(DOTFILES_FOLDER) { Dir.glob('**/*', File::FNM_DOTMATCH) }.
-  select { |f| File.file? File.join(DOTFILES_FOLDER, f) }
+# The directory for dotfiles that should be symlinked
+DOTFILES_DIRECTORY = 'tilde'
 
 task :default => 'install'
 
 desc "Hook our dotfiles into system-standard positions."
 task :install do
-  FILES.each do |file|
+  files_to_symlink(DOTFILES_DIRECTORY).each do |file|
     symlink_file( file )
   end
 end
@@ -28,8 +26,13 @@ task :setup_file, [:file ] do |t, file|
   end
 end
 
+def files_to_symlink(directory)
+  entities = Dir.chdir(directory) { Dir.glob('**/*', File::FNM_DOTMATCH) }
+  entities.select { |f| File.file? File.join(directory, f) }
+end
+
 def symlink_file( file )
-  source = "#{ENV["PWD"]}/#{DOTFILES_FOLDER}/#{file}"
+  source = "#{ENV["PWD"]}/#{DOTFILES_DIRECTORY}/#{file}"
   target = "#{ENV["HOME"]}/#{file}"
 
   puts "Source: #{source}"
