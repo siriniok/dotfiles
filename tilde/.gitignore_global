@@ -20,6 +20,9 @@
 *.tar
 *.zip
 
+# Helper files
+.rake_tasks
+
 # OS generated files #
 ######################
 .DS_Store
