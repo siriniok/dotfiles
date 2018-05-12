@@ -81,16 +81,21 @@ alias ll6='tree --dirsfirst -ChFupDaL 3'
 # Git
 
 alias gclt='git clone --depth=1'
+alias gitru='git clean -d'
+alias gitrui='git clean -di'
+alias gitrun='git clean -dn'
+alias gnpd='git --no-pager diff'
 
 ##############################################################################
 
 
 ##############################################################################
-# Vim
+# Editors
 
 alias v='vim'
 alias vi='vim'
 alias vic='${EDITOR} ~/.vimrc'
+alias emacs='emacs -nw'
 
 ##############################################################################
 
@@ -133,4 +138,8 @@ alias password='openssl rand -base64 ${1:-9} | xc ; echo "$(xp)"'
 # Increase the amount of inotify watches
 alias incinotify='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
 
-##############################################################################
+# Run command every 30 seconds
+alias w30s='watch -n 30'
+
+# Run ngrok with HTTPS on port 3000
+alias ngroks='ngrok http -bind-tls=true 3000'
