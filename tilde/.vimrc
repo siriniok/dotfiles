@@ -199,7 +199,7 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Resolve conflict with tmux
-nnoremap <c-p> <c-a>
+nnoremap <c-k> <c-a>
 
 " Insert new line without entering insert mode
 nmap oo o<Esc>
