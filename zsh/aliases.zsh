@@ -104,6 +104,7 @@ alias emacs='emacs -nw'
 # Miscellaneous
 
 # Fix this stupid snake
+alias p2=python
 alias python=python3
 
 # Restark network services
