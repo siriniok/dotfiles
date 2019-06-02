@@ -142,5 +142,6 @@ alias incinotify='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sys
 # Run command every 30 seconds
 alias w30s='watch -n 30'
 
-# Run ngrok with HTTPS on port 3000
-alias ngroks='ngrok http -bind-tls=true 3000'
+# Run ngrok
+alias ngrok3000='ngrok http -bind-tls=true 3000'
+alias ngrok5000='ngrok http -bind-tls=true 5000'
