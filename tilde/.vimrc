@@ -37,8 +37,14 @@ call vundle#begin()           " Keep Plugin commands between vundle#begin/end
 " -- List of Plugins
 
 Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
+
+" Themes
 Plugin 'siriniok/vim-colors-solarized'    " Solarized theme
-Plugin 'dhruvasagar/vim-railscasts-theme' " Railscats or jgdavey/vim-railscasts
+Plugin 'wolf-dog/nighted.vim'             " Nighted theme
+Plugin 'andreypopp/vim-colors-plain'      " Plain theme
+Plugin 'Donearm/Laederon'                 " Laederon theme
+
+" Plugins
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
 Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
 Plugin 'sjbach/lusty'                     " LustyExplorer plugin
@@ -88,8 +94,8 @@ set number                    " Display line numbers
 set ruler                     " Display cursor position
 set wrap                      " Wrap lines when they are too long
 syntax enable                 " Enable syntax highlighting
-set background=dark
-colorscheme solarized         " Default colorscheme
+set background=light
+colorscheme laederon          " Default colorscheme
 " autocmd Filetype ruby colorscheme railscasts  " Ruby colorscheme
 set antialias
 
@@ -107,6 +113,7 @@ set cursorline                " Highlight the current line
 set guioptions=T              " Enable the toolbar
 
 set colorcolumn=78,80
+highlight ColorColumn ctermbg=7
 
 " Display tabs and spaces
 set list
