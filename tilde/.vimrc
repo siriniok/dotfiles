@@ -165,6 +165,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 
 " Enable mouse in all modes
 set mouse=a
+set ttymouse=xterm2
 
 let mapleader=',' " My leader key
 
