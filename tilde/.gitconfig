@@ -9,6 +9,7 @@
     editor = vim
     excludesfile = ~/.gitignore_global
     autocrlf = input
+    pager = less -MXR
 
 [alias]
     # List files ignored by .gitignore and friends
