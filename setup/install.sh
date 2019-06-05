@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Dotfiles and bootstrap installer
 # Installs git, clones repository and symlinks dotfiles to your home directory
@@ -6,6 +6,9 @@
 # Ask for password
 sudo -v
 
+DOTFILES_DIR="$HOME/.dotfiles"
+
+# Reporters for bash scripts
 e='\033'
 RESET="${e}[0m"
 BOLD="${e}[1m"
@@ -16,74 +19,82 @@ GREEN="${e}[0;92m"
 
 # Success reporter
 info() {
-  echo ; echo "${CYAN}${BOLD}${*}${RESET}" ; echo
+  echo ; echo -e "${CYAN}${BOLD}${*}${RESET}" ; echo
 }
 
 # Error reporter
 error() {
-  echo ; echo "${RED}${BOLD}${*}${RESET}" ; echo
+  echo ; echo -e "${RED}${BOLD}${*}${RESET}" ; echo
 }
 
 # Success reporter
 success() {
-  echo ; echo "${GREEN}${BOLD}${*}${RESET}" ; echo
+  echo ; echo -e "${GREEN}${BOLD}${*}${RESET}" ; echo
 }
 
-# Preinstall
-if [ $(uname) = 'Linux' ]; then
+# Final catpick
+catpick() {
+  echo
+  echo -e -n $RED'-_-_-_-_-_-_-_'
+  echo -e    $RESET$BOLD',------,'$RESET
+  echo -e -n $YELLOW'_-_-_-_-_-_-_-'
+  echo -e    $RESET$BOLD'|   /\_/\\'$RESET
+  echo -e -n $GREEN'-_-_-_-_-_-_-'
+  echo -e    $RESET$BOLD'~|__( ^ .^)'$RESET
+  echo -e -n $CYAN'-_-_-_-_-_-_-_-'
+  echo -e    $RESET$BOLD'""  ""'$RESET
+  echo
+}
+
+# Helpers
+add_package_sources() {
+  # Google Chrome
   wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+}
 
-  # Retrieve new lists of packages
+install_dotfiles() {
+  git clone git://github.com/siriniok/dotfiles.git $DOTFILES_DIR
+  cd $DOTFILES_DIR
+  rake install
+  cd $HOME
+}
+
+if [ $(uname) = 'Linux' ]; then
+  info "Adding package sources"
+  add_package_sources
+
+  info "Retrieving new lists of packages"
   sudo apt-get update
 
-  # Install latest git, zsh and ruby dependencies
-  sudo apt-get install -y git zsh vim vim-gtk tmux xclip google-chrome-stable unity-tweak-tool
+  packages=(
+    git
+    zsh
+    google-chrome-stable
+    unity-tweak-tool
+  )
 
-  gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-  curl -sSL https://get.rvm.io | bash -s stable --ruby --gems=bundler,rake --ignore-dotfiles
-  ~/.rvm/scripts/rvm
+  info "Installing latest git, zsh and dependencies..."
+  sudo apt-get install -y -qq ${packages[@]}
 
-  git clone https://github.com/powerline/fonts.git --depth=1
-  cd fonts
-  ./install.sh
-  cd ..
-  rm -rf fonts
+  info "Changing shell to ZSH"
+  chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
 
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  mkdir ~/.vim/backup ~/.vim/swap ~/.vim/undo
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  info "Installing the dotfiles"
+  install_dotfiles
+
+  info "Upgrading Ubuntu"
+  sudo apt-get upgrade -y
+
+  sudo apt-get autoremove
+  sudo apt-get autoclean
+
+  success "Success! Please restart your PC!"
+
+  catpick
+
+  exit $EXIT_SUCCESS
 else
   error "Error: Your OS is not Linux."
-  exit
+  exit $EXIT_FAILURE
 fi
-
-# Change shell to ZSH
-chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
-
-# Clone the dotfiles repo
-dir="$HOME/code/"
-mkdir -p $dir
-cd $dir
-git clone git://github.com/siriniok/dotfiles.git
-cd dotfiles
-
-# Symlink the dotfiles
-rake install
-
-success "Please restart your PC!"
-
-echo
-echo -n $RED'-_-_-_-_-_-_-_'
-echo    $RESET$BOLD',------,'$RESET
-echo -n $YELLOW'_-_-_-_-_-_-_-'
-echo    $RESET$BOLD'|   /\_/\\'$RESET
-echo -n $GREEN'-_-_-_-_-_-_-'
-echo    $RESET$BOLD'~|__( ^ .^)'$RESET
-echo -n $CYAN'-_-_-_-_-_-_-_-'
-echo    $RESET$BOLD'""  ""'$RESET
-echo
-
-exit 0
