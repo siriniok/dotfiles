@@ -37,6 +37,10 @@ alias manpath='echo -e ${MANPATH//:/\\n}'
 alias xc='xclip -selection clipboard'
 alias xp='xclip -selection clipboard -o'
 
+# Shutdown
+alias shut='shutdown -h +45'
+alias unshut='shutdown -c'
+
 ##############################################################################
 
 
