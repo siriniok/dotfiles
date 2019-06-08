@@ -2,6 +2,7 @@
 
 # Dotfiles and bootstrap installer
 # Installs git, clones repository and symlinks dotfiles to your home directory
+# Works on Ubuntu 18.04+
 
 # Ask for password
 sudo -v
@@ -53,6 +54,13 @@ add_package_sources() {
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 }
 
+install_rvm() {
+  gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+  curl -sSL https://get.rvm.io | bash -s stable --ruby --gems=bundler,rake --ignore-dotfiles
+  ~/.rvm/scripts/rvm
+  type rvm | head -n 1
+}
+
 install_dotfiles() {
   git clone git://github.com/siriniok/dotfiles.git $DOTFILES_DIR
   cd $DOTFILES_DIR
@@ -68,6 +76,7 @@ if [ $(uname) = 'Linux' ]; then
   sudo apt-get update
 
   packages=(
+    build-essential
     git
     zsh
     google-chrome-stable
@@ -79,6 +88,9 @@ if [ $(uname) = 'Linux' ]; then
 
   info "Changing shell to ZSH"
   chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
+
+  info "Installing RVM and Ruby"
+  install_rvm
 
   info "Installing the dotfiles"
   install_dotfiles
