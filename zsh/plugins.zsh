@@ -22,13 +22,11 @@ plugins=(
   lol
   node
   npm
-  nvm
   nyan
   rails
   rake
   rake-fast
   ruby
-  rvm
   sublime
   sudo
   ubuntu
