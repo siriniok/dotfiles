@@ -63,6 +63,7 @@ install_node() {
   source ~/.zlogin
   nvm install node
   nvm use node
+  npm install -g yarn
 }
 
 add_ssh_keys() {
@@ -139,7 +140,6 @@ if [ $(uname) = 'Linux' ]; then
   )
 
   snap_classic_apps=(
-    atom
     code
     heroku
     skype
@@ -165,7 +165,7 @@ if [ $(uname) = 'Linux' ]; then
   install_node
 
   info "Adding SSH keys"
-  # add_ssh_keys
+  add_ssh_keys
   success "SSH keys were copied to the clipboard"
 
   info "Configuring Vim"
@@ -175,7 +175,7 @@ if [ $(uname) = 'Linux' ]; then
   config_tmux
 
   info "Configuring system"
-  # config_system
+  config_system
 
   info "Upgrading Ubuntu"
   sudo apt-get upgrade -y
