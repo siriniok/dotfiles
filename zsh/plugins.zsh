@@ -12,7 +12,7 @@ plugins=(
   catimg
   copyfile
   cp
-  debian
+  # debian
   extract
   gem
   git
@@ -22,7 +22,6 @@ plugins=(
   lol
   node
   npm
-  nyan
   rails
   rake
   rake-fast
