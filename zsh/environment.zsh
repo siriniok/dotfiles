@@ -50,9 +50,6 @@ export LESS="${less_opts[*]}"
 # Path to your development directory
 export C=$CODE
 
-# Path to your dotfiles repo
-export DOTCODE=$C/dotfiles
-
 ##############################################################################
 #                               PATH & MANPATH                               #
 ##############################################################################
@@ -81,7 +78,7 @@ _clear_path() {
 [ -d $HOME ]                      && _extend_path $HOME/.bin
 [ -d $HOME/.rvm/bin ]             && _extend_path $HOME/.rvm/bin
 [ -d $HOME/.local/bin ]           && _extend_path $HOME/.local/bin
-[ -d $HOME/.dotfiles/bin ]        && _extend_path $HOME/.dotfiles/bin
+[ -d $DOTFILES/bin ]              && _extend_path $DOTFILES/bin
 
 # Add custom bin to $MANPATH
 [ -d /usr/local/man ]             && _extend_man_path /usr/local/man
