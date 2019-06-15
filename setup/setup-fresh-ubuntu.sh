@@ -111,6 +111,7 @@ if [ $(uname) = 'Linux' ]; then
     jq
     lm-sensors
     mc
+    nyancat
     pgadmin3
     pgcli
     playonlinux
