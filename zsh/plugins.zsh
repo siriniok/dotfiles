@@ -7,18 +7,22 @@
 # Add wisely, as too many plugins slow down shell startup.
 
 plugins=(
+  # debian
+  autoupdate
   bundler
   capistrano
   catimg
+  colorize
   copyfile
   cp
-  # debian
+  dircycle
   extract
   gem
   git
   git-extras
   github
   history
+  lein
   lol
   node
   npm
@@ -28,12 +32,9 @@ plugins=(
   ruby
   sublime
   sudo
-  ubuntu
   tmux
+  ubuntu
   web-search
   z
   zsh-syntax-highlighting
-  dircycle
-  colorize
-  lein
 )
