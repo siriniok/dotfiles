@@ -47,7 +47,7 @@ catpick() {
 
 # Helpers
 add_package_sources() {
-  echo "No sources to add"
+  sudo add-apt-repository ppa:mmstick76/alacritty
 }
 
 install_oh_my_zsh() {
@@ -96,6 +96,7 @@ if [ $(uname) = 'Linux' ]; then
   sudo apt-get update
 
   packages=(
+    alacritty
     caffeine
     clipit
     cowsay
