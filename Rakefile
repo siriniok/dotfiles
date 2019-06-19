@@ -8,9 +8,7 @@ task :default => 'install'
 
 desc "Hook our dotfiles into system-standard positions."
 task :install do
-  files_to_symlink(DOTFILES_DIRECTORY).each do |file|
-    symlink_file( file )
-  end
+  files_to_symlink(DOTFILES_DIRECTORY).each { |file| symlink_file(file) }
 end
 
 # Run as rake setup_file[file_name]
@@ -22,13 +20,13 @@ end
 desc "Symlink arbitrary files."
 task :setup_file, [:file ] do |t, file|
   "#{file[:file]}".split.each do |single_file|
-    symlink_file( single_file )
+    symlink_file(single_file)
   end
 end
 
 def files_to_symlink(directory)
-  entities = Dir.chdir(directory) { Dir.glob('**/*', File::FNM_DOTMATCH) }
-  entities.select { |f| File.file? File.join(directory, f) }
+  files = Dir.chdir(directory) { Dir.glob('**/*', File::FNM_DOTMATCH) }
+  files.select { |f| File.file? File.join(directory, f) }
 end
 
 def symlink_file( file )
@@ -37,6 +35,8 @@ def symlink_file( file )
 
   puts "Source: #{source}"
   puts "Target: #{target}"
+
+  `mkdir -p "#{File.dirname(target)}"`
 
   if File.exists?(target) || File.symlink?(target)
     puts "[Overwriting] #{target}..."
