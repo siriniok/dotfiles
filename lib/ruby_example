@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+
+# Ruby shell script template.
+# Based on https://practicingruby.com/articles/building-unix-style-command-line-applications
+
+require "optparse"
+
+begin
+  Example::Application.new(ARGV).run
+rescue Errno::ENOENT => err
+  abort "example: #{err.message}"
+rescue OptionParser::InvalidOption => err
+  abort "example: #{err.message}\nusage: example [-bns] [file ...]"
+end
+
+module Example
+  class Application
+    def initialize(argv)
+      @params, @files = parse_options(argv)
+
+      @display        = Example::Display.new(@params)
+    end
+
+    def run
+      if @files.empty?
+        @display.render(STDIN)
+      else
+        @files.each do |filename|
+          File.open(filename) { |f| @display.render(f) }
+        end 
+      end
+    end
+
+    def parse_options(argv)
+      params = {}
+      parser = OptionParser.new 
+
+      parser.on("-n") { params[:custom_example_param]       ||= :value1 }
+      parser.on("-b") { params[:custom_example_param]         = :value2 }
+      parser.on("-s") { params[:custom_example_boolean_param] = true }
+      
+      files = parser.parse(argv)
+
+      [params, files]
+    end
+  end
+end
+
+module Example
+  class Display
+    def initialize(params)
+    end
+
+    def render(data)
+      lines = data.each_line
+      loop { render_line(lines) }
+    end
+
+    private
+
+    def render_line(lines)
+    end
+  end
+end
