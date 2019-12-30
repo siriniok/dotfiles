@@ -25,7 +25,7 @@ ZSH_THEME='agnoster'
 DISABLE_AUTO_UPDATE=false
 
 # Change how often to auto-update (in days)
-export UPDATE_ZSH_DAYS=2
+export UPDATE_ZSH_DAYS=14
 
 ##############################################################################
 
