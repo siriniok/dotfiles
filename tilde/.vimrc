@@ -176,6 +176,7 @@ set mouse=a
 set ttymouse=xterm2
 
 let mapleader=',' " My leader key
+noremap \ ,
 
 noremap <Leader>W :w !sudo tee % > /dev/null " ,W sudo saves the file
 
