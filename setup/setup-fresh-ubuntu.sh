@@ -127,6 +127,7 @@ if [ $(uname) = 'Linux' ]; then
     tree
     unetbootin
     unrar
+    neovim
     vim
     vim-gtk
     vlc
