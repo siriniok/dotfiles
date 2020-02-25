@@ -6,7 +6,6 @@
     user = siriniok
 
 [core]
-    editor = vim
     excludesfile = ~/.gitignore_global
     autocrlf = input
     pager = less -MXR
