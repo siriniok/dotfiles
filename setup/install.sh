@@ -61,6 +61,14 @@ install_rvm() {
   type rvm | head -n 1
 }
 
+install_node() {
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+  source ~/.zlogin
+  nvm install node
+  nvm use node
+  npm install -g yarn
+}
+
 install_dotfiles() {
   git clone git://github.com/siriniok/dotfiles.git $DOTFILES_DIR
   cd $DOTFILES_DIR
@@ -91,6 +99,9 @@ if [ $(uname) = 'Linux' ]; then
 
   info "Installing RVM and Ruby"
   install_rvm
+
+  info "Installing NVM and NodeJS"
+  install_node
 
   info "Installing the dotfiles"
   install_dotfiles

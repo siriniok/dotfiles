@@ -59,14 +59,6 @@ install_omz_plugins() {
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
 
-install_node() {
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-  source ~/.zlogin
-  nvm install node
-  nvm use node
-  npm install -g yarn
-}
-
 add_ssh_keys() {
   ssh-keygen -t rsa -b 4096 -C "siriniok@gmail.com"
   eval "$(ssh-agent -s)"
@@ -166,9 +158,6 @@ if [ $(uname) = 'Linux' ]; then
   info "Installing Oh My ZSH plugins"
   install_omz_plugins
 
-  info "Installing NVM and NodeJS"
-  install_node
-
   info "Adding SSH keys"
   add_ssh_keys
   success "SSH keys were copied to the clipboard"
@@ -176,8 +165,12 @@ if [ $(uname) = 'Linux' ]; then
   info "Configuring Vim"
   config_vim
 
-  info "Installing NVR for Neovim"
+  info "installing nvr for neovim"
   pip3 install --user --upgrade neovim-remote
+
+  info "installing providers for neovim"
+  gem install neovim
+  npm install -g neovim
 
   info "Configuring tmux"
   config_tmux
