@@ -101,6 +101,12 @@ alias vi='vim'
 alias vic='${EDITOR} ~/.vimrc'
 alias emacs='emacs -nw'
 
+# Prevent editors to be launched inside Neovim
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  alias nvim='echo "No nesting! Use nvr"'
+  alias vim='echo "No nesting! Use nvr"'
+fi
+
 ##############################################################################
 
 

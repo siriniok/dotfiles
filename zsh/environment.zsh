@@ -1,15 +1,18 @@
 # Editor
 # Preferred editor for local and remote sessions
 if [[ -n "${SSH_CONNECTION}" ]]; then
-  # on the server
+  # remote
   if [ command -v vim >/dev/null 2>&1 ]; then
     export EDITOR='vim'
+    export VISUAL='vim'
   else
     export EDITOR='vi'
+    export VISUAL='vi'
   fi
 else
   # local
-  export EDITOR='vim' # change to 'subl' if needed
+  export EDITOR='vim'
+  export VISUAL='vim'
 fi
 
 # History
@@ -49,6 +52,14 @@ export LESS="${less_opts[*]}"
 
 # Path to your development directory
 export C=$CODE
+
+# Vim
+export VIMCONFIG=~/.vim
+export VIMDATA=~/.vim
+
+# Neovim
+export NVIMCONFIG=~/.config/nvim
+export NVIMDATA=~~/.local/share/nvim
 
 ##############################################################################
 #                               PATH & MANPATH                               #
