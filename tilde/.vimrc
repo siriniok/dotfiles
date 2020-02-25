@@ -69,6 +69,7 @@ Plugin 'paredit.vim'                      " Paredit for Vim
 Plugin 'joukevandermaas/vim-ember-hbs'    " Support for Ember Handlebars
 Plugin 'pangloss/vim-javascript'          " Improved JS support
 Plugin 'mxw/vim-jsx'                      " JSX support
+Plugin 'sgur/vim-editorconfig'            " Vim Editorconfig support
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
