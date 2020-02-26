@@ -36,6 +36,29 @@ set directory=~/.vim/swap//
 " Set undo directory
 set undodir=~/.vim/undo//
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                          Neovim Configuration                              "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('nvim')
+  " Highlight terminal cursor
+  highlight! link TermCursor Cursor
+  highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
+
+  " Switching back from the terminal mode
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-v><Esc> <Esc>
+
+  " Set default editor to nvr in terminal mode to prevent
+  " launching vim inside vim accidentally
+  if executable('nvr')
+    let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+    let $EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+  endif
+endif
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Vundle                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -287,24 +310,3 @@ let g:NERDSpaceDelims = 1
 " Ignore files
 set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                  NEOVIM                                    "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-if has('nvim')
-  " Highlight terminal cursor
-  highlight! link TermCursor Cursor
-  highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
-
-  " Switching back from the terminal mode
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-v><Esc> <Esc>
-
-  " Set default editor to nvr in terminal mode to prevent
-  " launching vim inside vim accidentally
-  if executable('nvr')
-    let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-    let $EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-  endif
-endif
