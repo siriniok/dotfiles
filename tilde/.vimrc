@@ -15,6 +15,15 @@ set hidden
 " Set how many lines of history VIM should remember
 set history=500
 
+" Enable persistent undo history
+set undofile
+
+" Disable undofile for temporary files
+augroup vimrc
+  autocmd!
+  autocmd BufWritePre /tmp/* setlocal noundofile
+augroup END
+
 " Set ctags directory
 set tags=./tags;
 
@@ -37,12 +46,6 @@ call vundle#begin()           " Keep Plugin commands between vundle#begin/end
 " -- List of Plugins
 
 Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
-
-" Themes
-Plugin 'siriniok/vim-colors-solarized'    " Solarized theme
-Plugin 'wolf-dog/nighted.vim'             " Nighted theme
-Plugin 'andreypopp/vim-colors-plain'      " Plain theme
-Plugin 'Donearm/Laederon'                 " Laederon theme
 
 " Plugins
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
@@ -81,6 +84,11 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
 Plugin 'garbas/vim-snipmate'              " Snippets for our use :)
 
+" Themes
+Plugin 'siriniok/vim-colors-solarized'    " Solarized theme
+Plugin 'Donearm/Laederon'                 " laederon
+Plugin 'treycucco/vim-monotonic'          " monotonic-light
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()
 filetype plugin indent on     " Required
@@ -97,9 +105,11 @@ set ruler                     " Display cursor position
 set wrap                      " Wrap lines when they are too long
 syntax enable                 " Enable syntax highlighting
 set background=light
-colorscheme laederon          " Default colorscheme
+colorscheme monotonic-light   " Default colorscheme
 " autocmd Filetype ruby colorscheme railscasts  " Ruby colorscheme
-set antialias
+if !has('nvim')
+  set antialias
+endif
 
 set updatetime=250            " More frequent updates for, e.g. signs.
 
@@ -115,7 +125,7 @@ set cursorline                " Highlight the current line
 set guioptions=T              " Enable the toolbar
 
 set colorcolumn=78,80
-highlight ColorColumn ctermbg=7
+" highlight ColorColumn ctermbg=7
 
 " Display tabs and spaces
 set list
@@ -174,7 +184,9 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 
 " Enable mouse in all modes
 set mouse=a
-set ttymouse=xterm2
+if !has('nvim')
+  set ttymouse=xterm2
+endif
 
 let mapleader=',' " My leader key
 noremap \ ,
@@ -233,6 +245,12 @@ nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 map <leader>q :NERDTreeToggle<CR> " Opens and closes Nerdtree with ,q
 let NERDTreeShowHidden=1      " enable displaying hidden files
 let g:NERDTreeWinSize=20
+" Close Vim if NERDTree is the only window left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+  \ b:NERDTree.isTabTree()) | q | endif
+" Prevent NERDTree from opening on sesion restore
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,6 +301,8 @@ if has('nvim')
   tnoremap <Esc> <C-\><C-n>
   tnoremap <C-v><Esc> <Esc>
 
+  " Set default editor to nvr in terminal mode to prevent
+  " launching vim inside vim accidentally
   if executable('nvr')
     let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
     let $EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
