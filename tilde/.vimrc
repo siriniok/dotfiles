@@ -90,6 +90,7 @@ Plugin 'ervandew/supertab'                " Tab completions
 Plugin 'mattn/emmet-vim'                  " Emmet for Vim
 Plugin 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
 Plugin 'junegunn/fzf'                     " Fuzzy finder for vim (CTRL+P)
+Plugin 'tpope/vim-projectionist'          " Vim Projectionist
 Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
 Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
