@@ -95,6 +95,7 @@ if [ $(uname) = 'Linux' ]; then
     default-jdk
     emacs
     fonts-powerline
+    fzf
     gimp
     gitg
     gnome-shell-pomodoro

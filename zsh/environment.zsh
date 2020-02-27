@@ -61,6 +61,9 @@ export VIMDATA=~/.vim
 export NVIMCONFIG=~/.config/nvim
 export NVIMDATA=~~/.local/share/nvim
 
+# FZF
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
 ##############################################################################
 #                               PATH & MANPATH                               #
 ##############################################################################

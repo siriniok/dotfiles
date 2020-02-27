@@ -36,6 +36,8 @@ set directory=~/.vim/swap//
 " Set undo directory
 set undodir=~/.vim/undo//
 
+" Ignore files when searching
+set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                          Neovim Configuration                              "
@@ -87,7 +89,7 @@ Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
 Plugin 'ervandew/supertab'                " Tab completions
 Plugin 'mattn/emmet-vim'                  " Emmet for Vim
 Plugin 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
-Plugin 'kien/ctrlp.vim'                   " Fuzzy finder for vim (CTRL+P)
+Plugin 'junegunn/fzf'                     " Fuzzy finder for vim (CTRL+P)
 Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
 Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
@@ -316,8 +318,7 @@ let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- CtrlP
+" -- FZF
 
-" Ignore files
-set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
+nnoremap <C-p> :<C-u>FZF<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
