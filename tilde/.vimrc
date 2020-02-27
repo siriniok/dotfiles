@@ -72,6 +72,7 @@ Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
 
 " Plugins
 Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
+Plugin 'Xuyuanp/nerdtree-git-plugin'      " Git status flags for NERD Tree
 Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
 Plugin 'sjbach/lusty'                     " LustyExplorer plugin
 Plugin 'mileszs/ack.vim'                  " Ack plugin for Vim
