@@ -128,7 +128,13 @@ set ruler                     " Display cursor position
 set wrap                      " Wrap lines when they are too long
 syntax enable                 " Enable syntax highlighting
 set background=light
+
 colorscheme monotonic-light   " Default colorscheme
+" Fixes for monotonic-light
+hi Directory    ctermbg=255  ctermfg=234  cterm=Bold
+hi MatchParen   ctermbg=None ctermfg=None cterm=Bold,Underline
+hi ColorColumn  ctermbg=254  ctermfg=None  cterm=None
+
 " autocmd Filetype ruby colorscheme railscasts  " Ruby colorscheme
 if !has('nvim')
   set antialias
@@ -265,15 +271,19 @@ nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 
 " autocmd vimenter * NERDTree   " Activate the NERDTree on launching vim
 " autocmd VimEnter * wincmd p   " focus on file after launching
+
 map <leader>q :NERDTreeToggle<CR> " Opens and closes Nerdtree with ,q
 let NERDTreeShowHidden=1      " enable displaying hidden files
 let g:NERDTreeWinSize=20
+
 " Close Vim if NERDTree is the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
   \ b:NERDTree.isTabTree()) | q | endif
+
 " Prevent NERDTree from opening on sesion restore
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
