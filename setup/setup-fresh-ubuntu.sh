@@ -68,7 +68,7 @@ add_ssh_keys() {
 
 config_vim() {
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  mkdir ~/.vim/backup ~/.vim/swap ~/.vim/undo
+  mkdir ~/.vim/backup ~/.vim/swap ~/.vim/undo ~/.vim/session
 }
 
 config_tmux() {

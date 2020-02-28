@@ -103,6 +103,7 @@ Plugin 'joukevandermaas/vim-ember-hbs'    " Support for Ember Handlebars
 Plugin 'pangloss/vim-javascript'          " Improved JS support
 Plugin 'mxw/vim-jsx'                      " JSX support
 Plugin 'sgur/vim-editorconfig'            " Vim Editorconfig support
+Plugin 'thaerkh/vim-workspace'            " Session management
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
@@ -317,4 +318,15 @@ let g:NERDSpaceDelims = 1
 " -- FZF
 
 nnoremap <C-p> :<C-u>FZF<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Vim Workspace
+
+nnoremap <leader>s :ToggleWorkspace<CR>
+nnoremap <leader>sc :CloseHiddenBuffers<CR>
+let g:workspace_session_directory = $HOME . '/.vim/session/'
+let g:workspace_undodir= $HOME . '/.vim/undo/'
+let g:workspace_autosave = 0
+let g:workspace_session_disable_on_args = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
