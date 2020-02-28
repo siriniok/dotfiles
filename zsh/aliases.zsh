@@ -96,15 +96,15 @@ alias gnpd='git --no-pager diff'
 ##############################################################################
 # Editors
 
-alias v='vim'
-alias vi='vim'
+alias v=$EDITOR
+alias vi=$EDITOR
 alias vic='${EDITOR} ~/.vimrc'
 alias emacs='emacs -nw'
 
-# Prevent editors to be launched inside Neovim
+# Prevent editors from being launched inside Neovim
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-  alias nvim='echo "No nesting! Use nvr"'
-  alias vim='echo "No nesting! Use nvr"'
+  alias nvim='echo "No nesting! Use nvr -o"'
+  alias vim='echo "No nesting! Use nvr -o"'
 fi
 
 ##############################################################################

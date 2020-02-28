@@ -11,8 +11,14 @@ if [[ -n "${SSH_CONNECTION}" ]]; then
   fi
 else
   # local
-  export EDITOR='vim'
-  export VISUAL='vim'
+  if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    # Prevent editors from being launched inside Neovim
+    export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+    export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+  else
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+  fi
 fi
 
 # History
