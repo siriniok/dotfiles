@@ -15,6 +15,9 @@ set hidden
 " Set how many lines of history VIM should remember
 set history=500
 
+" Set spellcheck language
+set spelllang=en_us
+
 " Enable persistent undo history
 set undofile
 
@@ -28,7 +31,7 @@ augroup END
 set sessionoptions-=blank
 
 " Set ctags directory
-set tags=./tags;
+set tags=./tags
 
 " Set backup directory
 set backupdir=~/.vim/backup//
@@ -172,7 +175,6 @@ set listchars=tab:▸\ ,space:·,nbsp:·
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Search
 
-set ignorecase                " Ignore case when searching
 set smartcase                 " If there is an uppercase in your search term
                               " search case sensitive again
 set incsearch                 " Highlight search results when typing
@@ -267,11 +269,21 @@ nmap OO O<Esc>
 
 " Puts the caller in Ruby code
 nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+
+" Run ctags
+nnoremap <Leader>ct :!ctags -R<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Autocommands                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Run ctag on every file write
+" :autocmd BufWritePost * call system("ctags -R")
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                  Plugins                                   "
+"                                Plugins                                     "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

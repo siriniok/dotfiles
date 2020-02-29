@@ -94,6 +94,7 @@ if [ $(uname) = 'Linux' ]; then
     cowsay
     default-jdk
     emacs
+    exuberant-ctags
     fonts-powerline
     fzf
     gimp
