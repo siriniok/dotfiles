@@ -87,6 +87,7 @@ if [ $(uname) = 'Linux' ]; then
     build-essential
     git
     zsh
+    python3-pip
     google-chrome-stable
     unity-tweak-tool
   )

@@ -113,7 +113,6 @@ if [ $(uname) = 'Linux' ]; then
     playonlinux
     postgresql
     postgresql-contrib
-    python3-pip
     redshift-gtk
     silversearcher-ag
     steam-installer
@@ -166,13 +165,6 @@ if [ $(uname) = 'Linux' ]; then
 
   info "Configuring Vim"
   config_vim
-
-  info "installing nvr for neovim"
-  pip3 install --user --upgrade neovim-remote
-
-  info "installing providers for neovim"
-  gem install neovim
-  npm install -g neovim
 
   info "Configuring tmux"
   config_tmux
