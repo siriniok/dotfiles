@@ -1,10 +1,10 @@
-require 'rake'
-require 'fileutils'
+require "rake"
+require "fileutils"
 
 # The directory for dotfiles that should be symlinked
-DOTFILES_DIRECTORY = 'tilde'
+DOTFILES_DIRECTORY = "tilde"
 
-task :default => 'install'
+task default: "install"
 
 desc "Hook our dotfiles into system-standard positions."
 task :install do
@@ -18,18 +18,18 @@ end
 # symlink multiple files at once
 # rake setup_file['.maid .vimrc .hushlogin']
 desc "Symlink arbitrary files."
-task :setup_file, [:file ] do |t, file|
-  "#{file[:file]}".split.each do |single_file|
+task :setup_file, [:file] do |t, file|
+  file[:file].to_s.split.each do |single_file|
     symlink_file(single_file)
   end
 end
 
 def files_to_symlink(directory)
-  files = Dir.chdir(directory) { Dir.glob('**/*', File::FNM_DOTMATCH) }
+  files = Dir.chdir(directory) { Dir.glob("**/*", File::FNM_DOTMATCH) }
   files.select { |f| File.file? File.join(directory, f) }
 end
 
-def symlink_file( file )
+def symlink_file(file)
   source = "#{ENV["PWD"]}/#{DOTFILES_DIRECTORY}/#{file}"
   target = "#{ENV["HOME"]}/#{file}"
 
@@ -38,7 +38,7 @@ def symlink_file( file )
 
   `mkdir -p "#{File.dirname(target)}"`
 
-  if File.exists?(target) || File.symlink?(target)
+  if File.exist?(target) || File.symlink?(target)
     puts "[Overwriting] #{target}..."
   end
 
