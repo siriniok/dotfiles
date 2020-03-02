@@ -2,12 +2,9 @@
 "                             Vim Configuration                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Cancel the compatibility with Vi. Essential if you want
-" to enjoy the features of Vim
-set nocompatible
-
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
+scriptencoding utf8
 
 " Hide buffer (file) instead of abandoning when switching to another buffer
 set hidden
@@ -71,7 +68,7 @@ endif
 "                                   Vundle                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off                  " Required
-set rtp+=~/.vim/bundle/Vundle.vim  " Set the runtime path to include Vundle
+set runtimepath+=~/.vim/bundle/Vundle.vim " Set runtime path to include Vundle
 call vundle#begin()           " Keep Plugin commands between vundle#begin/end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- List of Plugins
@@ -88,7 +85,7 @@ Plugin 'tpope/vim-fugitive'               " Git tools
 Plugin 'tpope/vim-rails.git'              " Rails :/
 Plugin 'tpope/vim-surround'               " Surround your code :)
 Plugin 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
-Plugin 'scrooloose/nerdcommenter'         " Commenting and uncommenting stuff
+Plugin 'tpope/vim-commentary'             " Commenting and uncommenting stuff
 Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
 Plugin 'ngmy/vim-rubocop'                 " Rubocop Integration
 Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
@@ -102,11 +99,13 @@ Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
 Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
 Plugin 'tpope/vim-fireplace'              " Clojure REPL support
 Plugin 'paredit.vim'                      " Paredit for Vim
-Plugin 'joukevandermaas/vim-ember-hbs'    " Support for Ember Handlebars
-Plugin 'pangloss/vim-javascript'          " Improved JS support
-Plugin 'mxw/vim-jsx'                      " JSX support
+Plugin 'othree/yajs.vim'                  " Improved JS support
+Plugin 'maxmellon/vim-jsx-pretty'         " JSX support
 Plugin 'sgur/vim-editorconfig'            " Vim Editorconfig support
 Plugin 'thaerkh/vim-workspace'            " Session management
+Plugin 'dense-analysis/ale'               " ALE Linting
+Plugin 'junegunn/vim-easy-align'          " Vim easy align
+Plugin 'autozimu/LanguageClient-neovim'   " Run install.sh after upgrade
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
@@ -117,6 +116,9 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
 Plugin 'garbas/vim-snipmate'              " Snippets for our use :)
+
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
 
 " Themes
 Plugin 'siriniok/vim-colors-solarized'    " Solarized theme
@@ -136,7 +138,10 @@ filetype plugin indent on     " Required
 set title                     " Update the title of your window or terminal
 set number                    " Display line numbers
 set ruler                     " Display cursor position
-set wrap                      " Wrap lines when they are too long
+set wrap linebreak            " Wrap lines when they are too long
+set formatoptions=jroqc       " See fo-table
+set textwidth=80
+set wrapmargin=2
 syntax enable                 " Enable syntax highlighting
 set background=light
 
@@ -165,11 +170,11 @@ set cursorline                " Highlight the current line
 set guioptions=T              " Enable the toolbar
 
 set colorcolumn=78,80
-" highlight ColorColumn ctermbg=7
 
 " Display tabs and spaces
 set list
-set listchars=tab:▸\ ,space:·,nbsp:·
+set listchars=tab:▸\·,space:·,nbsp:·
+set showbreak=↳\·
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -195,8 +200,8 @@ set expandtab                 " Use spaces instead of tabs
 set shiftwidth=2              " 1 tab == 2 spaces
 set tabstop=2
 set smarttab                  " Be smart when using tabs ;)
-set ai                        " Auto indent
-set si                        " Smart indent
+set autoindent                " Auto indent
+set smartindent               " Smart indent
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -206,16 +211,26 @@ set showcmd                   " Enable info about the current command
 set cmdheight=2               " Height of command bar
 set laststatus=2              " Always show the status line
 
-" Returns true if paste mode is enabled
-function! HasPaste()
-  if &paste
-    return 'PASTE MODE  '
-  endif
-  return ''
+function! LinterStatus() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+
+  return l:counts.total == 0 ? '✨ all good ✨' : printf(
+        \   '😞 %dW %dE',
+        \   all_non_errors,
+        \   all_errors
+        \)
 endfunction
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set statusline=
+set statusline+=\ %f
+set statusline+=%m%r%h%w
+set statusline+=%=
+set statusline+=\ %{LinterStatus()}
+set statusline+=\ \ Buffer\ #%n\ --%p%%--\ \ L:\ %l\ C:\ %c\ 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -294,15 +309,17 @@ let NERDTreeShowHidden=1      " enable displaying hidden files
 let g:NERDTreeWinSize=20
 
 " Close Vim if NERDTree is the only window left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+augroup nerdtree
+  au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
   \ b:NERDTree.isTabTree()) | q | endif
+augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Ack
 
 " Default params for ack
-let g:ackprg="ack -H --nocolor --nogroup --column"
+let g:ackprg='ack -H --nocolor --nogroup --column'
 " Add a mark and search
 nmap <leader>j mA:Ack<space>
 " Add a mark and search for the word under the cursor
@@ -313,10 +330,12 @@ nmap <leader>jA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- rainbow_parentheses
 
-au VimEnter * RainbowParenthesesToggle
-au Syntax   * RainbowParenthesesLoadRound
-au Syntax   * RainbowParenthesesLoadSquare
-au Syntax   * RainbowParenthesesLoadBraces
+augroup rainbow
+  au VimEnter * RainbowParenthesesToggle
+  au Syntax   * RainbowParenthesesLoadRound
+  au Syntax   * RainbowParenthesesLoadSquare
+  au Syntax   * RainbowParenthesesLoadBraces
+augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -335,10 +354,77 @@ nnoremap <C-p> :<C-u>FZF<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Vim Workspace
 
-nnoremap <leader>s :ToggleWorkspace<CR>
+nnoremap <leader>ss :ToggleWorkspace<CR>
 nnoremap <leader>sc :CloseHiddenBuffers<CR>
 let g:workspace_session_directory = $HOME . '/.vim/session/'
 let g:workspace_undodir= $HOME . '/.vim/undo/'
 let g:workspace_autosave = 0
 let g:workspace_session_disable_on_args = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- ALE
+
+let g:ale_linters = {
+\  'css':        ['prettier'],
+\  'javascript': ['standard'],
+\  'ruby':       ['standardrb'],
+\  'python':     ['flake8', 'pylint'],
+\  'vim':        ['vint']
+\}
+
+let g:ale_fixers = {
+\  'javascript': ['standard'],
+\  'css':        ['prettier'],
+\  'html':       ['prettier'],
+\  'python':     ['yapf'],
+\  'ruby':       ['standardrb'],
+\}
+
+let g:ale_fix_on_save = 1
+nnoremap ]p :ALENextWrap<CR>     " move to the next ALE warning/error
+nnoremap [p :ALEPreviousWrap<CR> " move to the previous ALE warning/error
+nnoremap <Leader>pp :ALEDetail<CR> " show details about ALE warning/error
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Vim Easy Align
+
+" Remap ga
+nnoremap <leader>ga ga
+xnoremap <leader>ga ga
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Language Server
+
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'ruby': ['/home/siriniok/.rvm/gems/default/bin/solargraph', 'stdio'],
+    \ }
+
+nnoremap <leader>mm :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader>mr :call LanguageClient#textDocument_rename()<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Deolpete
+
+let g:deoplete#enable_at_startup = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Neosnippet
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
