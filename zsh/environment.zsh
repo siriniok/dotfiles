@@ -97,6 +97,7 @@ _clear_path() {
 [ -d /usr/local/heroku/bin ]      && _extend_path /usr/local/heroku/bin
 [ -d $HOME ]                      && _extend_path $HOME/.bin
 [ -d $HOME/.rvm/bin ]             && _extend_path $HOME/.rvm/bin
+[ -d $HOME/.cargo/bin ]           && _extend_path $HOME/.cargo/bin
 [ -d $HOME/.local/bin ]           && _extend_path $HOME/.local/bin
 [ -d $DOTFILES/bin ]              && _extend_path $DOTFILES/bin
 
