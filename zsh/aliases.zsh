@@ -65,6 +65,8 @@ alias cd.='cd $(readlink -f .)'
 ##############################################################################
 # tree
 
+alias els='exa'
+alias elss='exa -Gal'
 alias lss='ls -Gal'
 alias lsp='ls -p'
 alias tree='tree -A'
