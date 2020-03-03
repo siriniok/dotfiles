@@ -23,7 +23,6 @@ plugins=(
   github
   history
   lein
-  lol
   node
   npm
   rails
