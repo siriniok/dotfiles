@@ -104,6 +104,9 @@ if [ $(uname) = 'Linux' ]; then
   info "Installing NVM and NodeJS"
   install_node
 
+  info "Installing Rust"
+  curl https://sh.rustup.rs -sSf | sh
+
   info "Installing the dotfiles"
   install_dotfiles
 
