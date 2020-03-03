@@ -51,12 +51,21 @@ npm_packages=(
   javascript-typescript-langserver
   neovim
   standard
+  tldr
 )
 
 pip_packages=(
   neovim-remote
   pgcli
+  trash-cli
   vim-vint
+)
+
+cargo_packages=(
+  exa
+  bat
+  fd-find
+  ripgrep
 )
 
 info "Installing global Ruby packages"
@@ -65,7 +74,10 @@ gem install ${ruby_packages[@]}
 info "Installing global NPM packages"
 yarn global add ${npm_packages[@]}
 
-info "Installing nvr for neovim"
+info "Installing global pip3 packages"
 pip3 install --user --upgrade ${pip_packages[@]}
+
+info "Installing global cargo packages"
+cargo install ${cargo_packages[@]}
 
 catpick
