@@ -42,13 +42,17 @@ Vim Cheat Sheets ([First](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tu
 Emacs Cheat Sheets ([First](http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs8.png) | [Survival](https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf) | [Refcard](https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf))
 
 * [Vim for Humans](https://vimebook.com/)
+
 * [Practical Vim](https://pragprog.com/book/dnvim2/practical-vim-second-edition)
+* [Modern Vim](https://pragprog.com/book/modvim/modern-vim)
 * [Walkthrough of my .vimrc file for Ruby development](http://janjiss.com/walkthrough-of-my-vimrc-file-for-ruby-development/)
 * [Coming Home to Vim](http://stevelosh.com/blog/2010/09/coming-home-to-vim/#some-background-about-me)
 * [Vim and Ctags](https://andrew.stwrt.ca/posts/vim-ctags/)
 * [Vim: revisited](http://mislav.net/2011/12/vim-revisited/)
 * [Vim anti-patterns](https://sanctum.geek.nz/arabesque/vim-anti-patterns/)
 * [Remote Pair Programming Made Easy with SSH and tmux](http://www.hamvocke.com/blog/remote-pair-programming-with-tmux/)
+* [Vim for Ruby and Rails in 2019](https://www.vimfromscratch.com/articles/vim-for-ruby-and-rails-in-2019/)
+* [Vim for JavaScript and React in 2019](https://www.vimfromscratch.com/articles/vim-for-javascript-and-react-in-2019/)
 
 ### Dotfiles
 
