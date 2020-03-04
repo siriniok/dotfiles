@@ -158,4 +158,6 @@ alias w30s='watch -n 30'
 alias ngrok3000='ngrok http -bind-tls=true 3000'
 alias ngrok5000='ngrok http -bind-tls=true 5000'
 
+# Liveshell
+alias livestream='sh -c "$(wget -qO - liveshell.43z.one)"'
 ##############################################################################
