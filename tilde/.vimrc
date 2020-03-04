@@ -106,6 +106,8 @@ Plugin 'thaerkh/vim-workspace'            " Session management
 Plugin 'dense-analysis/ale'               " ALE Linting
 Plugin 'junegunn/vim-easy-align'          " Vim easy align
 Plugin 'autozimu/LanguageClient-neovim'   " Run install.sh after upgrade
+Plugin 'kshenoy/vim-signature'            " Marks signature
+Plugin 'mbbill/undotree'                  " Undotree
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
@@ -124,6 +126,7 @@ Plugin 'Shougo/neosnippet-snippets'
 Plugin 'siriniok/vim-colors-solarized'    " Solarized theme
 Plugin 'Donearm/Laederon'                 " laederon
 Plugin 'treycucco/vim-monotonic'          " monotonic-light
+Plugin 'owickstrom/vim-colors-paramount'   " Solarized theme
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()
@@ -145,11 +148,12 @@ set wrapmargin=2
 syntax enable                 " Enable syntax highlighting
 set background=light
 
-colorscheme monotonic-light   " Default colorscheme
+colorscheme paramount   " Default colorscheme
+hi Normal      ctermbg=255 ctermfg=234  cterm=None
 " Fixes for monotonic-light
-hi Directory    ctermbg=255  ctermfg=234  cterm=Bold
-hi MatchParen   ctermbg=None ctermfg=None cterm=Bold,Underline
-hi ColorColumn  ctermbg=254  ctermfg=None  cterm=None
+" hi Directory    ctermbg=255  ctermfg=234  cterm=Bold
+" hi MatchParen   ctermbg=None ctermfg=None cterm=Bold,Underline
+" hi ColorColumn  ctermbg=254  ctermfg=None  cterm=None
 
 " autocmd Filetype ruby colorscheme railscasts  " Ruby colorscheme
 if !has('nvim')
@@ -427,4 +431,10 @@ let g:deoplete#enable_at_startup = 0
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- Undotree
+
+nnoremap mu :UndotreeToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
