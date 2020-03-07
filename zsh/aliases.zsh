@@ -67,6 +67,8 @@ alias cd.='cd $(readlink -f .)'
 
 alias els='exa'
 alias elss='exa -Gal'
+alias elhs='exa -lhS' # sort by file size
+alias lhs='ls -lhS' # sort by file size
 alias lss='ls -Gal'
 alias lsp='ls -p'
 alias tree='tree -A'
