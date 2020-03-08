@@ -1,0 +1,124 @@
+#!/usr/bin/env ruby
+
+# Based on https://www.devdungeon.com/content/enhanced-shell-scripting-ruby
+
+# Execute some shell command
+`pwd`
+
+# Was the app run successful?
+puts $?.success?
+
+# Process id of the exited app
+puts $?.pid
+
+# The actual exit status code
+puts $?.exitstatus
+
+# Execute Ruby from BASH
+#
+# ruby -e 'puts "you can jam"; puts "a whole script in one line";'
+#
+# or
+#
+# /usr/bin/ruby <<EOF
+# puts 'Put some Ruby'
+# puts 'code here'
+# EOF
+
+# No error will be thrown if the arg does not exist
+puts ARGV[1]
+
+# Get an environment variable
+puts ENV["SHELL"]
+
+# Set an environment variable (only lasts during Ruby session)
+ENV["SOME_VAR"] = "test"
+
+print "Enter something: "
+x = gets.chomp.upcase
+puts "You entered: #{x}"
+
+require "io/console"
+
+# The prompt is optional
+password = IO.console.getpass "Enter Password: "
+puts "Your password was #{password.length} characters long."
+
+ARGF.each do |line|
+  puts line
+end
+
+# STDOUT is default output target
+puts "Text with newline"
+print "Text without newline"
+
+STDOUT.puts "Equivalent to puts"
+STDOUT.print "Equivalent to print"
+
+warn "This will go to STDERR instead of STDOUT"
+STDERR.print "This will print with no newline at the end."
+
+open("test.txt", "w") do |output_file|
+  output_file.print "Write to it just like STDOUT or STDERR"
+  output_file.puts "print(), puts(), and write() all work."
+end
+
+# There is only one process at this time, the parent.
+parent_pid = Process.pid
+
+# After this line executes, there will be two copies of
+# this program running with separate pids.
+# child_pid will be empty in the child process, since it
+# hadn't started yet and parent process will have a non-nil child_pid value
+child_pid = fork
+
+# The parent and child will print out different pids at this point
+puts Process.pid
+puts "Child pid: #{child_pid}"
+
+if Process.pid == parent_pid
+  puts "I am the parent!"
+else
+  puts "I am a child!"
+end
+
+fork do # Limit forked process to a block of code
+  puts "Starting child and working for one second..."
+  sleep 1
+  puts "Finishing child."
+end
+
+puts "Waiting for child processes to finish..."
+Process.wait # Wait for child processes to finish
+puts "Child processes finished. Closing."
+
+parent_pid = Process.pid
+
+child_pid = fork {
+  puts "My child pid is #{Process.pid} and my parent is #{parent_pid}"
+
+  Signal.trap("HUP") do
+    puts "Signal caught. Exiting cleanly."
+    exit(true)
+  end
+  loop {}
+}
+
+puts "Child pid is #{child_pid}"
+puts "My pid is #{Process.pid}"
+puts "Killing child process now."
+Process.kill("HUP", child_pid)
+puts "Waiting for child process to finish."
+Process.wait # Waits for child processes to finish
+
+Signal.trap("SIGINT") do
+  puts "Caught a CTRL-C / SIGINT. Shutting down cleanly."
+  exit(true)
+end
+
+puts "Running forever until CTRL-C / SIGINT signal is recieved."
+loop {}
+
+# Equivalent success exit codes
+#
+exit(0) # or exit(true) or exit([number])
