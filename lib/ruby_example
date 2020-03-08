@@ -18,7 +18,7 @@ module Example
     def initialize(argv)
       @params, @files = parse_options(argv)
 
-      @display        = Example::Display.new(@params)
+      @display = Example::Display.new(@params)
     end
 
     def run
@@ -27,18 +27,18 @@ module Example
       else
         @files.each do |filename|
           File.open(filename) { |f| @display.render(f) }
-        end 
+        end
       end
     end
 
     def parse_options(argv)
       params = {}
-      parser = OptionParser.new 
+      parser = OptionParser.new
 
-      parser.on("-n") { params[:custom_example_param]       ||= :value1 }
-      parser.on("-b") { params[:custom_example_param]         = :value2 }
+      parser.on("-n") { params[:custom_example_param] ||= :value1 }
+      parser.on("-b") { params[:custom_example_param] = :value2 }
       parser.on("-s") { params[:custom_example_boolean_param] = true }
-      
+
       files = parser.parse(argv)
 
       [params, files]
