@@ -96,6 +96,7 @@ if [ $(uname) = 'Linux' ]; then
     emacs
     exuberant-ctags
     fonts-powerline
+    font-manager
     fzf
     gimp
     gitg
