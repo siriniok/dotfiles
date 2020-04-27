@@ -85,6 +85,7 @@ if [ $(uname) = 'Linux' ]; then
 
   packages=(
     build-essential
+    fonts-powerline
     git
     zsh
     python3-pip

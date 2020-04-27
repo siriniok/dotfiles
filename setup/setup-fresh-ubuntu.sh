@@ -95,7 +95,6 @@ if [ $(uname) = 'Linux' ]; then
     default-jdk
     emacs
     exuberant-ctags
-    fonts-powerline
     font-manager
     fzf
     gimp
