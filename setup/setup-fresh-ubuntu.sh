@@ -108,6 +108,8 @@ if [ $(uname) = 'Linux' ]; then
     lm-sensors
     mc
     nyancat
+    openjdk-14-jre
+    openjdk-14-jdk
     pgadmin3
     pgcli
     playonlinux
