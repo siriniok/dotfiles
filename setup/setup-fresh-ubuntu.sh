@@ -80,6 +80,17 @@ config_system() {
   sudo sensors-detect
 }
 
+install_clojure() {
+  LEIN=$HOME/.bin/lein
+  BOOT=$HOME/.bin/boot
+
+  curl -sSLo $LEIN https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+  chmod +x $LEIN
+
+  curl -sSLo $BOOT https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh
+  chmod +x $BOOT
+}
+
 if [ $(uname) = 'Linux' ]; then
   info "Adding package sources"
   add_package_sources
@@ -173,6 +184,9 @@ if [ $(uname) = 'Linux' ]; then
 
   info "Configuring system"
   config_system
+
+  info "Install clojure"
+  install_clojure
 
   info "Upgrading Ubuntu"
   sudo apt-get upgrade -y
