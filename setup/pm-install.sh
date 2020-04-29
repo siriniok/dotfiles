@@ -40,6 +40,7 @@ catpick() {
 
 ruby_packages=(
   bundle
+  foreman
   neovim
   rails
   standardrb
