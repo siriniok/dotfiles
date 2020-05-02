@@ -91,5 +91,6 @@ source $DOTFILES/version.zsh
 
 # Load extra (private) settings
 [ -f $HOME/.zshlocal ] && source $HOME/.zshlocal
+[ -f $HOME/.secret ] && source $HOME/.secret
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
