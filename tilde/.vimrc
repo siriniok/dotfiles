@@ -311,11 +311,6 @@ map <leader>q :NERDTreeToggle<CR> " Opens and closes Nerdtree with ,q
 let NERDTreeShowHidden=1      " enable displaying hidden files
 let g:NERDTreeWinSize=20
 
-" Close Vim if NERDTree is the only window left open
-augroup nerdtree
-  au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
-  \ b:NERDTree.isTabTree()) | q | endif
-augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
