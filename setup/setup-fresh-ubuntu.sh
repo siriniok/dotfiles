@@ -117,6 +117,7 @@ if [ $(uname) = 'Linux' ]; then
     inkscape
     jq
     lm-sensors
+    libpq-dev
     mc
     nyancat
     openjdk-14-jre
