@@ -77,14 +77,14 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 # Extend $PATH without duplicates
 _extend_path() {
   if ! $( echo "$PATH" | tr ":" "\n" | grep -qx "$1" ); then
-    PATH="$1:$PATH"
+    PATH="$PATH:$1"
   fi
 }
 
 # Extend $MANPATH without duplicates
 _extend_man_path() {
   if ! $( echo "$MANPATH" | tr ":" "\n" | grep -qx "$1" ); then
-    MANPATH="$1:$MANPATH"
+    MANPATH="$MANPATH:$1"
   fi
 }
 
@@ -96,10 +96,10 @@ _clear_path() {
 # Add custom bin to $PATH
 [ -d /usr/local/heroku/bin ]      && _extend_path /usr/local/heroku/bin
 [ -d $HOME ]                      && _extend_path $HOME/.bin
-[ -d $HOME/.rvm/bin ]             && _extend_path $HOME/.rvm/bin
 [ -d $HOME/.cargo/bin ]           && _extend_path $HOME/.cargo/bin
 [ -d $HOME/.local/bin ]           && _extend_path $HOME/.local/bin
 [ -d $DOTFILES/bin ]              && _extend_path $DOTFILES/bin
+[ -d $HOME/.rvm/bin ]             && _extend_path $HOME/.rvm/bin # last!
 
 # Add custom bin to $MANPATH
 [ -d /usr/local/man ]             && _extend_man_path /usr/local/man
