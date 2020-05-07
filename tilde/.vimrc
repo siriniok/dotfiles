@@ -96,8 +96,8 @@ Plugin 'tpope/vim-projectionist'          " Vim Projectionist
 Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
 Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
-Plugin 'tpope/vim-fireplace'              " Clojure REPL support
-Plugin 'paredit.vim'                      " Paredit for Vim
+" Plugin 'tpope/vim-fireplace'              " Clojure REPL support
+" Plugin 'paredit.vim'                      " Paredit for Vim
 Plugin 'othree/yajs.vim'                  " Improved JS support
 Plugin 'maxmellon/vim-jsx-pretty'         " JSX support
 Plugin 'sgur/vim-editorconfig'            " Vim Editorconfig support
