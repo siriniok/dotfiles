@@ -9,7 +9,6 @@
 plugins=(
   # debian
   autoupdate
-  bundler
   capistrano
   catimg
   colorize
