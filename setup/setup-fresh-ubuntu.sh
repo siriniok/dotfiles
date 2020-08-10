@@ -89,6 +89,8 @@ install_clojure() {
 
   curl -sSLo $BOOT https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh
   chmod +x $BOOT
+
+  curl -sSL https://download.clojure.org/install/linux-install-1.10.1.536.sh | sudo bash
 }
 
 if [ $(uname) = 'Linux' ]; then
@@ -128,6 +130,7 @@ if [ $(uname) = 'Linux' ]; then
     postgresql
     postgresql-contrib
     redshift-gtk
+    rlwrap
     silversearcher-ag
     steam-installer
     tig
