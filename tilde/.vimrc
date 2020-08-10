@@ -99,6 +99,7 @@ Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
 " Plugin 'tpope/vim-fireplace'              " Clojure REPL support
 " Plugin 'paredit.vim'                      " Paredit for Vim
 Plugin 'othree/yajs.vim'                  " Improved JS support
+Plugin 'herringtondarkholme/yats.vim'     " TypeScript support
 Plugin 'maxmellon/vim-jsx-pretty'         " JSX support
 Plugin 'sgur/vim-editorconfig'            " Vim Editorconfig support
 Plugin 'thaerkh/vim-workspace'            " Session management
