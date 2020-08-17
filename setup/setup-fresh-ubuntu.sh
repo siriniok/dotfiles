@@ -33,16 +33,7 @@ success() {
 
 # Final catpick
 catpick() {
-  echo
-  echo -e -n $RED'-_-_-_-_-_-_-_'
-  echo -e    $RESET$BOLD',------,'$RESET
-  echo -e -n $YELLOW'_-_-_-_-_-_-_-'
-  echo -e    $RESET$BOLD'|   /\_/\\'$RESET
-  echo -e -n $GREEN'-_-_-_-_-_-_-'
-  echo -e    $RESET$BOLD'~|__( ^ .^)'$RESET
-  echo -e -n $CYAN'-_-_-_-_-_-_-_-'
-  echo -e    $RESET$BOLD'""  ""'$RESET
-  echo
+  cowsay "Done!"
 }
 
 # Helpers
@@ -104,7 +95,6 @@ if [ $(uname) = 'Linux' ]; then
     alacritty
     caffeine
     clipit
-    cowsay
     default-jdk
     emacs
     exuberant-ctags
@@ -116,6 +106,7 @@ if [ $(uname) = 'Linux' ]; then
     gparted
     grub-customizer
     httpie
+    htop
     inkscape
     jq
     lm-sensors
@@ -138,9 +129,6 @@ if [ $(uname) = 'Linux' ]; then
     tree
     unetbootin
     unrar
-    neovim
-    vim
-    vim-gtk
     vlc
     wine-stable
     xclip

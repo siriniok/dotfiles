@@ -2,12 +2,16 @@
 
 # Dotfiles and bootstrap installer
 # Installs git, clones repository and symlinks dotfiles to your home directory
-# Works on Ubuntu 18.04+
+# Works on Ubuntu 20.04+ and macOS Catalina 10.15+
 
 # Ask for password
 sudo -v
 
-DOTFILES_DIR="$HOME/.dotfiles"
+WORK_DIR="$HOME/Work"
+DOTFILES_DIR="$HOME/Work/.dotfiles"
+pushd .
+mkdir -p $WORK_DIR
+cd $WORK_DIR
 
 # Reporters for bash scripts
 e='\033'
@@ -35,16 +39,7 @@ success() {
 
 # Final catpick
 catpick() {
-  echo
-  echo -e -n $RED'-_-_-_-_-_-_-_'
-  echo -e    $RESET$BOLD',------,'$RESET
-  echo -e -n $YELLOW'_-_-_-_-_-_-_-'
-  echo -e    $RESET$BOLD'|   /\_/\\'$RESET
-  echo -e -n $GREEN'-_-_-_-_-_-_-'
-  echo -e    $RESET$BOLD'~|__( ^ .^)'$RESET
-  echo -e -n $CYAN'-_-_-_-_-_-_-_-'
-  echo -e    $RESET$BOLD'""  ""'$RESET
-  echo
+  cowsay "Done!"
 }
 
 # Helpers
@@ -55,26 +50,60 @@ add_package_sources() {
 }
 
 install_rvm() {
-  gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+  gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   curl -sSL https://get.rvm.io | bash -s stable --ruby --gems=bundler,rake --ignore-dotfiles
-  ~/.rvm/scripts/rvm
   type rvm | head -n 1
 }
 
 install_node() {
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-  source ~/.zlogin
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
   nvm install node
   nvm use node
   npm install -g yarn
 }
 
+install_rust() {
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
+install_homebrew() {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+}
+
 install_dotfiles() {
   git clone git://github.com/siriniok/dotfiles.git $DOTFILES_DIR
+  pushd .
   cd $DOTFILES_DIR
   rake install
-  cd $HOME
+  popd
 }
+
+packages=(
+  cowsay
+  git
+  neovim
+  vim
+  wget
+)
+
+linux_packages=(
+  build-essential
+  fonts-powerline
+  google-chrome-stable
+  python3-pip
+  unity-tweak-tool
+  vim-gtk
+  zsh
+)
+
+mac_packages=(
+  python@3.8
+  macvim
+)
+
+mac_cask_packages=(
+  google-chrome
+)
 
 if [ $(uname) = 'Linux' ]; then
   info "Adding package sources"
@@ -83,46 +112,44 @@ if [ $(uname) = 'Linux' ]; then
   info "Retrieving new lists of packages"
   sudo apt-get update
 
-  packages=(
-    build-essential
-    fonts-powerline
-    git
-    zsh
-    python3-pip
-    google-chrome-stable
-    unity-tweak-tool
-  )
-
-  info "Installing latest git, zsh and dependencies..."
+  info "Installing latest apps"
+  packages+=linux_packages
   sudo apt-get install -y -qq ${packages[@]}
 
   info "Changing shell to ZSH"
   chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
 
-  info "Installing RVM and Ruby"
-  install_rvm
-
-  info "Installing NVM and NodeJS"
-  install_node
-
-  info "Installing Rust"
-  curl https://sh.rustup.rs -sSf | sh
-
-  info "Installing the dotfiles"
-  install_dotfiles
-
-  info "Upgrading Ubuntu"
-  sudo apt-get upgrade -y
-
   sudo apt-get autoremove
   sudo apt-get autoclean
+elif [[ `uname` == 'Darwin' ]]; then
+  info "Installing Homebrew"
+  install_homebrew
 
-  success "Success! Please restart your PC!"
-
-  catpick
-
-  exit $EXIT_SUCCESS
+  info "Installing latest apps"
+  packages+=mac_packages
+  brew install ${packages[@]}
+  brew cask install ${mac_cask_packages[@]}
 else
-  error "Error: Your OS is not Linux."
+  error "Error: Your OS is not Linux or macOS."
   exit $EXIT_FAILURE
 fi
+
+info "Installing RVM and Ruby"
+install_rvm
+
+info "Installing the dotfiles"
+install_dotfiles
+
+info "Installing NVM and NodeJS"
+install_node
+
+info "Installing Rust"
+install_rust
+
+popd
+
+success "Success! Please restart your PC!"
+
+catpick
+
+exit $EXIT_SUCCESS
