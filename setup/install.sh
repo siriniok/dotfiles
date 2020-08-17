@@ -24,17 +24,17 @@ GREEN="${e}[0;92m"
 
 # Success reporter
 info() {
-  echo ; echo "${CYAN}${BOLD}${*}${RESET}" ; echo
+  echo ; echo -e "${CYAN}${BOLD}${*}${RESET}" ; echo
 }
 
 # Error reporter
 error() {
-  echo ; echo "${RED}${BOLD}${*}${RESET}" ; echo
+  echo ; echo -e "${RED}${BOLD}${*}${RESET}" ; echo
 }
 
 # Success reporter
 success() {
-  echo ; echo "${GREEN}${BOLD}${*}${RESET}" ; echo
+  echo ; echo  -e "${GREEN}${BOLD}${*}${RESET}" ; echo
 }
 
 # Final catpick
@@ -78,9 +78,22 @@ install_dotfiles() {
   popd
 }
 
+install_oh_my_zsh() {
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+}
+
+install_omz_plugins() {
+  git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoupdate
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+}
+
+config_vim() {
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  mkdir ~/.vim/backup ~/.vim/swap ~/.vim/undo ~/.vim/session
+}
+
 packages=(
   cowsay
-  git
   neovim
   vim
   wget
@@ -89,6 +102,7 @@ packages=(
 linux_packages=(
   build-essential
   fonts-powerline
+  git
   google-chrome-stable
   python3-pip
   unity-tweak-tool
@@ -114,8 +128,7 @@ if [ $(uname) = 'Linux' ]; then
   sudo apt-get update
 
   info "Installing latest apps"
-  packages+=$linux_packages
-  sudo apt-get install -y -qq ${packages[@]}
+  sudo apt-get install -y -qq ${packages[@]} ${linux_packages[@]}
 
   info "Changing shell to ZSH"
   chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
@@ -127,8 +140,7 @@ elif [[ `uname` == 'Darwin' ]]; then
   install_homebrew
 
   info "Installing latest apps"
-  packages+=$mac_packages
-  brew install ${packages[@]}
+  brew install ${packages[@]} ${mac_packages[@]}
   brew cask install ${mac_cask_packages[@]}
 else
   error "Error: Your OS is not Linux or macOS."
@@ -146,6 +158,15 @@ install_node
 
 info "Installing Rust"
 install_rust
+
+info "Installing Oh My ZSH"
+install_oh_my_zsh
+
+info "Installing Oh My ZSH plugins"
+install_omz_plugins
+
+info "Configuring Vim"
+config_vim
 
 popd
 

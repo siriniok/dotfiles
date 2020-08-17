@@ -8,7 +8,7 @@
 4. Run `sudo apt install ubuntu-unity-desktop` to install Unity DE.
 5. Run `sudo dpkg-reconfigure lightdm` to change default DM to lightdm.
 6. Open Gnome Terminal profile preferences. Open Profile tab and click Edit. Rename the profile. Check 'Run command as a login shell'. Select built-in scheme Solarized dark. Select Solarized palette. Restart the terminal.
-7. Run `curl --silent https://raw.githubusercontent.com/siriniok/dotfiles/master/setup/install.sh | sh`. *Save to a file and execute it. Otherwise run `chsh -s $(which zsh)` manually. Needs to be fixed*.
+7. Run `curl --silent https://raw.githubusercontent.com/siriniok/dotfiles/master/setup/install.sh | bash`. *Save to a file and execute it. Otherwise run `chsh -s $(which zsh)` manually. Needs to be fixed*.
 8. Reboot.
 
 ## Setting Up OS

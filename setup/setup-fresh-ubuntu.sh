@@ -41,25 +41,11 @@ add_package_sources() {
   sudo add-apt-repository ppa:mmstick76/alacritty
 }
 
-install_oh_my_zsh() {
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-}
-
-install_omz_plugins() {
-  git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoupdate
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-}
-
 add_ssh_keys() {
   ssh-keygen -t rsa -b 4096 -C "siriniok@gmail.com"
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa
   xclip -sel clip < ~/.ssh/id_rsa.pub
-}
-
-config_vim() {
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  mkdir ~/.vim/backup ~/.vim/swap ~/.vim/undo ~/.vim/session
 }
 
 config_tmux() {
@@ -159,17 +145,9 @@ if [ $(uname) = 'Linux' ]; then
     sudo snap install --classic $app
   done
 
-  info "Installing Oh My ZSH"
-  install_oh_my_zsh
-  info "Installing Oh My ZSH plugins"
-  install_omz_plugins
-
   info "Adding SSH keys"
   add_ssh_keys
   success "SSH keys were copied to the clipboard"
-
-  info "Configuring Vim"
-  config_vim
 
   info "Configuring tmux"
   config_tmux
