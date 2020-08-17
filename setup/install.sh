@@ -24,17 +24,17 @@ GREEN="${e}[0;92m"
 
 # Success reporter
 info() {
-  echo ; echo -e "${CYAN}${BOLD}${*}${RESET}" ; echo
+  echo ; echo "${CYAN}${BOLD}${*}${RESET}" ; echo
 }
 
 # Error reporter
 error() {
-  echo ; echo -e "${RED}${BOLD}${*}${RESET}" ; echo
+  echo ; echo "${RED}${BOLD}${*}${RESET}" ; echo
 }
 
 # Success reporter
 success() {
-  echo ; echo -e "${GREEN}${BOLD}${*}${RESET}" ; echo
+  echo ; echo "${GREEN}${BOLD}${*}${RESET}" ; echo
 }
 
 # Final catpick
@@ -52,11 +52,11 @@ add_package_sources() {
 install_rvm() {
   gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   curl -sSL https://get.rvm.io | bash -s stable --ruby --gems=bundler,rake --ignore-dotfiles
-  type rvm | head -n 1
 }
 
 install_node() {
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  source ~/.zlogin
   nvm install node
   nvm use node
   npm install -g yarn
@@ -97,6 +97,7 @@ linux_packages=(
 )
 
 mac_packages=(
+  gnupg
   python@3.8
   macvim
 )
@@ -113,7 +114,7 @@ if [ $(uname) = 'Linux' ]; then
   sudo apt-get update
 
   info "Installing latest apps"
-  packages+=linux_packages
+  packages+=$linux_packages
   sudo apt-get install -y -qq ${packages[@]}
 
   info "Changing shell to ZSH"
@@ -126,7 +127,7 @@ elif [[ `uname` == 'Darwin' ]]; then
   install_homebrew
 
   info "Installing latest apps"
-  packages+=mac_packages
+  packages+=$mac_packages
   brew install ${packages[@]}
   brew cask install ${mac_cask_packages[@]}
 else
