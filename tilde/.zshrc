@@ -10,10 +10,10 @@ DEFAULT_USER=$(whoami)
 export ZSH=$HOME/.oh-my-zsh
 
 # Path to root of the development directory
-export CODE=/work/code
+export CODE=~/Work/code/
 
 # Path to root of dotfiles directory
-export DOTFILES=~/.dotfiles
+export DOTFILES=~/Work/.dotfiles
 
 # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
 ZSH_THEME='agnoster'
