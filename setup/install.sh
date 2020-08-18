@@ -92,9 +92,14 @@ config_vim() {
   mkdir ~/.vim/backup ~/.vim/swap ~/.vim/undo ~/.vim/session
 }
 
+config_tmux() {
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
 packages=(
   cowsay
   neovim
+  tmux
   wget
 )
 
@@ -102,6 +107,7 @@ linux_packages=(
   build-essential
   fonts-powerline
   git
+  fonts-firacode
   google-chrome-stable
   python3-pip
   unity-tweak-tool
@@ -118,6 +124,7 @@ mac_packages=(
 
 mac_cask_packages=(
   google-chrome
+  postman
 )
 
 if [ $(uname) = 'Linux' ]; then
@@ -138,6 +145,10 @@ if [ $(uname) = 'Linux' ]; then
 elif [[ `uname` == 'Darwin' ]]; then
   info "Installing Homebrew"
   install_homebrew
+
+  info "Install Fira Code"
+  brew tap homebrew/cask-fonts
+  brew cask install font-fira-code
 
   info "Installing latest apps"
   brew install ${packages[@]} ${mac_packages[@]}
@@ -167,6 +178,9 @@ install_omz_plugins
 
 info "Configuring Vim"
 config_vim
+
+info "Configuring tmux"
+config_tmux
 
 popd
 

@@ -48,10 +48,6 @@ add_ssh_keys() {
   xclip -sel clip < ~/.ssh/id_rsa.pub
 }
 
-config_tmux() {
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-}
-
 config_system() {
   echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
   sudo sensors-detect
@@ -148,9 +144,6 @@ if [ $(uname) = 'Linux' ]; then
   info "Adding SSH keys"
   add_ssh_keys
   success "SSH keys were copied to the clipboard"
-
-  info "Configuring tmux"
-  config_tmux
 
   info "Configuring system"
   config_system
