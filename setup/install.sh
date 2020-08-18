@@ -95,7 +95,6 @@ config_vim() {
 packages=(
   cowsay
   neovim
-  vim
   wget
 )
 
@@ -106,6 +105,7 @@ linux_packages=(
   google-chrome-stable
   python3-pip
   unity-tweak-tool
+  vim
   vim-gtk
   zsh
 )
