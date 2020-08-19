@@ -74,6 +74,7 @@ install_dotfiles() {
   git clone git://github.com/siriniok/dotfiles.git $DOTFILES_DIR
   pushd .
   cd $DOTFILES_DIR
+  git remote set-url origin git@github.com:siriniok/dotfiles.git
   rake install
   popd
 }
@@ -124,6 +125,8 @@ mac_packages=(
 
 mac_cask_packages=(
   google-chrome
+  iterm2
+  macs-fan-control
   postman
 )
 
