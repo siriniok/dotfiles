@@ -41,13 +41,6 @@ add_package_sources() {
   sudo add-apt-repository ppa:mmstick76/alacritty
 }
 
-add_ssh_keys() {
-  ssh-keygen -t rsa -b 4096 -C "siriniok@gmail.com"
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/id_rsa
-  xclip -sel clip < ~/.ssh/id_rsa.pub
-}
-
 config_system() {
   echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
   sudo sensors-detect
@@ -140,10 +133,6 @@ if [ $(uname) = 'Linux' ]; then
   for app in "${snap_classic_apps[@]}"; do
     sudo snap install --classic $app
   done
-
-  info "Adding SSH keys"
-  add_ssh_keys
-  success "SSH keys were copied to the clipboard"
 
   info "Configuring system"
   config_system
