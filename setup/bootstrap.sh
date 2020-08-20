@@ -118,6 +118,7 @@ linux_packages=(
 )
 
 mac_packages=(
+  fabianishere/personal/pam_reattach
   gnupg
   python@3.8
   macvim

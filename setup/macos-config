@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Ask for sudo
+sudo -v
+
+enable_touch_id_in_terminal() {
+  if ! grep -q "pam_tid.so" /etc/pam.d/sudo
+  then
+    sudo sed -i~ '2i\
+      auth sufficient pam_tid.so
+      ' /etc/pam.d/sudo
+    sudo sed -i~ '2i\
+      auth optional pam_reattach.so
+      ' /etc/pam.d/sudo
+  fi
+}
+
+# Enabling TouchID for sudo
+enable_touch_id_in_terminal
