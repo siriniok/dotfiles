@@ -252,7 +252,8 @@ endif
 let mapleader=',' " My leader key
 noremap \ ,
 
-noremap <Leader>W :w !sudo tee % > /dev/null " ,W sudo saves the file
+" ,W sudo saves the file
+noremap <Leader>W :w !sudo tee % > /dev/null
 
 " Enable wildmenu for command line completions
 " Hit <Tab> after : and see what will happen
