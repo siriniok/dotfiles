@@ -51,6 +51,7 @@ npm_packages=(
   create-react-app
   javascript-typescript-langserver
   neovim
+  pgsh
   standard
   tldr
 )
