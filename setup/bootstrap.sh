@@ -113,22 +113,69 @@ config_tmux() {
 
 packages=(
   cowsay
+  emacs
+  fzf
+  git
+  htop
+  httpie
+  jq
   neovim
+  mc
+  nyancat
+  pgcli
+  postgresql
+  rlwrap
+  tig
   tmux
+  tree
   wget
+  unrar
 )
 
 linux_packages=(
+  alacritty
+  caffeine
+  clipit
   build-essential
-  fonts-powerline
-  git
+  default-jdk
+  font-manager
   fonts-firacode
+  fonts-powerline
+  gitg
+  gimp
+  gnome-shell-pomodoro
   google-chrome-stable
+  gparted
+  grub-customizer
+  inkscape
+  libpq-dev
+  lm-sensors
+  openjdk-14-jre
+  openjdk-14-jdk
   python3-pip
+  redshift-gtk
+  silversearcher-ag
   unity-tweak-tool
   vim
   vim-gtk
+  vlc
+  wine-stable
   zsh
+  xclip
+)
+
+snap_apps=(
+  ngrok
+  postbird
+  postman
+  telegram-desktop
+  wps-office
+)
+
+snap_classic_apps=(
+  code
+  heroku
+  skype
 )
 
 mac_packages=(
@@ -136,16 +183,45 @@ mac_packages=(
   clojure/tools/clojure
   fabianishere/personal/pam_reattach
   gnupg
+  heroku
   leiningen
-  python@3.8
   macvim
+  openjdk
+  python@3.8
+  the_silver_searcher
 )
 
 mac_cask_packages=(
-  google-chrome
+  alacritty
+  clipy
+  font-fira-code
+  inkscape
   iterm2
   macs-fan-control
+  mcgimp
+  ngrok
+  postbird
   postman
+  psequel
+  qlcolorcode
+  qlstephen
+  qlmarkdown
+  quicklook-json
+  qlimagesize
+  suspicious-package
+  quicklookase
+  qlvideo
+  skype
+  sourcetree
+  visual-studio-code
+  vlc
+  the-unarchiver
+  google-chrome
+)
+
+mac_tap_packages=(
+  homebrew/cask-fonts
+  heroku/brew
 )
 
 if [ $(uname) = 'Linux' ]; then
@@ -158,11 +234,22 @@ if [ $(uname) = 'Linux' ]; then
   info "Installing latest apps"
   sudo apt-get install -y -qq ${packages[@]} ${linux_packages[@]}
 
+  info "Installing snap apps..."
+  sudo snap install ${snap_apps[@]}
+
+  info "Installing snap classic apps..."
+  for app in "${snap_classic_apps[@]}"; do
+    sudo snap install --classic $app
+  done
+
   info "Changing shell to ZSH"
   chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
 
   info "Install clojure"
   install_clojure
+
+  info "Upgrading Ubuntu"
+  sudo apt-get upgrade -y
 
   sudo apt-get autoremove
   sudo apt-get autoclean
@@ -170,11 +257,10 @@ elif [[ `uname` == 'Darwin' ]]; then
   info "Installing Homebrew"
   install_homebrew
 
-  info "Install Fira Code"
-  brew tap homebrew/cask-fonts
-  brew cask install font-fira-code
-
   info "Installing latest apps"
+  for app in "${mac_tap_packages[@]}"; do
+    brew tap $app
+  done
   brew install ${packages[@]} ${mac_packages[@]}
   brew cask install ${mac_cask_packages[@]}
 else
