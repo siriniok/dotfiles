@@ -409,7 +409,7 @@ nmap ga <Plug>(EasyAlign)
 
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'ruby': ['/home/siriniok/.rvm/gems/default/bin/solargraph', 'stdio'],
+    \ 'ruby': ['~/.rvm/gems/default/bin/solargraph', 'stdio'],
     \ }
 
 nnoremap <leader>mm :call LanguageClient_contextMenu()<CR>
