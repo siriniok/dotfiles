@@ -47,6 +47,20 @@ add_package_sources() {
   # Google Chrome
   wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+  sudo add-apt-repository ppa:mmstick76/alacritty
+}
+
+install_clojure() {
+  LEIN=$HOME/.bin/lein
+  BOOT=$HOME/.bin/boot
+
+  curl -sSLo $LEIN https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+  chmod +x $LEIN
+
+  curl -sSLo $BOOT https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh
+  chmod +x $BOOT
+
+  curl -sSL https://download.clojure.org/install/linux-install-1.10.1.536.sh | sudo bash
 }
 
 install_rvm() {
@@ -118,8 +132,11 @@ linux_packages=(
 )
 
 mac_packages=(
+  boot-clj
+  clojure/tools/clojure
   fabianishere/personal/pam_reattach
   gnupg
+  leiningen
   python@3.8
   macvim
 )
@@ -143,6 +160,9 @@ if [ $(uname) = 'Linux' ]; then
 
   info "Changing shell to ZSH"
   chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
+
+  info "Install clojure"
+  install_clojure
 
   sudo apt-get autoremove
   sudo apt-get autoclean
