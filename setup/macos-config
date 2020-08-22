@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Ask for sudo
+# For more settings refer to ~/.macos — https://mths.be/macos
+
+# Ask for password
 sudo -v
 
 enable_touch_id_in_terminal() {
