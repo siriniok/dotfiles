@@ -216,6 +216,7 @@ mac_cask_packages=(
   visual-studio-code
   vlc
   the-unarchiver
+  zoomus
   google-chrome
 )
 
