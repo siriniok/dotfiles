@@ -197,6 +197,7 @@ mac_cask_packages=(
   font-fira-code
   inkscape
   iterm2
+  lastpass
   macs-fan-control
   mcgimp
   ngrok
@@ -212,6 +213,7 @@ mac_cask_packages=(
   quicklookase
   qlvideo
   skype
+  spotify
   sourcetree
   visual-studio-code
   vlc
