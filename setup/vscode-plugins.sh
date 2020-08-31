@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Visual Studio Code :: Package list
 plugins=(
