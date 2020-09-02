@@ -193,6 +193,7 @@ mac_packages=(
 
 mac_cask_packages=(
   alacritty
+  coconutbattery
   clipy
   font-fira-code
   inkscape
