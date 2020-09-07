@@ -173,7 +173,7 @@ set cursorline                " Highlight the current line
 
 set guioptions=T              " Enable the toolbar
 
-set colorcolumn=78,80
+set colorcolumn=80
 
 " Display tabs and spaces
 set list
