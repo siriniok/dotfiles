@@ -180,6 +180,7 @@ snap_classic_apps=(
 
 mac_packages=(
   boot-clj
+  certbot
   clojure/tools/clojure
   fabianishere/personal/pam_reattach
   gnupg
@@ -195,6 +196,7 @@ mac_cask_packages=(
   alacritty
   coconutbattery
   clipy
+  dash
   font-fira-code
   inkscape
   iterm2
