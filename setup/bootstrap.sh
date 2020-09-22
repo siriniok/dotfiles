@@ -202,6 +202,7 @@ mac_cask_packages=(
   iterm2
   lastpass
   macs-fan-control
+  marvin
   mcgimp
   ngrok
   postbird
@@ -223,6 +224,7 @@ mac_cask_packages=(
   vlc
   the-unarchiver
   zoomus
+  zotero
   google-chrome
 )
 
