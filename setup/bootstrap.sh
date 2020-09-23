@@ -216,7 +216,6 @@ mac_cask_packages=(
   suspicious-package
   quicklookase
   qlvideo
-  selfcontrol
   skype
   spotify
   sourcetree
