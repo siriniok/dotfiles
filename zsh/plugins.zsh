@@ -7,32 +7,31 @@
 # Add wisely, as too many plugins slow down shell startup.
 
 plugins=(
-  # debian
+  adb
+  alias-finder
   autoupdate
-  capistrano
+  brew
   catimg
+  colored-man-pages
   colorize
-  copyfile
-  cp
-  dircycle
-  extract
-  gem
+  # debian
+  fzf
   git
   git-extras
-  github
-  history
   lein
-  node
-  npm
+  osx
+  postgres
   rails
   rake
   rake-fast
   ruby
-  sublime
+  ripgrep
+  safe-paste
   sudo
   tmux
   ubuntu
   web-search
+  yarn
   z
   zsh-syntax-highlighting
 )
