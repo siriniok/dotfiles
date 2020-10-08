@@ -1,12 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Generates new SSH keys and adds them to the ssh-agent
 
 if [ $(uname) = 'Linux' ]; then
-  COPY_TOOL=xclip
   SSH_ADD_OPTIONS=''
 elif [ $(uname) = 'Darwin' ]; then
-  COPY_TOOL=pbcopy
   SSH_ADD_OPTIONS='-K'
 fi
 
@@ -46,7 +44,7 @@ add_ssh_keys() {
 }
 
 copy_ssh_keys() {
-  $COPY_TOOL -sel clip < ~/.ssh/id_rsa.pub
+  clipcopy ~/.ssh/id_rsa.pub
 }
 
 info "Adding SSH keys"
