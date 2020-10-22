@@ -198,6 +198,7 @@ mac_cask_packages=(
   clipy
   dash
   font-fira-code
+  gh
   inkscape
   iterm2
   lastpass
