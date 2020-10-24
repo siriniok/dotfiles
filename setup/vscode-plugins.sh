@@ -3,6 +3,7 @@
 # Visual Studio Code :: Package list
 plugins=(
   ms-vsliveshare.vsliveshare
+  pnp.polacode
   vscodevim.vim
 )
 
