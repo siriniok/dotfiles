@@ -187,7 +187,7 @@ mac_packages=(
   heroku
   leiningen
   macvim
-  openjdk
+  adoptopenjdk
   python@3.8
   the_silver_searcher
 )
