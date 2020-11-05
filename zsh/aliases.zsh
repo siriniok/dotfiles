@@ -41,7 +41,7 @@ alias xp='xclip -selection clipboard -o'
 alias shut='shutdown -h +45'
 alias unshut='shutdown -c'
 
-##############################################################################
+#############################################################################
 
 
 ##############################################################################
@@ -162,4 +162,10 @@ alias ngrok5000='ngrok http -bind-tls=true 5000'
 
 # Liveshell
 alias livestream='sh -c "$(wget -qO - liveshell.43z.one)"'
+
+# QuickLook preview
+alias ql='qlmanage -p'
+
+# Prevent from sleeping for 1 hour
+alias coffee='caffeinate -u -t 3600'
 ##############################################################################
