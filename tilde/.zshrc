@@ -63,8 +63,10 @@ setopt INTERACTIVE_COMMENTS
 # This will add a 10 second wait before you can confirm a wildcard deletion
 setopt RM_STAR_WAIT
 
-# Instead of overwriting the history file, it appends lines
-setopt APPEND_HISTORY
+# Share history between sessions
+unsetopt INC_APPEND_HISTORY
+unsetopt INC_APPEND_HISTORY_TIME
+setopt SHARE_HISTORY
 
 # Do not override files using `>`, but it's still possible using `>!`
 set -o noclobber
