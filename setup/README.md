@@ -53,3 +53,13 @@
 4. Run `sudo apt-get update && sudo apt-get upgrade`
 5. Run `sudo snap refresh`.
 6. Open `~/.dotfiles`. Run `git pull && rake`.
+
+# Setting Up OS X
+
+1. Run `setup/bootstrap`.
+1. Run `setup/generate-ssh`.
+1. Run `setup/pm-install`.
+1. Run `setup/setup-pg`.
+1. Run `setup/vscode-plugins.sh`.
+1. Run `setup/macos-config`.
+1. Reboot.
