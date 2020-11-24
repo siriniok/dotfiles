@@ -5,6 +5,37 @@
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;         MIT-scheme config                        ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; This is the place where you have installed scheme. Be sure to set
+;; this to an appropriate value!!!
+; (setq scheme-root "/usr")
+;; Linux
+;; (setq scheme-program-name
+;;       (concat
+;;        scheme-root "/bin/mit-scheme "
+;;        "--library " scheme-root "/lib/x86_64-linux-gnu/mit-scheme "
+;;        "--band " scheme-root "/lib/x86_64-linux-gnu/mit-scheme/all.com "
+;;        "-heap 10000"))
+
+;; macOS
+(setq scheme-root "/usr/local/Cellar/mit-scheme/10.1.11")
+
+(setq scheme-program-name
+      (concat
+        scheme-root "/bin/mit-scheme "
+        "--library " scheme-root " "
+        "--band " scheme-root "/lib/mit-scheme-x86-64/all.com "
+        "-heap 10000"))
+
+;; Use the Edwin-like MIT/Scheme interpreter:
+(load "xscheme")
+
+;; enable mouse
+(xterm-mouse-mode 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;         General Emacs Apperance                  ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -42,8 +73,21 @@
 
 ;; scheme-complete package
 (autoload 'scheme-smart-complete "scheme-complete" nil t)
-(eval-after-load 'scheme
-  '(define-key scheme-mode-map "\t" 'scheme-complete-or-indent))
+
+;; Special keys in scheme mode. Use <tab> to indent scheme code to the
+;; proper level.
+(eval-after-load
+ 'scheme
+ '(define-key scheme-mode-map "\t" 'scheme-complete-or-indent))
+
+(eval-after-load
+ 'cmuscheme
+ '(define-key inferior-scheme-mode-map "\t" 'scheme-complete-or-indent))
+
+(eval-after-load
+ 'xscheme
+ '(define-key scheme-interaction-mode-map "\t" 'scheme-complete-or-indent))
+
 ; scheme docs
 (autoload 'scheme-get-current-symbol-info "scheme-complete" nil t)
 (add-hook 'scheme-mode-hook
@@ -67,3 +111,39 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;         Miscellaneous Settings                   ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq x-select-enable-clipboard 't)
+(setq auto-mode-alist (cons '("README" . text-mode) auto-mode-alist))
+;; activate auto-fill-mode for various other modes
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'scheme-mode-hook 'turn-on-auto-fill)
+; (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  ; "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+  ; (flet ((process-list ())) ad-do-it))
+(setq-default ispell-program-name "aspell")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Patch for xscheme - Fixing evaluate-expression in debugger ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun xscheme-prompt-for-expression-exit ()
+  (interactive)
+  (let (
+	;; In Emacs 21+, during a minibuffer read the minibuffer
+	;; contains the prompt as buffer text and that text is
+	;; read only.  So we can no longer assume that (point-min)
+	;; is where the user-entered text starts and we must avoid
+	;; modifying that prompt text.  The value we want instead
+	;; of (point-min) is (minibuffer-prompt-end).
+	(point-min (if (fboundp 'minibuffer-prompt-end)
+		              (minibuffer-prompt-end)
+		            (point-min))))
+    (if (eq (xscheme-region-expression-p point-min (point-max)) 'one)
+        (exit-minibuffer)
+      (error "input must be a single, complete expression"))))
+
+
+
