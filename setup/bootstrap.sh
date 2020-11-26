@@ -179,6 +179,7 @@ snap_classic_apps=(
 )
 
 mac_packages=(
+  adoptopenjdk
   boot-clj
   certbot
   clojure/tools/clojure
@@ -187,8 +188,8 @@ mac_packages=(
   heroku
   leiningen
   macvim
-  adoptopenjdk
   python@3.8
+  saulpw/vd/visidata
   the_silver_searcher
 )
 
