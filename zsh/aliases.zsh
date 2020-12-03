@@ -168,4 +168,7 @@ alias ql='qlmanage -p'
 
 # Prevent from sleeping for 1 hour
 alias coffee='caffeinate -u -t 3600'
+
+# Generate an SSL certificate
+alias certify='sudo certbot certonly --manual --preferred-challenges dns'
 ##############################################################################
