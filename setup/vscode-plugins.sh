@@ -5,6 +5,7 @@ plugins=(
   ms-vsliveshare.vsliveshare
   pnp.polacode
   vscodevim.vim
+  bradlc.vscode-tailwindcss
 )
 
 for plugin in ${plugins[@]}; do
