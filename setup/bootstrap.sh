@@ -198,6 +198,7 @@ mac_cask_packages=(
   coconutbattery
   clipy
   dash
+  firefox
   font-fira-code
   gh
   inkscape
@@ -206,6 +207,7 @@ mac_cask_packages=(
   macs-fan-control
   marvin
   mcgimp
+  microsoft-edge
   ngrok
   postbird
   postman
