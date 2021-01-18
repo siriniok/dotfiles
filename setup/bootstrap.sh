@@ -199,6 +199,7 @@ mac_cask_packages=(
   clipy
   dash
   firefox
+  flutter
   font-fira-code
   gh
   inkscape
