@@ -195,6 +195,7 @@ mac_packages=(
 
 mac_cask_packages=(
   alacritty
+  android-studio
   coconutbattery
   clipy
   dash
