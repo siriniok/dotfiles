@@ -219,6 +219,7 @@ mac_cask_packages=(
   qlmarkdown
   quicklook-json
   qlimagesize
+  signal
   suspicious-package
   quicklookase
   qlvideo
