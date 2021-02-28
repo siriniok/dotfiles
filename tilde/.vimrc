@@ -370,14 +370,14 @@ let g:workspace_session_disable_on_args = 1
 
 let g:ale_linters = {
 \  'css':        ['prettier'],
-\  'javascript': ['eslint', 'standard'],
+\  'javascript': ['eslint'],
 \  'ruby':       ['standardrb'],
 \  'python':     ['flake8', 'pylint'],
 \  'vim':        ['vint']
 \}
 
 let g:ale_fixers = {
-\  'javascript': ['prettier-eslint', 'prettier-standard'],
+\  'javascript': ['prettier', 'eslint'],
 \  'css':        ['prettier'],
 \  'html':       ['prettier'],
 \  'python':     ['yapf'],
