@@ -117,16 +117,22 @@ Plugin 'plasticboy/vim-markdown'          " Improve the original Markdown
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
-Plugin 'garbas/vim-snipmate'              " Snippets for our use :)
+" Plugin 'garbas/vim-snipmate'              " Snippets for our use :)
 
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 
 " Themes
-Plugin 'siriniok/vim-colors-solarized'    " Solarized theme
-Plugin 'Donearm/Laederon'                 " laederon
-Plugin 'treycucco/vim-monotonic'          " monotonic-light
-Plugin 'owickstrom/vim-colors-paramount'   " Solarized theme
+" Plugin 'Donearm/Laederon'                 " laederon
+" Plugin 'treycucco/vim-monotonic'          " monotonic-light
+
+" Plugin 'owickstrom/vim-colors-paramount'  " paramount
+" Plugin 'andreypopp/vim-colors-plain'      " plain
+" Plugin 'liuchengxu/space-vim-theme'       " space_vim_theme
+" Plugin 'axvr/photon.vim'                  " antiphoton
+" Plugin 'YorickPeterse/vim-paper'      " paper
+Plugin 'cideM/yui'      " yui
+Plugin 'reedes/vim-colors-pencil'         " pencil
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()
@@ -148,8 +154,10 @@ set wrapmargin=2
 syntax enable                 " Enable syntax highlighting
 set background=light
 
-colorscheme paramount   " Default colorscheme
-hi Normal      ctermbg=255 ctermfg=234  cterm=None
+colorscheme yui   " Default colorscheme
+
+" Fixes for paramount
+" hi Normal      ctermbg=255 ctermfg=234  cterm=None
 " Fixes for monotonic-light
 " hi Directory    ctermbg=255  ctermfg=234  cterm=Bold
 " hi MatchParen   ctermbg=None ctermfg=None cterm=Bold,Underline
