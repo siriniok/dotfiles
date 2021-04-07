@@ -191,6 +191,7 @@ mac_packages=(
   python@3.8
   saulpw/vd/visidata
   the_silver_searcher
+  borkdude/brew/clj-kondo
 )
 
 mac_cask_packages=(
