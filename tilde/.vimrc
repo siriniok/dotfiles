@@ -96,8 +96,8 @@ Plugin 'tpope/vim-projectionist'          " Vim Projectionist
 Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'kien/rainbow_parentheses.vim'     " Colorful parentheses
 Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
-" Plugin 'tpope/vim-fireplace'              " Clojure REPL support
-" Plugin 'paredit.vim'                      " Paredit for Vim
+Plugin 'tpope/vim-fireplace'              " Clojure REPL support
+Plugin 'paredit.vim'                      " Paredit for Vim
 Plugin 'othree/yajs.vim'                  " Improved JS support
 Plugin 'herringtondarkholme/yats.vim'     " TypeScript support
 Plugin 'maxmellon/vim-jsx-pretty'         " JSX support
@@ -117,7 +117,7 @@ Plugin 'plasticboy/vim-markdown'          " Improve the original Markdown
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
-" Plugin 'garbas/vim-snipmate'              " Snippets for our use :)
+Plugin 'garbas/vim-snipmate'              " Snippets for our use :)
 
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
@@ -377,6 +377,7 @@ let g:workspace_session_disable_on_args = 1
 " -- ALE
 
 let g:ale_linters = {
+\  'clojure':    ['clj-kondo'],
 \  'css':        ['prettier'],
 \  'javascript': ['eslint'],
 \  'ruby':       ['standardrb'],
@@ -385,6 +386,7 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
+\  'clojure':    ['remove_trailing_lines', 'trim_whitespace'],
 \  'javascript': ['prettier', 'eslint'],
 \  'css':        ['prettier'],
 \  'html':       ['prettier'],
