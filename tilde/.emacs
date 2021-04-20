@@ -1,3 +1,5 @@
+;; Based on the config provided by https://groups.csail.mit.edu/mac/users/gjs/6.945/dont-panic/
+
 ;; Enable MELPA
 ;; Please, run M-x package-refresh-contents on the first run
 (require 'package)
@@ -35,6 +37,11 @@
 ;; enable mouse
 (xterm-mouse-mode 1)
 
+;;;; Mouse scrolling in terminal emacs
+(unless (display-graphic-p)
+  (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+  (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;         General Emacs Apperance                  ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -43,9 +50,12 @@
     (tool-bar-mode -1))
 (if window-system
     (scroll-bar-mode -1))
-(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 (column-number-mode 1)
-(setq inhibit-startup-message 't)
+(add-hook 'prog-mode-hook 'linum-mode)
+;; (setq inhibit-startup-message 't)
+
+(load-theme 'twilight-bright t)
 
 ;;parentheses
 (show-paren-mode 1)
@@ -144,6 +154,3 @@
     (if (eq (xscheme-region-expression-p point-min (point-max)) 'one)
         (exit-minibuffer)
       (error "input must be a single, complete expression"))))
-
-
-
