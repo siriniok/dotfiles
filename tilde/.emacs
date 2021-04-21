@@ -53,7 +53,8 @@
     (scroll-bar-mode -1))
 ;; (menu-bar-mode -1)
 (column-number-mode 1)
-(add-hook 'prog-mode-hook 'linum-mode)
+(global-display-line-numbers-mode t)
+(setq display-line-numbers "%4d \u2502 ")
 ;; (setq inhibit-startup-message 't)
 
 (load-theme 'twilight-bright t)
@@ -81,6 +82,17 @@
 
 ;;auto-complete package
 ; (ac-config-default)
+
+;; git-gutter package
+(global-git-gutter-mode t)
+(custom-set-variables
+ '(git-gutter:update-interval 1) 
+ '(git-gutter:modified-sign "~")
+ '(git-gutter:added-sign "+")
+ '(git-gutter:deleted-sign "-"))
+(set-face-foreground 'git-gutter:modified "purple")
+(set-face-foreground 'git-gutter:added "green")
+(set-face-foreground 'git-gutter:deleted "red")
 
 ;; scheme-complete package
 (autoload 'scheme-smart-complete "scheme-complete" nil t)
