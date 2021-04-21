@@ -34,13 +34,14 @@
 ;; Use the Edwin-like MIT/Scheme interpreter:
 (load "xscheme")
 
-;; enable mouse
-(xterm-mouse-mode 1)
-
-;;;; Mouse scrolling in terminal emacs
+;; Enable mouse
+(require 'mouse) ;; needed for iterm2 compatibility
+(xterm-mouse-mode t)
 (unless (display-graphic-p)
-  (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
-  (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+  (global-set-key [mouse-4] 'scroll-down-line)
+  (global-set-key [mouse-5] 'scroll-up-line))
+(setq mouse-sel-mode t)
+(defun track-mouse (e))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;         General Emacs Apperance                  ;;;;;
