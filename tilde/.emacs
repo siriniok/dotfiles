@@ -12,23 +12,20 @@
 
 ;; This is the place where you have installed scheme. Be sure to set
 ;; this to an appropriate value!!!
-; (setq scheme-root "/usr")
+
 ;; Linux
-;; (setq scheme-program-name
-;;       (concat
-;;        scheme-root "/bin/mit-scheme "
-;;        "--library " scheme-root "/lib/x86_64-linux-gnu/mit-scheme "
-;;        "--band " scheme-root "/lib/x86_64-linux-gnu/mit-scheme/all.com "
-;;        "-heap 10000"))
+;; (setq scheme-root "/usr/lib/x86_64-linux-gnu/mit-scheme")
+;; (setq all-com "/all.com")
 
 ;; macOS
 (setq scheme-root "/usr/local/Cellar/mit-scheme/10.1.11")
+(setq all-com "/lib/mit-scheme-x86-64/all.com")
 
 (setq scheme-program-name
       (concat
         scheme-root "/bin/mit-scheme "
         "--library " scheme-root " "
-        "--band " scheme-root "/lib/mit-scheme-x86-64/all.com "
+        "--band " scheme-root all-com " "
         "-heap 10000"))
 
 ;; Use the Edwin-like MIT/Scheme interpreter:
@@ -80,19 +77,8 @@
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
-;;auto-complete package
-; (ac-config-default)
-
 ;; git-gutter package
 (global-git-gutter-mode t)
-(custom-set-variables
- '(git-gutter:update-interval 1) 
- '(git-gutter:modified-sign "~")
- '(git-gutter:added-sign "+")
- '(git-gutter:deleted-sign "-"))
-(set-face-foreground 'git-gutter:modified "purple")
-(set-face-foreground 'git-gutter:added "green")
-(set-face-foreground 'git-gutter:deleted "red")
 
 ;; scheme-complete package
 (autoload 'scheme-smart-complete "scheme-complete" nil t)
@@ -118,22 +104,29 @@
     (make-local-variable 'eldoc-documentation-function)
     (setq eldoc-documentation-function 'scheme-get-current-symbol-info)
     (eldoc-mode)))
+
 ; scheme smart indent
 (setq lisp-indent-function 'scheme-smart-indent-function)
 
-;;custom
+
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+
+ '(git-gutter:update-interval 1) 
+ '(git-gutter:modified-sign "~")
+ '(git-gutter:added-sign "+")
+ '(git-gutter:deleted-sign "-")
  '(package-selected-packages (quote (paredit))))
+
+(set-face-foreground 'git-gutter:modified "purple")
+(set-face-foreground 'git-gutter:added "green")
+(set-face-foreground 'git-gutter:deleted "red")
+
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;         Miscellaneous Settings                   ;;;;;
