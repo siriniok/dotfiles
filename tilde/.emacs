@@ -18,8 +18,8 @@
 ;; (setq all-com "/all.com")
 
 ;; macOS
-(setq scheme-root "/usr/local/Cellar/mit-scheme/10.1.11")
-(setq all-com "/lib/mit-scheme-x86-64/all.com")
+(setq scheme-root "/usr/local/Cellar/mit-scheme/11.2")
+(setq all-com "/lib/mit-scheme-x86-64-11.2/all.com")
 
 (setq scheme-program-name
       (concat
