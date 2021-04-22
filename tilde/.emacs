@@ -45,9 +45,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (if window-system
-    (tool-bar-mode -1))
+  (tool-bar-mode -1))
 (if window-system
-    (scroll-bar-mode -1))
+  (scroll-bar-mode -1))
 ;; (menu-bar-mode -1)
 (column-number-mode 1)
 (global-display-line-numbers-mode t)
@@ -86,47 +86,47 @@
 ;; Special keys in scheme mode. Use <tab> to indent scheme code to the
 ;; proper level.
 (eval-after-load
- 'scheme
- '(define-key scheme-mode-map "\t" 'scheme-complete-or-indent))
+  'scheme
+  '(define-key scheme-mode-map "\t" 'scheme-complete-or-indent))
 
 (eval-after-load
- 'cmuscheme
- '(define-key inferior-scheme-mode-map "\t" 'scheme-complete-or-indent))
+  'cmuscheme
+  '(define-key inferior-scheme-mode-map "\t" 'scheme-complete-or-indent))
 
 (eval-after-load
- 'xscheme
- '(define-key scheme-interaction-mode-map "\t" 'scheme-complete-or-indent))
+  'xscheme
+  '(define-key scheme-interaction-mode-map "\t" 'scheme-complete-or-indent))
 
 ; scheme docs
 (autoload 'scheme-get-current-symbol-info "scheme-complete" nil t)
 (add-hook 'scheme-mode-hook
-  (lambda ()
-    (make-local-variable 'eldoc-documentation-function)
-    (setq eldoc-documentation-function 'scheme-get-current-symbol-info)
-    (eldoc-mode)))
+          (lambda ()
+            (make-local-variable 'eldoc-documentation-function)
+            (setq eldoc-documentation-function 'scheme-get-current-symbol-info)
+            (eldoc-mode)))
 
 ; scheme smart indent
 (setq lisp-indent-function 'scheme-smart-indent-function)
 
 
 (custom-set-variables
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
 
- '(git-gutter:update-interval 1) 
- '(git-gutter:modified-sign "~")
- '(git-gutter:added-sign "+")
- '(git-gutter:deleted-sign "-")
- '(package-selected-packages (quote (paredit))))
+  '(git-gutter:update-interval 1) 
+  '(git-gutter:modified-sign "~")
+  '(git-gutter:added-sign "+")
+  '(git-gutter:deleted-sign "-")
+  '(package-selected-packages (quote (paredit))))
 
 (set-face-foreground 'git-gutter:modified "purple")
 (set-face-foreground 'git-gutter:added "green")
 (set-face-foreground 'git-gutter:deleted "red")
 
 (custom-set-faces
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
-)
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;         Miscellaneous Settings                   ;;;;;
@@ -137,8 +137,8 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'scheme-mode-hook 'turn-on-auto-fill)
 ; (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  ; "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-  ; (flet ((process-list ())) ad-do-it))
+; "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+; (flet ((process-list ())) ad-do-it))
 (setq-default ispell-program-name "aspell")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -148,15 +148,15 @@
 (defun xscheme-prompt-for-expression-exit ()
   (interactive)
   (let (
-	;; In Emacs 21+, during a minibuffer read the minibuffer
-	;; contains the prompt as buffer text and that text is
-	;; read only.  So we can no longer assume that (point-min)
-	;; is where the user-entered text starts and we must avoid
-	;; modifying that prompt text.  The value we want instead
-	;; of (point-min) is (minibuffer-prompt-end).
-	(point-min (if (fboundp 'minibuffer-prompt-end)
-		              (minibuffer-prompt-end)
-		            (point-min))))
+        ;; In Emacs 21+, during a minibuffer read the minibuffer
+        ;; contains the prompt as buffer text and that text is
+        ;; read only.  So we can no longer assume that (point-min)
+        ;; is where the user-entered text starts and we must avoid
+        ;; modifying that prompt text.  The value we want instead
+        ;; of (point-min) is (minibuffer-prompt-end).
+        (point-min (if (fboundp 'minibuffer-prompt-end)
+                     (minibuffer-prompt-end)
+                     (point-min))))
     (if (eq (xscheme-region-expression-p point-min (point-max)) 'one)
-        (exit-minibuffer)
+      (exit-minibuffer)
       (error "input must be a single, complete expression"))))
