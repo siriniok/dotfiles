@@ -230,7 +230,7 @@ mac_cask_packages=(
   visual-studio-code
   vlc
   the-unarchiver
-  zoomus
+  zoom
   zotero
   google-chrome
 )
