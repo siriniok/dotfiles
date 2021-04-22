@@ -41,7 +41,7 @@
 (defun track-mouse (e))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;         General Emacs Apperance                  ;;;;;
+;;;;;              General Emacs Apperance             ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (if window-system
@@ -63,10 +63,9 @@
 ;;no tabs
 (setq-default indent-tabs-mode nil)
 
-;; eldoc mode
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
-(add-hook 'ielm-mode-hook 'eldoc-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;                  Emacs Packages                  ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;paredit package
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -81,33 +80,16 @@
 (global-git-gutter-mode t)
 
 ;; scheme-complete package
-(autoload 'scheme-smart-complete "scheme-complete" nil t)
+(autoload 'scheme-complete-or-indent "scheme-complete" nil t)
 
-;; Special keys in scheme mode. Use <tab> to indent scheme code to the
-;; proper level.
+;; Use <tab> to indent scheme code to the proper level.
 (eval-after-load
   'scheme
   '(define-key scheme-mode-map "\t" 'scheme-complete-or-indent))
 
 (eval-after-load
-  'cmuscheme
-  '(define-key inferior-scheme-mode-map "\t" 'scheme-complete-or-indent))
-
-(eval-after-load
   'xscheme
   '(define-key scheme-interaction-mode-map "\t" 'scheme-complete-or-indent))
-
-; scheme docs
-(autoload 'scheme-get-current-symbol-info "scheme-complete" nil t)
-(add-hook 'scheme-mode-hook
-          (lambda ()
-            (make-local-variable 'eldoc-documentation-function)
-            (setq eldoc-documentation-function 'scheme-get-current-symbol-info)
-            (eldoc-mode)))
-
-; scheme smart indent
-(setq lisp-indent-function 'scheme-smart-indent-function)
-
 
 (custom-set-variables
   ;; Your init file should contain only one such instance.
@@ -131,14 +113,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;         Miscellaneous Settings                   ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (setq x-select-enable-clipboard 't)
 (setq auto-mode-alist (cons '("README" . text-mode) auto-mode-alist))
 ;; activate auto-fill-mode for various other modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'scheme-mode-hook 'turn-on-auto-fill)
-; (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-; "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-; (flet ((process-list ())) ad-do-it))
 (setq-default ispell-program-name "aspell")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
