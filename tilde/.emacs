@@ -91,6 +91,23 @@
   'xscheme
   '(define-key scheme-interaction-mode-map "\t" 'scheme-complete-or-indent))
 
+;; scheme docs
+(autoload 'scheme-get-current-symbol-info "scheme-complete" nil t)
+(add-hook 'scheme-mode-hook
+          (lambda ()
+            (make-local-variable 'eldoc-documentation-function)
+            (setq eldoc-documentation-function 'scheme-get-current-symbol-info)
+            (eldoc-mode)))
+(add-hook 'scheme-interaction-mode-hook
+          (lambda ()
+            (make-local-variable 'eldoc-documentation-function)
+            (setq eldoc-documentation-function 'scheme-get-current-symbol-info)
+            (eldoc-mode)))
+
+;; scheme smart indent
+(autoload 'scheme-smart-indent-function "scheme-complete" nil t)
+(setq lisp-indent-function 'scheme-smart-indent-function)
+
 (custom-set-variables
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
