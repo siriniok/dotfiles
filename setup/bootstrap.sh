@@ -196,6 +196,7 @@ mac_packages=(
 
 mac_cask_packages=(
   alacritty
+  android-file-transfer
   android-studio
   coconutbattery
   clipy
