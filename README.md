@@ -70,4 +70,4 @@ Emacs Cheat Sheets ([First](http://sachachua.com/blog/wp-content/uploads/2013/05
 
 ## License
 
-[MIT](https://github.com/siriniok/dotfiles/blob/master/LICENSE) (c) 2015-2016 Vladyslav Siriniok (http://siriniok.com)
+[MIT](https://github.com/siriniok/dotfiles/blob/master/LICENSE) (c) 2015-2021 Vladyslav Siriniok (http://siriniok.com)
