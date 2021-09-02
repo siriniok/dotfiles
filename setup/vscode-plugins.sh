@@ -18,6 +18,7 @@ plugins=(
   dbaeumer.vscode-eslint
   EditorConfig.EditorConfig
   streetsidesoftware.code-spell-checker
+  James-Yu.latex-workshop
 )
 
 for plugin in ${plugins[@]}; do
