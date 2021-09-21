@@ -195,6 +195,7 @@ mac_packages=(
 )
 
 mac_cask_packages=(
+  airdroid
   alacritty
   android-file-transfer
   android-studio
