@@ -206,6 +206,7 @@ mac_cask_packages=(
   flutter
   font-fira-code
   google-drive
+  gitup
   gh
   inkscape
   iterm2
