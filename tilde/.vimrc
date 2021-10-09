@@ -15,6 +15,9 @@ set history=500
 " Set spellcheck language
 set spelllang=en_us
 
+" Enable word completion
+set complete+=kspell
+
 " Enable persistent undo history
 set undofile
 
@@ -302,7 +305,10 @@ nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 
 " Run ctags
 nnoremap <Leader>ct :!ctags -R<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Toggle spell
+nnoremap <Leader>z :setlocal invspell<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              Autocommands                                  "
@@ -310,6 +316,11 @@ nnoremap <Leader>ct :!ctags -R<CR>
 
 " Run ctag on every file write
 " :autocmd BufWritePost * call system("ctags -R")
+
+" Enable spellchecking automatically
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd BufRead,BufNewFile *.txt setlocal spell
+autocmd FileType gitcommit setlocal spell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
