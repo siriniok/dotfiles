@@ -226,6 +226,7 @@ mac_cask_packages=(
   qlimagesize
   signal
   suspicious-package
+  tor-browser
   quicklookase
   qlvideo
   skype
