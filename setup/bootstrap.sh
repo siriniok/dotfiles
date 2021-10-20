@@ -202,6 +202,7 @@ mac_cask_packages=(
   coconutbattery
   clipy
   dash
+  figma
   firefox
   flutter
   font-fira-code
