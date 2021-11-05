@@ -304,10 +304,10 @@ nmap OO O<Esc>
 nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 
 " Run ctags
-nnoremap <Leader>ct :!ctags -R<CR>
+nnoremap <leader>ct :!ctags -R<CR>
 
 " Toggle spell
-nnoremap <Leader>z :setlocal invspell<CR>
+nnoremap <leader>z :setlocal invspell<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
