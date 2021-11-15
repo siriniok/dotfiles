@@ -156,6 +156,15 @@ set wrapmargin=2
 syntax enable                 " Enable syntax highlighting
 set background=light
 
+" Force true colors in tmux
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+
+" Enable italics in vim
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+
 colorscheme yui   " Default colorscheme
 
 " Fixes for paramount
