@@ -19,7 +19,7 @@ plugins=(
   git
   git-extras
   lein
-  osx
+  macos
   postgres
   rails
   rake
