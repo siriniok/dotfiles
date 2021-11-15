@@ -19,3 +19,7 @@ enable_touch_id_in_terminal() {
 
 # Enabling TouchID for sudo
 enable_touch_id_in_terminal
+
+# Enable italics font in iTerm2 and tmux
+tic -x ./setup/tmux-256color.terminfo
+tic ./setup/xterm-256color.terminfo

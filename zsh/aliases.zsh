@@ -41,6 +41,8 @@ alias xp='xclip -selection clipboard -o'
 alias shut='shutdown -h +45'
 alias unshut='shutdown -c'
 
+# Set a default terminal for remote servers
+alias ssh='TERM=xterm-256color ssh'
 #############################################################################
 
 
