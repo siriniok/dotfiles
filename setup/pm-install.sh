@@ -58,7 +58,9 @@ npm_packages=(
 
 pip_packages=(
   neovim-remote
+  msgpack
   pgcli
+  pynvim
   trash-cli
   vim-vint
 )
