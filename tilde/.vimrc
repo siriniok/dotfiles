@@ -90,7 +90,6 @@ Plugin 'tpope/vim-commentary'             " Commenting and uncommenting stuff
 Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
 Plugin 'ngmy/vim-rubocop'                 " Rubocop Integration
 Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
-Plugin 'ervandew/supertab'                " Tab completions
 Plugin 'mattn/emmet-vim'                  " Emmet for Vim
 Plugin 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
 Plugin 'junegunn/fzf'                     " Fuzzy finder for vim (CTRL+P)
@@ -115,14 +114,15 @@ Plugin 'mbbill/undotree'                  " Undotree
 Plugin 'godlygeek/tabular'                " Aligning text
 Plugin 'plasticboy/vim-markdown'          " Improve the original Markdown
 
-" Dependencies of snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'honza/vim-snippets'
-Plugin 'garbas/vim-snipmate'              " Snippets for our use :)
+Plugin 'Shougo/deoplete.nvim'             " A completion engine
+if !has('nvim')
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
 
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
+" Snippets
+Plugin 'SirVer/ultisnips'                 " A snippet engine
+Plugin 'honza/vim-snippets'               " snipmate and ultisnip snippets
 
 " Themes
 " Plugin 'Donearm/Laederon'                 " laederon
@@ -460,15 +460,28 @@ nnoremap <leader>mr :call LanguageClient#textDocument_rename()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Deolpete
 
-let g:deoplete#enable_at_startup = 0
+let g:deoplete#enable_at_startup = 1
+
+inoremap <silent><expr> <S-TAB>
+      \ pumvisible() ? "\<C-p>" :
+      \ <SID>check_back_space() ? "\<S-TAB>" :
+      \ deoplete#manual_complete()
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#manual_complete()
+
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- Neosnippet
+" -- UltiSnips
 
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-j> <Plug>(UltiSnips#ExpandSnippetOrJump)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
