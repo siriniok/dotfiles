@@ -109,6 +109,7 @@ Plugin 'junegunn/vim-easy-align'          " Vim easy align
 Plugin 'autozimu/LanguageClient-neovim'   " Run install.sh after upgrade
 Plugin 'kshenoy/vim-signature'            " Marks signature
 Plugin 'mbbill/undotree'                  " Undotree
+Plugin 'Olical/conjure'                   " Conjure
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
