@@ -189,6 +189,7 @@ mac_packages=(
   leiningen
   macvim
   python@3.8
+  ripgrep
   saulpw/vd/visidata
   the_silver_searcher
   borkdude/brew/clj-kondo

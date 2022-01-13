@@ -69,7 +69,6 @@ cargo_packages=(
   exa
   bat
   fd-find
-  ripgrep
 )
 
 info "Installing global Ruby packages"
