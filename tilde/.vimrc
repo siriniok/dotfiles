@@ -92,7 +92,6 @@ Plugin 'ngmy/vim-rubocop'                 " Rubocop Integration
 Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
 Plugin 'mattn/emmet-vim'                  " Emmet for Vim
 Plugin 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
-Plugin 'junegunn/fzf'                     " Fuzzy finder for vim (CTRL+P)
 Plugin 'tpope/vim-projectionist'          " Vim Projectionist
 Plugin 'janko-m/vim-test'                 " For tests
 Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
@@ -110,6 +109,10 @@ Plugin 'autozimu/LanguageClient-neovim'   " Run install.sh after upgrade
 Plugin 'kshenoy/vim-signature'            " Marks signature
 Plugin 'mbbill/undotree'                  " Undotree
 Plugin 'Olical/conjure'                   " Conjure
+
+" Fuzzy finder for vim (CTRL+P)
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 " Dependencies of vim-markdown
 Plugin 'godlygeek/tabular'                " Aligning text
@@ -387,9 +390,19 @@ let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- FZF
+" -- fzf
 
-nnoremap <C-p> :<C-u>FZF<CR>
+nnoremap <C-p> :<C-u>Rg<CR>
+
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+
+command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case -. -- '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview(), <bang>0)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
