@@ -68,82 +68,79 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                   Vundle                                   "
+"                                  vim-plug                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  " Required
-set runtimepath+=~/.vim/bundle/Vundle.vim " Set runtime path to include Vundle
-call vundle#begin()           " Keep Plugin commands between vundle#begin/end
+call plug#begin()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- List of Plugins
+" -- List of Plugs
 
-Plugin 'VundleVim/Vundle.vim'             " Let Vundle manage Vundle, required
-
-" Plugins
-Plugin 'scrooloose/nerdtree'              " The NERD Tree file explorer
-Plugin 'Xuyuanp/nerdtree-git-plugin'      " Git status flags for NERD Tree
-Plugin 'airblade/vim-gitgutter'           " GitGutter for Vim
-Plugin 'tpope/vim-fugitive'               " Git tools
-Plugin 'tpope/vim-rails.git'              " Rails :/
-Plugin 'tpope/vim-surround'               " Surround your code :)
-Plugin 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
-Plugin 'tpope/vim-commentary'             " Commenting and uncommenting stuff
-Plugin 'vim-ruby/vim-ruby'                " Vim Ruby
-Plugin 'ngmy/vim-rubocop'                 " Rubocop Integration
-Plugin 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
-Plugin 'mattn/emmet-vim'                  " Emmet for Vim
-Plugin 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
-Plugin 'tpope/vim-projectionist'          " Vim Projectionist
-Plugin 'janko-m/vim-test'                 " For tests
-Plugin 'guns/vim-clojure-static'          " Neat Clojure plugin
-Plugin 'tpope/vim-fireplace'              " Clojure REPL support
-Plugin 'paredit.vim'                      " Paredit for Vim
-Plugin 'eapache/rainbow_parentheses.vim'  " Colorful parentheses
-Plugin 'othree/yajs.vim'                  " Improved JS support
-Plugin 'herringtondarkholme/yats.vim'     " TypeScript support
-Plugin 'maxmellon/vim-jsx-pretty'         " JSX support
-Plugin 'sgur/vim-editorconfig'            " Vim Editorconfig support
-Plugin 'thaerkh/vim-workspace'            " Session management
-Plugin 'dense-analysis/ale'               " ALE Linting
-Plugin 'junegunn/vim-easy-align'          " Vim easy align
-Plugin 'autozimu/LanguageClient-neovim'   " Run install.sh after upgrade
-Plugin 'kshenoy/vim-signature'            " Marks signature
-Plugin 'mbbill/undotree'                  " Undotree
-Plugin 'Olical/conjure'                   " Conjure
+" Plugs
+Plug 'scrooloose/nerdtree'              " The NERD Tree file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status flags for NERD Tree
+Plug 'airblade/vim-gitgutter'           " GitGutter for Vim
+Plug 'tpope/vim-fugitive'               " Git tools
+Plug 'tpope/vim-rails.git'              " Rails :/
+Plug 'tpope/vim-surround'               " Surround your code :)
+Plug 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
+Plug 'tpope/vim-commentary'             " Commenting and uncommenting stuff
+Plug 'vim-ruby/vim-ruby'                " Vim Ruby
+Plug 'ngmy/vim-rubocop'                 " Rubocop Integration
+Plug 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
+Plug 'mattn/emmet-vim'                  " Emmet for Vim
+Plug 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
+Plug 'tpope/vim-projectionist'          " Vim Projectionist
+Plug 'janko-m/vim-test'                 " For tests
+Plug 'guns/vim-clojure-static'          " Neat Clojure plugin
+Plug 'tpope/vim-fireplace'              " Clojure REPL support
+Plug 'vim-scripts/paredit.vim'          " Paredit for Vim
+Plug 'eapache/rainbow_parentheses.vim'  " Colorful parentheses
+Plug 'othree/yajs.vim'                  " Improved JS support
+Plug 'herringtondarkholme/yats.vim'     " TypeScript support
+Plug 'maxmellon/vim-jsx-pretty'         " JSX support
+Plug 'sgur/vim-editorconfig'            " Vim Editorconfig support
+Plug 'thaerkh/vim-workspace'            " Session management
+Plug 'dense-analysis/ale'               " ALE Linting
+Plug 'junegunn/vim-easy-align'          " Vim easy align
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }                                 " Language Server Protocol support
+Plug 'kshenoy/vim-signature'            " Marks signature
+Plug 'mbbill/undotree'                  " Undotree
+Plug 'Olical/conjure'                   " Conjure
 
 " Fuzzy finder for vim (CTRL+P)
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Dependencies of vim-markdown
-Plugin 'godlygeek/tabular'                " Aligning text
-Plugin 'plasticboy/vim-markdown'          " Improve the original Markdown
+Plug 'godlygeek/tabular'                " Aligning text
+Plug 'plasticboy/vim-markdown'          " Improve the original Markdown
 
-Plugin 'Shougo/deoplete.nvim'             " A completion engine
+Plug 'Shougo/deoplete.nvim'             " A completion engine
 if !has('nvim')
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 " Snippets
-Plugin 'SirVer/ultisnips'                 " A snippet engine
-Plugin 'honza/vim-snippets'               " snipmate and ultisnip snippets
+Plug 'SirVer/ultisnips'                 " A snippet engine
+Plug 'honza/vim-snippets'               " snipmate and ultisnip snippets
 
 " Themes
-" Plugin 'Donearm/Laederon'                 " laederon
-" Plugin 'treycucco/vim-monotonic'          " monotonic-light
+" Plug 'Donearm/Laederon'                 " laederon
+" Plug 'treycucco/vim-monotonic'          " monotonic-light
 
-" Plugin 'owickstrom/vim-colors-paramount'  " paramount
-" Plugin 'andreypopp/vim-colors-plain'      " plain
-" Plugin 'liuchengxu/space-vim-theme'       " space_vim_theme
-" Plugin 'axvr/photon.vim'                  " antiphoton
-" Plugin 'YorickPeterse/vim-paper'      " paper
-Plugin 'cideM/yui'      " yui
-Plugin 'reedes/vim-colors-pencil'         " pencil
+" Plug 'owickstrom/vim-colors-paramount'  " paramount
+" Plug 'andreypopp/vim-colors-plain'      " plain
+" Plug 'liuchengxu/space-vim-theme'       " space_vim_theme
+" Plug 'axvr/photon.vim'                  " antiphoton
+" Plug 'YorickPeterse/vim-paper'      " paper
+Plug 'cideM/yui'      " yui
+Plug 'reedes/vim-colors-pencil'         " pencil
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call vundle#end()
-filetype plugin indent on     " Required
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -347,7 +344,7 @@ autocmd FileType gitcommit setlocal spell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                Plugins                                     "
+"                                Plugs                                     "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
