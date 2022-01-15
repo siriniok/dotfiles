@@ -75,8 +75,7 @@ call plug#begin()
 " -- List of Plugs
 
 " Plugs
-Plug 'scrooloose/nerdtree'              " The NERD Tree file explorer
-Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status flags for NERD Tree
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'airblade/vim-gitgutter'           " GitGutter for Vim
 Plug 'tpope/vim-fugitive'               " Git tools
 Plug 'tpope/vim-rails.git'              " Rails :/
@@ -138,7 +137,6 @@ Plug 'honza/vim-snippets'               " snipmate and ultisnip snippets
 " Plug 'YorickPeterse/vim-paper'      " paper
 Plug 'cideM/yui'      " yui
 Plug 'reedes/vim-colors-pencil'         " pencil
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -348,12 +346,17 @@ autocmd FileType gitcommit setlocal spell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- NERDTree
+" -- CHADTree
 
-map <leader>q :NERDTreeToggle<CR> " Opens and closes Nerdtree with ,q
-let NERDTreeShowHidden=1      " enable displaying hidden files
-let g:NERDTreeWinSize=20
+nnoremap <leader>q <cmd>CHADopen<cr> " Toogle CHADTree
 
+let g:chadtree_settings = {
+      \"ignore.name_exact": [
+        \".DS_Store", ".directory", "thumbs.db", ".git", "node_modules"
+      \],
+      \"keymap.refresh": ["R"],
+      \"view.width": 20
+      \}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
