@@ -10,7 +10,17 @@ scriptencoding utf8
 set hidden
 
 " Set how many lines of history VIM should remember
-set history=500
+set history=1000
+
+" Allow for mappings including `Esc`, while preserving zero timeout after
+" pressing it manually (only vim needs a fix for this)
+if !has('nvim') && &ttimeoutlen == -1
+  set ttimeout
+  set ttimeoutlen=100
+endif
+
+" Allow for up to 50 opened tabs on startup
+set tabpagemax=50
 
 " Set spellcheck language
 set spelllang=en_us
@@ -27,11 +37,12 @@ augroup vimrc
   autocmd BufWritePre /tmp/* setlocal noundofile
 augroup END
 
-" Exclude empty buffers from session. Prevents Nerd Tree from opening
+" Exclude empty buffers and options from session. Prevents CHADTree from opening
 set sessionoptions-=blank
+set sessionoptions-=options
 
 " Set ctags directory
-set tags=./tags
+setglobal tags-=./tags tags-=./tags; tags^=./tags;
 
 " Set backup directory
 set backupdir=~/.vim/backup//
@@ -76,13 +87,34 @@ call plug#begin()
 
 " Plugs
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
-Plug 'airblade/vim-gitgutter'           " GitGutter for Vim
+
+" Vim Polyglot requires to declare configuration before initialization
+let g:polyglot_disabled = [
+      \'sensible', 'markdown', 'javascript.plugin', 'jsx.plugin', 'ruby', 'typescript'
+      \]
+Plug 'sheerun/vim-polyglot'             " A collection of language packs
+Plug 'othree/yajs.vim'                  " Improved JS support
+Plug 'herringtondarkholme/yats.vim'     " TypeScript support
+Plug 'maxmellon/vim-jsx-pretty'         " JSX support
+Plug 'vim-ruby/vim-ruby'                " Vim Ruby
+
+" vim-markdown
+Plug 'godlygeek/tabular'                " Aligning text
+Plug 'plasticboy/vim-markdown'          " Improve the original Markdown
+
+Plug 'dense-analysis/ale'               " ALE Linting
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }                                 " Language Server Protocol support
+
+Plug 'adelarsq/vim-matchit'             " Extended matching for the % operator
+Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'tpope/vim-fugitive'               " Git tools
-Plug 'tpope/vim-rails.git'              " Rails :/
+Plug 'tpope/vim-rails'                  " Rails :/
 Plug 'tpope/vim-surround'               " Surround your code :)
 Plug 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
 Plug 'tpope/vim-commentary'             " Commenting and uncommenting stuff
-Plug 'vim-ruby/vim-ruby'                " Vim Ruby
 Plug 'ngmy/vim-rubocop'                 " Rubocop Integration
 Plug 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
 Plug 'mattn/emmet-vim'                  " Emmet for Vim
@@ -93,17 +125,9 @@ Plug 'guns/vim-clojure-static'          " Neat Clojure plugin
 Plug 'tpope/vim-fireplace'              " Clojure REPL support
 Plug 'vim-scripts/paredit.vim'          " Paredit for Vim
 Plug 'eapache/rainbow_parentheses.vim'  " Colorful parentheses
-Plug 'othree/yajs.vim'                  " Improved JS support
-Plug 'herringtondarkholme/yats.vim'     " TypeScript support
-Plug 'maxmellon/vim-jsx-pretty'         " JSX support
 Plug 'sgur/vim-editorconfig'            " Vim Editorconfig support
 Plug 'thaerkh/vim-workspace'            " Session management
-Plug 'dense-analysis/ale'               " ALE Linting
 Plug 'junegunn/vim-easy-align'          " Vim easy align
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }                                 " Language Server Protocol support
 Plug 'kshenoy/vim-signature'            " Marks signature
 Plug 'mbbill/undotree'                  " Undotree
 Plug 'Olical/conjure'                   " Conjure
@@ -112,19 +136,15 @@ Plug 'Olical/conjure'                   " Conjure
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Dependencies of vim-markdown
-Plug 'godlygeek/tabular'                " Aligning text
-Plug 'plasticboy/vim-markdown'          " Improve the original Markdown
+" Snippets
+Plug 'SirVer/ultisnips'                 " A snippet engine
+Plug 'honza/vim-snippets'               " snipmate and ultisnip snippets
 
 Plug 'Shougo/deoplete.nvim'             " A completion engine
 if !has('nvim')
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
-" Snippets
-Plug 'SirVer/ultisnips'                 " A snippet engine
-Plug 'honza/vim-snippets'               " snipmate and ultisnip snippets
 
 " Themes
 " Plug 'Donearm/Laederon'                 " laederon
@@ -136,7 +156,7 @@ Plug 'honza/vim-snippets'               " snipmate and ultisnip snippets
 " Plug 'axvr/photon.vim'                  " antiphoton
 " Plug 'YorickPeterse/vim-paper'      " paper
 Plug 'cideM/yui'      " yui
-Plug 'reedes/vim-colors-pencil'         " pencil
+" Plug 'reedes/vim-colors-pencil'         " pencil
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,7 +198,7 @@ if !has('nvim')
   set antialias
 endif
 
-set updatetime=250            " More frequent updates for, e.g. signs.
+set updatetime=250            " More frequent updates
 
 set scrolloff=3               " Display at least 3 lines around you cursor
                               " (for scrolling)
@@ -187,7 +207,6 @@ set scrolloff=3               " Display at least 3 lines around you cursor
 set showmatch
 
 set cursorline                " Highlight the current line
-" set cuc cul                 " Highlight active column
 
 set guioptions=T              " Enable the toolbar
 
@@ -195,7 +214,7 @@ set colorcolumn=80
 
 " Display tabs and spaces
 set list
-set listchars=tab:▸\·,space:·,nbsp:·
+set listchars=tab:▸\·,space:·,nbsp:·,extends:>,precedes:<
 set showbreak=↳\·
 
 " Add - to keywords
@@ -305,6 +324,10 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
+" Break undo sequence in insert mode before deleting
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+
 " Move between splits easily
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -329,11 +352,11 @@ nnoremap <leader>z :setlocal invspell<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              Autocommands                                  "
+"                             Spellchecking                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Run ctag on every file write
-" :autocmd BufWritePost * call system("ctags -R")
+" Toggle spell
+nnoremap <leader>z :setlocal invspell<CR>
 
 " Enable spellchecking automatically
 autocmd BufRead,BufNewFile *.md setlocal spell
@@ -342,7 +365,7 @@ autocmd FileType gitcommit setlocal spell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                Plugs                                     "
+"                                  Plugs                                     "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -475,6 +498,8 @@ nnoremap <leader>mr :call LanguageClient#textDocument_rename()<CR>
 " -- Deolpete
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_camel_case = 1
 
 inoremap <silent><expr> <S-TAB>
       \ pumvisible() ? "\<C-p>" :
