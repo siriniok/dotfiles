@@ -183,6 +183,7 @@ mac_packages=(
   boot-clj
   certbot
   clojure/tools/clojure
+  clojure-lsp/brew/clojure-lsp-native
   fabianishere/personal/pam_reattach
   gnupg
   heroku
