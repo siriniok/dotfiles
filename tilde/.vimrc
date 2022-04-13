@@ -108,14 +108,25 @@ Plug 'plasticboy/vim-markdown'          " Improve the original Markdown
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
-      \'coc-tslint-plugin',
-      \'coc-tsserver',
+      \'coc-calc',
+      \'coc-clojure',
+      \'coc-conjure',
       \'coc-css',
       \'coc-eslint',
+      \'coc-git',
+      \'coc-highlight',
       \'coc-html',
       \'coc-json',
-      \'coc-git',
-      \'coc-prettier'
+      \'coc-markdownlint',
+      \'coc-prettier',
+      \'coc-sh',
+      \'coc-snippets',
+      \'coc-solargraph',
+      \'coc-stylelintplus',
+      \'coc-tailwindcss',
+      \'coc-tslint-plugin',
+      \'coc-tsserver',
+      \'coc-vimlsp'
       \]
 
 Plug 'dense-analysis/ale'               " ALE Linting
@@ -287,9 +298,16 @@ set statusline+=\ \ Buffer\ #%n\ --%p%%--\ \ L:\ %l\ C:\ %c\
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Misc
 
-" Disable SnipMate old parser deprecation message
-let g:snipMate = { 'snippet_version' : 1 }
+" Fix JSON syntax highlighting
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
+" A helper to add command abbreviations
+" Use it like this: call SetupCommandAbbrs('C', 'CocConfig')
+function! SetupCommandAbbrs(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -489,6 +507,9 @@ nnoremap <Leader>gg :ALEDetail<CR> " show details about ALE warning/error
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- CoC
 
+" Use C to open coc config
+call SetupCommandAbbrs('C', 'CocConfig')
+
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -628,6 +649,26 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Mappings for coc-snippets
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

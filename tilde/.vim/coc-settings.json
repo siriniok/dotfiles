@@ -1,0 +1,17 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "css",
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "coc.preferences.useQuickfixForLocations": true,
+  "suggest.snippetIndicator": "🍦",
+  "coc.preferences.formatOnType": true,
+  "eslint.autoFixOnSave": true,
+  "prettier.disableSuccessMessage": true,
+  "tsserver.formatOnType": true
+}
