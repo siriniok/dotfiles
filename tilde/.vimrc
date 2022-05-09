@@ -40,7 +40,7 @@ augroup vimrc
   autocmd BufWritePre /tmp/* setlocal noundofile
 augroup END
 
-" Exclude empty buffers and options from session. Prevents CHADTree from opening
+" Exclude empty buffers and options from session
 set sessionoptions-=blank
 set sessionoptions-=options
 
@@ -89,7 +89,8 @@ call plug#begin()
 " -- List of Plugs
 
 " Plugs
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+Plug 'preservim/nerdtree'               " The NERD Tree file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status flags for NERD Tree
 
 " Vim Polyglot requires to declare configuration before initialization
 let g:polyglot_disabled = [
@@ -110,7 +111,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \'coc-calc',
       \'coc-clojure',
-      \'coc-conjure',
       \'coc-css',
       \'coc-eslint',
       \'coc-git',
@@ -393,17 +393,12 @@ autocmd FileType gitcommit setlocal spell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- CHADTree
+" -- NERDTree
 
-nnoremap <leader>q <cmd>CHADopen<cr> " Toogle CHADTree
+nnoremap <leader>q :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1         " enable displaying hidden files
+let g:NERDTreeWinSize=20
 
-let g:chadtree_settings = {
-      \"ignore.name_exact": [
-        \".DS_Store", ".directory", "thumbs.db", ".git", "node_modules"
-      \],
-      \"keymap.refresh": ["R"],
-      \"view.width": 20
-      \}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
