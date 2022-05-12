@@ -85,7 +85,7 @@ install_homebrew() {
 }
 
 install_dotfiles() {
-  git clone git://github.com/siriniok/dotfiles.git $DOTFILES_DIR
+  git clone https://github.com/siriniok/dotfiles.git $DOTFILES_DIR
   pushd .
   cd $DOTFILES_DIR
   git remote set-url origin git@github.com:siriniok/dotfiles.git
