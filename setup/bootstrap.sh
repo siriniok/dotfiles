@@ -184,6 +184,7 @@ mac_packages=(
   clojure/tools/clojure
   clojure-lsp/brew/clojure-lsp-native
   fabianishere/personal/pam_reattach
+  gh
   gnupg
   heroku
   leiningen
@@ -210,7 +211,6 @@ mac_cask_packages=(
   font-fira-code
   google-drive
   gitup
-  gh
   inkscape
   iterm2
   lastpass
