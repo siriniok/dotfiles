@@ -113,7 +113,6 @@ config_tmux() {
 
 packages=(
   cowsay
-  emacs
   fzf
   git
   htop
@@ -129,7 +128,6 @@ packages=(
   tmux
   tree
   wget
-  unrar
 )
 
 linux_packages=(
@@ -138,6 +136,7 @@ linux_packages=(
   clipit
   build-essential
   default-jdk
+  emacs
   font-manager
   fonts-firacode
   fonts-powerline
@@ -162,6 +161,7 @@ linux_packages=(
   wine-stable
   zsh
   xclip
+  unrar
 )
 
 snap_apps=(
@@ -204,6 +204,7 @@ mac_cask_packages=(
   coconutbattery
   clipy
   dash
+  emacs
   font-fira-code-nerd-font
   figma
   firefox
@@ -228,6 +229,7 @@ mac_cask_packages=(
   qlmarkdown
   quicklook-json
   qlimagesize
+  rar
   signal
   suspicious-package
   tor-browser
@@ -287,7 +289,7 @@ elif [[ `uname` == 'Darwin' ]]; then
     brew tap $app
   done
   brew install ${packages[@]} ${mac_packages[@]}
-  brew cask install ${mac_cask_packages[@]}
+  brew install --cask ${mac_cask_packages[@]}
 else
   error "Error: Your OS is not Linux or macOS."
   exit $EXIT_FAILURE
