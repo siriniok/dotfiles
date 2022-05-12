@@ -223,7 +223,6 @@ mac_cask_packages=(
   oracle-jdk
   postbird
   postman
-  psequel
   qlcolorcode
   qlstephen
   qlmarkdown
