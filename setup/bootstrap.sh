@@ -179,7 +179,6 @@ snap_classic_apps=(
 )
 
 mac_packages=(
-  adoptopenjdk
   boot-clj
   certbot
   clojure/tools/clojure
@@ -188,7 +187,6 @@ mac_packages=(
   gnupg
   heroku
   leiningen
-  macvim
   python@3.8
   ripgrep
   saulpw/vd/visidata
@@ -217,10 +215,12 @@ mac_cask_packages=(
   iterm2
   lastpass
   macs-fan-control
+  macvim
   marvin
   mcgimp
   microsoft-edge
   ngrok
+  oracle-jdk
   postbird
   postman
   psequel
