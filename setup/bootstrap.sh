@@ -180,19 +180,23 @@ snap_classic_apps=(
 
 mac_packages=(
   boot-clj
+  borkdude/brew/babashka
+  borkdude/brew/clj-kondo
   certbot
   clojure/tools/clojure
   clojure-lsp/brew/clojure-lsp-native
+  docker
+  docker-compose
   fabianishere/personal/pam_reattach
   gh
   gnupg
   heroku
   leiningen
+  mtr
   python@3.8
   ripgrep
   saulpw/vd/visidata
   the_silver_searcher
-  borkdude/brew/clj-kondo
 )
 
 mac_cask_packages=(
@@ -231,6 +235,7 @@ mac_cask_packages=(
   rar
   signal
   suspicious-package
+  telegram
   tor-browser
   quicklookase
   qlvideo
