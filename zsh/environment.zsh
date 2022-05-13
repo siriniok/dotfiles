@@ -95,6 +95,7 @@ _clear_path() {
 }
 
 # Add custom bin to $PATH
+[ -d /usr/local/sbin ]            && _extend_path /usr/local/sbin
 [ -d /usr/local/heroku/bin ]      && _extend_path /usr/local/heroku/bin
 [ -d $HOME ]                      && _extend_path $HOME/.bin
 [ -d $HOME/.cargo/bin ]           && _extend_path $HOME/.cargo/bin
