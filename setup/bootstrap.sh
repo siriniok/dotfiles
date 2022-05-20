@@ -179,6 +179,7 @@ snap_classic_apps=(
 )
 
 mac_packages=(
+  awscli
   boot-clj
   borkdude/brew/babashka
   borkdude/brew/clj-kondo
@@ -192,6 +193,7 @@ mac_packages=(
   gnupg
   heroku
   leiningen
+  maven
   mtr
   python@3.8
   ripgrep
@@ -237,6 +239,7 @@ mac_cask_packages=(
   suspicious-package
   telegram
   tor-browser
+  typora
   quicklookase
   qlvideo
   skype
