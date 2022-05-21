@@ -40,6 +40,7 @@ catpick() {
 
 ruby_packages=(
   bundle
+  cocoapods
   foreman
   neovim
   rails

@@ -111,6 +111,15 @@ config_tmux() {
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
+config_xcode() {
+  sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+  sudo xcodebuild -runFirstLaunch
+}
+
+config_android() {
+  sdkmanager --install "cmdline-tools;latest"
+}
+
 packages=(
   cowsay
   fzf
@@ -325,6 +334,12 @@ config_vim
 
 info "Configuring tmux"
 config_tmux
+
+info "Configuring Xcode"
+config_xcode
+
+info "Configuring Android development"
+config_android
 
 popd
 
