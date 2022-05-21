@@ -7,3 +7,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export RVM_DIR=$HOME/.rvm
 [[ -s $RVM_DIR/scripts/rvm ]] && source $RVM_DIR/scripts/rvm
+
+export CARGO_DIR=$HOME/.cargo/
+[[ -s $CARGO_DIR/env ]] && source $CARGO_DIR/env
