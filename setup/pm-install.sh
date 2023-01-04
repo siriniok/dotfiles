@@ -55,33 +55,34 @@ npm_packages=(
   pgsh
   standard
   tldr
+  yarn
 )
 
 pip_packages=(
+  pynvim
   neovim-remote
   msgpack
-  pgcli
-  pynvim
   trash-cli
   vim-vint
 )
 
 cargo_packages=(
-  exa
-  bat
-  fd-find
 )
 
 info "Installing global Ruby packages"
 gem install ${ruby_packages[@]}
 
 info "Installing global NPM packages"
-yarn global add ${npm_packages[@]}
+npm install -g ${npm_packages[@]}
 
-info "Installing global pip3 packages"
-pip3 install --user --upgrade ${pip_packages[@]}
+if [ -n "$pip_packages" ]; then
+  info "Installing global pip3 packages"
+  python3 -m pip install --user --upgrade ${pip_packages[@]}
+fi
 
-info "Installing global cargo packages"
-cargo install ${cargo_packages[@]}
+if [ -n "$cargo_packages" ]; then
+  info "Installing global cargo packages"
+  cargo install ${cargo_packages[@]}
+fi
 
 catpick

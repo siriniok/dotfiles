@@ -69,11 +69,10 @@ install_rvm() {
 }
 
 install_node() {
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
   source ~/.zlogin
   nvm install node
   nvm use node
-  npm install -g yarn
 }
 
 install_rust() {
@@ -189,22 +188,26 @@ snap_classic_apps=(
 
 mac_packages=(
   awscli
+  bat
   boot-clj
   borkdude/brew/babashka
   borkdude/brew/clj-kondo
   certbot
-  clojure/tools/clojure
   clojure-lsp/brew/clojure-lsp-native
+  clojure/tools/clojure
   docker
   docker-compose
+  exa
   fabianishere/personal/pam_reattach
+  fd
   gh
   gnupg
   heroku
   leiningen
   maven
   mtr
-  python@3.8
+  pgcli
+  python@3.10
   ripgrep
   saulpw/vd/visidata
   the_silver_searcher
