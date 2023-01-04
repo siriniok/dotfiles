@@ -195,8 +195,6 @@ mac_packages=(
   certbot
   clojure-lsp/brew/clojure-lsp-native
   clojure/tools/clojure
-  docker
-  docker-compose
   exa
   fabianishere/personal/pam_reattach
   fd
@@ -221,6 +219,7 @@ mac_cask_packages=(
   coconutbattery
   clipy
   dash
+  docker
   emacs
   font-fira-code-nerd-font
   figma
