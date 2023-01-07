@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # Dotfiles and bootstrap installer
-# Installs git, clones repository and symlinks dotfiles to your home directory
-# Works on Ubuntu 20.04+ and macOS Catalina 10.15+
+# Works on macOS Monterey 12.2+
 
 # Ask for password
 sudo -v
@@ -42,25 +41,8 @@ catpick() {
   cowsay "Done!"
 }
 
-# Helpers
-add_package_sources() {
-  # Google Chrome
-  wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-  sudo add-apt-repository ppa:mmstick76/alacritty
-}
-
-install_clojure() {
-  LEIN=$HOME/.bin/lein
-  BOOT=$HOME/.bin/boot
-
-  curl -sSLo $LEIN https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
-  chmod +x $LEIN
-
-  curl -sSLo $BOOT https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh
-  chmod +x $BOOT
-
-  curl -sSL https://download.clojure.org/install/linux-install-1.10.1.536.sh | sudo bash
+install_homebrew() {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
 install_rvm() {
@@ -77,10 +59,6 @@ install_node() {
 
 install_rust() {
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-}
-
-install_homebrew() {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
 install_dotfiles() {
@@ -119,208 +97,121 @@ config_android() {
   sdkmanager --install "cmdline-tools;latest"
 }
 
+tap_packages=(
+  homebrew/cask-fonts
+)
+
 packages=(
+  awscli
+  bat
+  borkdude/brew/babashka
+  borkdude/brew/clj-kondo
+  certbot
+  clojure-lsp/brew/clojure-lsp-native
+  clojure/tools/clojure
   cowsay
+  exa
+  fabianishere/personal/pam_reattach
+  fd
   fzf
+  gh
   git
+  gnupg
   htop
   httpie
   jq
-  neovim
+  leiningen
+  maven
   mc
+  mtr
+  neovim
   nyancat
   pgcli
-  postgresql
+  postgresql@14
+  python@3.11
+  ripgrep
   rlwrap
+  saulpw/vd/visidata
   tig
   tmux
   tree
   wget
 )
 
-linux_packages=(
-  alacritty
-  caffeine
-  clipit
-  build-essential
-  default-jdk
-  emacs
-  font-manager
-  fonts-firacode
-  fonts-powerline
-  gitg
-  gimp
-  gnome-shell-pomodoro
-  google-chrome-stable
-  gparted
-  grub-customizer
-  inkscape
-  libpq-dev
-  lm-sensors
-  openjdk-14-jre
-  openjdk-14-jdk
-  python3-pip
-  redshift-gtk
-  silversearcher-ag
-  unity-tweak-tool
-  vim
-  vim-gtk
-  vlc
-  wine-stable
-  zsh
-  xclip
-  unrar
-)
-
-snap_apps=(
-  ngrok
-  postbird
-  postman
-  telegram-desktop
-  wps-office
-)
-
-snap_classic_apps=(
-  code
-  heroku
-  skype
-)
-
-mac_packages=(
-  awscli
-  bat
-  boot-clj
-  borkdude/brew/babashka
-  borkdude/brew/clj-kondo
-  certbot
-  clojure-lsp/brew/clojure-lsp-native
-  clojure/tools/clojure
-  exa
-  fabianishere/personal/pam_reattach
-  fd
-  gh
-  gnupg
-  heroku
-  leiningen
-  maven
-  mtr
-  pgcli
-  python@3.10
-  ripgrep
-  saulpw/vd/visidata
-  the_silver_searcher
-)
-
-mac_cask_packages=(
-  airdroid
+cask_packages=(
   alacritty
   android-file-transfer
   android-studio
-  coconutbattery
   clipy
+  coconutbattery
   dash
   docker
   emacs
-  font-fira-code-nerd-font
   figma
   firefox
   flutter
   font-fira-code
-  google-drive
+  font-fira-code-nerd-font
   gitup
+  google-chrome
+  google-drive
   inkscape
   iterm2
-  lastpass
   macs-fan-control
   macvim
   marvin
   mcgimp
   microsoft-edge
   ngrok
-  oracle-jdk
   postbird
   postman
   qlcolorcode
-  qlstephen
-  qlmarkdown
-  quicklook-json
   qlimagesize
+  qlmarkdown
+  qlstephen
+  qlvideo
+  quicklook-json
+  quicklookase
   rar
   signal
+  skype
+  sourcetree
+  spotify
   suspicious-package
   telegram
+  temurin
+  the-unarchiver
   tor-browser
   typora
-  quicklookase
-  qlvideo
-  skype
-  spotify
-  sourcetree
   visual-studio-code
   vlc
-  the-unarchiver
   zoom
   zotero
-  google-chrome
 )
 
-mac_tap_packages=(
-  homebrew/cask-fonts
-  heroku/brew
-)
-
-if [ $(uname) = 'Linux' ]; then
-  info "Adding package sources"
-  add_package_sources
-
-  info "Retrieving new lists of packages"
-  sudo apt-get update
-
-  info "Installing latest apps"
-  sudo apt-get install -y -qq ${packages[@]} ${linux_packages[@]}
-
-  info "Installing snap apps..."
-  sudo snap install ${snap_apps[@]}
-
-  info "Installing snap classic apps..."
-  for app in "${snap_classic_apps[@]}"; do
-    sudo snap install --classic $app
-  done
-
-  info "Changing shell to ZSH"
-  chsh -s $(which zsh) || error "Error: Cannot set zsh as default shell!"
-
-  info "Install clojure"
-  install_clojure
-
-  info "Upgrading Ubuntu"
-  sudo apt-get upgrade -y
-
-  sudo apt-get autoremove
-  sudo apt-get autoclean
-elif [[ `uname` == 'Darwin' ]]; then
+if  [[ `uname` == 'Darwin' ]]; then
   info "Installing Homebrew"
   install_homebrew
 
   info "Installing latest apps"
-  for app in "${mac_tap_packages[@]}"; do
+  for app in "${tap_packages[@]}"; do
     brew tap $app
   done
-  brew install ${packages[@]} ${mac_packages[@]}
-  brew install --cask ${mac_cask_packages[@]}
+  brew install ${packages[@]} ${packages[@]}
+  brew install --cask ${cask_packages[@]}
 else
-  error "Error: Your OS is not Linux or macOS."
+  error "Error: Your OS is not macOS."
   exit $EXIT_FAILURE
 fi
-
-info "Installing RVM and Ruby"
-install_rvm
 
 info "Installing the dotfiles"
 install_dotfiles
 
 info "Installing NVM and NodeJS"
 install_node
+
+info "Installing RVM and Ruby"
+install_rvm
 
 info "Installing Rust"
 install_rust
