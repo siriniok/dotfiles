@@ -6,7 +6,7 @@
     user = siriniok
 
 [core]
-    excludesfile = ~/.gitignore_global
+    excludesfile = $HOME/.gitignore_global
     autocrlf = input
     pager = less -MXR
 
@@ -36,9 +36,13 @@
     added = yellow
     changed = green
     untracked = cyan
+
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
     path = 
+
 [mergetool "sourcetree"]
     cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+
+[url "git@github.com:"]
+    insteadOf = https://github.com
