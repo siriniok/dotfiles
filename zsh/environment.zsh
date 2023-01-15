@@ -102,7 +102,6 @@ _clear_path() {
 [ -d $HOME/.local/bin ]           && _extend_path $HOME/.local/bin
 [ -d $DOTFILES/bin ]              && _extend_path $DOTFILES/bin
 [ -d $HOME/.docker/bin ]          && _extend_path $HOME/.docker/bin
-[ -d $HOME/.rvm/bin ]             && _extend_path $HOME/.rvm/bin # last!
 
 # Add custom bin to $MANPATH
 [ -d /usr/local/man ]             && _extend_man_path /usr/local/man

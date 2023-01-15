@@ -45,16 +45,18 @@ install_homebrew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
-install_rvm() {
-  gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-  curl -sSL https://get.rvm.io | bash -s stable --ruby --gems=bundler,rake --ignore-dotfiles
+install_ruby() {
+  eval "$(frum init)"
+  frum install 3.2.0
+  frum global 3.2.0
+  gem install rake
 }
 
 install_node() {
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-  source ~/.zlogin
-  nvm install node
-  nvm use node
+  eval "$(fnm env --use-on-cd)"
+  fnm install 19.4
+  fnm use 19.4
+  fnm default 19.4
 }
 
 install_rust() {
@@ -113,6 +115,8 @@ packages=(
   exa
   fabianishere/personal/pam_reattach
   fd
+  fnm
+  frum
   fzf
   gh
   git
@@ -207,11 +211,11 @@ fi
 info "Installing the dotfiles"
 install_dotfiles
 
-info "Installing NVM and NodeJS"
+info "Installing NodeJS"
 install_node
 
-info "Installing RVM and Ruby"
-install_rvm
+info "Installing Ruby"
+install_ruby
 
 info "Installing Rust"
 install_rust
