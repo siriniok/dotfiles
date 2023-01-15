@@ -155,7 +155,7 @@ Plug 'mbbill/undotree'                  " Undotree
 Plug 'Olical/conjure'                   " Conjure
 
 " Fuzzy finder for vim (CTRL+P)
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Snippets
@@ -443,7 +443,7 @@ command! -bang -nargs=? -complete=dir Files
 
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case -. -- '.shellescape(<q-args>), 1,
+      \   "rg --column --line-number --no-heading --color=always --smart-case --hidden -g '!.git/' -- ".shellescape(<q-args>), 1,
       \   fzf#vim#with_preview(), <bang>0)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
