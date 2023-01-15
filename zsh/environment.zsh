@@ -68,7 +68,7 @@ export NVIMCONFIG=~/.config/nvim
 export NVIMDATA=~~/.local/share/nvim
 
 # FZF
-export FZF_DEFAULT_COMMAND="rg --files . --hidden -g '!.git/'"
+export FZF_DEFAULT_COMMAND="rg . --column --line-number --no-heading --color=auto --smart-case --hidden -g '!.git/'"
 export FZF_CTRL_T_COMMAND="rg --files . --hidden -g '!.git/'"
 
 ##############################################################################
