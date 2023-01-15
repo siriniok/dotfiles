@@ -95,10 +95,8 @@ source $DOTFILES/version.zsh
 [ -f $HOME/.zshlocal ] && source $HOME/.zshlocal
 [ -f $HOME/.secret ] && source $HOME/.secret
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 ##############################################################################
 
-# Initialize fnm
+# Initialize fnm and frum
 eval "$(fnm env --use-on-cd)"
 eval "$(frum init)"
