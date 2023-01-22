@@ -14,8 +14,7 @@ plugins=(
   catimg
   colored-man-pages
   colorize
-  # debian
-  fzf
+  evalcache
   git
   git-extras
   lein
@@ -29,7 +28,6 @@ plugins=(
   safe-paste
   sudo
   tmux
-  ubuntu
   web-search
   yarn
   z

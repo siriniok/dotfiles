@@ -9,7 +9,7 @@ alias sudo='sudo '
 ##############################################################################
 # ZSH
 
-alias zshs='source ~/.zshrc'
+alias zshs='exec zsh'
 alias zshconfig='${EDITOR} ~/.zshrc'
 alias ohmyzsh='${EDITOR} ~/.oh-my-zsh'
 # List declared aliases, functions

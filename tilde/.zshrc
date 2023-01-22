@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+# Loaded only by interactive shells
+
+##############################################################################
+# Enables profiler via ZPROF=1 zsh -i -c exit
+[ -z "$ZPROF" ] || zmodload zsh/zprof
 ##############################################################################
 #                           Base ZSH configuration                           #
 ##############################################################################
@@ -98,5 +103,10 @@ source $DOTFILES/version.zsh
 ##############################################################################
 
 # Initialize fnm and frum
-eval "$(fnm env --use-on-cd)"
-eval "$(frum init)"
+_evalcache fnm env --use-on-cd
+_evalcache frum init
+
+##############################################################################
+# Turns off profiler
+[ -z "$ZPROF" ] || zprof
+##############################################################################
