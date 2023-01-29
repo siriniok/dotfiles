@@ -6,6 +6,8 @@
 # Enables profiler via ZPROF=1 zsh -i -c exit
 [ -z "$ZPROF" ] || zmodload zsh/zprof
 ##############################################################################
+
+##############################################################################
 #                           Base ZSH configuration                           #
 ##############################################################################
 
@@ -16,6 +18,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Path to root of the development directory
 export CODE=~/Work/code/
+export C=$CODE
 
 # Path to root of dotfiles directory
 export DOTFILES=~/Work/.dotfiles
@@ -23,25 +26,23 @@ export DOTFILES=~/Work/.dotfiles
 # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
 ZSH_THEME='agnoster'
 
-##############################################################################
-# Update Settings
-
-# Disable bi-weekly auto-update checks
-DISABLE_AUTO_UPDATE=false
-
-# Change how often to auto-update (in days)
-export UPDATE_ZSH_DAYS=14
+# Locale
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US.UTF-8'
+export LANGUAGE='en_US.UTF-8'
 
 ##############################################################################
 
 ##############################################################################
 # Completion Settings
 
-# Use case-sensitive completion
-CASE_SENSITIVE='false'
+ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump
+
+CASE_SENSITIVE=false
+HYPHEN_INSENSITIVE=true
 
 # Display red dots whilst waiting for completion
-COMPLETION_WAITING_DOTS='true'
+COMPLETION_WAITING_DOTS=true
 
 # Pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pend
@@ -60,13 +61,20 @@ zstyle ':completion:*' group-name ''
 # Miscellaneous
 
 # Disable auto-setting terminal title
-DISABLE_AUTO_TITLE='true'
+DISABLE_AUTO_TITLE=true
 
 # Allow comments even in interactive shells
 setopt INTERACTIVE_COMMENTS
 
 # This will add a 10 second wait before you can confirm a wildcard deletion
 setopt RM_STAR_WAIT
+
+# History
+export HISTSIZE=20000
+export HISTFILESIZE=$HISTSIZE
+export SAVEHIST=$HISTSIZE
+export HISTCONTROL='ignoredups'
+export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
 
 # Share history between sessions
 unsetopt INC_APPEND_HISTORY
@@ -89,7 +97,6 @@ for file in $DOTFILES/zsh/*; do
 done
 
 ##############################################################################
-
 # Run OMZSH
 source $ZSH/oh-my-zsh.sh
 
@@ -101,10 +108,11 @@ source $DOTFILES/version.zsh
 [ -f $HOME/.secret ] && source $HOME/.secret
 
 ##############################################################################
-
 # Initialize fnm and frum
 _evalcache fnm env --use-on-cd
 _evalcache frum init
+
+##############################################################################
 
 ##############################################################################
 # Turns off profiler

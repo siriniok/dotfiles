@@ -11,7 +11,6 @@ alias sudo='sudo '
 
 alias zshs='exec zsh'
 alias zshconfig='${EDITOR} ~/.zshrc'
-alias ohmyzsh='${EDITOR} ~/.oh-my-zsh'
 # List declared aliases, functions
 alias listaliases="alias | sed 's/=.*//'"
 # Show non _prefixed functions
@@ -49,17 +48,12 @@ alias ssh='TERM=xterm-256color ssh'
 ##############################################################################
 # cd
 
-alias c='cd'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
 alias cd.='cd $(readlink -f .)'
 
 # Directories
 
 [ -d $DOTFILES ]              && alias dotfiles="cd ${DOTFILES}"
 [ -d $CODE ]                  && alias wd="cd ${CODE}"
-[ -d /work/code ]             && alias dw="cd /work/code"
 
 ##############################################################################
 
@@ -118,10 +112,6 @@ fi
 
 ##############################################################################
 # Miscellaneous
-
-# Fix this stupid snake
-alias p2=python
-alias python=python3
 
 # Restark network services
 alias rntwrk='sudo service network-manager restart'
