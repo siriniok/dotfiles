@@ -49,7 +49,6 @@ ruby_packages=(
 )
 
 npm_packages=(
-  create-react-app
   javascript-typescript-langserver
   neovim
   pgsh

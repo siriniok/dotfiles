@@ -137,6 +137,7 @@ packages=(
   ripgrep
   rlwrap
   saulpw/vd/visidata
+  terraform
   tig
   tmux
   tree
@@ -144,6 +145,7 @@ packages=(
 )
 
 cask_packages=(
+  1password
   alacritty
   android-file-transfer
   android-studio
@@ -159,6 +161,7 @@ cask_packages=(
   font-fira-code-nerd-font
   gitup
   google-chrome
+  google-cloud-sdk
   google-drive
   inkscape
   iterm2
