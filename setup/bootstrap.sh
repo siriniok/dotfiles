@@ -110,6 +110,7 @@ packages=(
   borkdude/brew/babashka
   borkdude/brew/clj-kondo
   certbot
+  cloc
   clojure-lsp/brew/clojure-lsp-native
   clojure/tools/clojure
   cowsay

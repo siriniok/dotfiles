@@ -24,7 +24,7 @@ _clear_path() {
 }
 
 # Add custom bin to $PATH
-_extend_path /usr/local/sbin $HOME/.bin $HOME/.cargo/bin $DOTFILES/bin $HOME/.docker/bin $HOME/.local/bin
+_extend_path /usr/local/sbin $HOME/.bin $HOME/.cargo/bin $DOTFILES/bin $HOME/.docker/bin $HOME/.local/bin $HOME/Library/Python/3.10/bin
 
 # Add custom bin to $MANPATH
 _extend_man_path /usr/local/man

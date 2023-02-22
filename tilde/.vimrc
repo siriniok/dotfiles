@@ -129,7 +129,6 @@ let g:coc_global_extensions = [
       \'coc-vimlsp'
       \]
 
-Plug 'dense-analysis/ale'               " ALE Linting
 Plug 'adelarsq/vim-matchit'             " Extended matching for the % operator
 Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'tpope/vim-fugitive'               " Git tools
@@ -272,25 +271,25 @@ set showcmd                   " Enable info about the current command
 set cmdheight=2               " Height of command bar
 set laststatus=2              " Always show the status line
 
-function! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
+" function! LinterStatus() abort
+"   let l:counts = ale#statusline#Count(bufnr(''))
 
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
+"   let l:all_errors = l:counts.error + l:counts.style_error
+"   let l:all_non_errors = l:counts.total - l:all_errors
 
-  return l:counts.total == 0 ? '✨ all good ✨' : printf(
-        \   '😞 %dW %dE',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfunction
+"   return l:counts.total == 0 ? '✨ all good ✨' : printf(
+"         \   '😞 %dW %dE',
+"         \   all_non_errors,
+"         \   all_errors
+"         \)
+" endfunction
 
 " Format the status line
 set statusline=
 set statusline+=\ %f
 set statusline+=%m%r%h%w
 set statusline+=%=
-set statusline+=\ %{LinterStatus()}
+" set statusline+=\ %{LinterStatus()}
 set statusline+=\ \ Buffer\ #%n\ --%p%%--\ \ L:\ %l\ C:\ %c\ 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -475,28 +474,28 @@ nmap ga <Plug>(EasyAlign)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- ALE
 
-let g:ale_linters = {
-\  'clojure':    ['clj-kondo'],
-\  'css':        ['prettier'],
-\  'javascript': ['eslint'],
-\  'ruby':       ['standardrb'],
-\  'python':     ['flake8', 'pylint'],
-\  'vim':        ['vint']
-\}
+" let g:ale_linters = {
+" \  'clojure':    ['clj-kondo'],
+" \  'css':        ['prettier'],
+" \  'javascript': ['eslint'],
+" \  'ruby':       ['standardrb'],
+" \  'python':     ['flake8', 'pylint'],
+" \  'vim':        ['vint']
+" \}
 
-let g:ale_fixers = {
-\  'clojure':    ['remove_trailing_lines', 'trim_whitespace'],
-\  'javascript': ['prettier', 'eslint'],
-\  'css':        ['prettier'],
-\  'html':       ['prettier'],
-\  'python':     ['yapf'],
-\  'ruby':       ['standardrb'],
-\}
+" let g:ale_fixers = {
+" \  'clojure':    ['remove_trailing_lines', 'trim_whitespace'],
+" \  'javascript': ['prettier', 'eslint'],
+" \  'css':        ['prettier'],
+" \  'html':       ['prettier'],
+" \  'python':     ['yapf'],
+" \  'ruby':       ['standardrb'],
+" \}
 
-let g:ale_fix_on_save = 1
-nnoremap ]g :ALENextWrap<CR>     " move to the next ALE warning/error
-nnoremap [g :ALEPreviousWrap<CR> " move to the previous ALE warning/error
-nnoremap <Leader>gg :ALEDetail<CR> " show details about ALE warning/error
+" let g:ale_fix_on_save = 1
+" nnoremap ]g :ALENextWrap<CR>     " move to the next ALE warning/error
+" nnoremap [g :ALEPreviousWrap<CR> " move to the previous ALE warning/error
+" nnoremap <Leader>gg :ALEDetail<CR> " show details about ALE warning/error
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

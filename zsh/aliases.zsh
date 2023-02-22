@@ -27,6 +27,7 @@ alias fm='nautilus'
 alias h='history'
 alias hosts='${EDITOR} /etc/hosts'
 alias quit='exit'
+alias cd.='cd $(readlink -f .)'
 
 # Show $PATH in readable view
 alias path='echo -e ${PATH//:/\\n}'
@@ -46,10 +47,6 @@ alias ssh='TERM=xterm-256color ssh'
 
 
 ##############################################################################
-# cd
-
-alias cd.='cd $(readlink -f .)'
-
 # Directories
 
 [ -d $DOTFILES ]              && alias dotfiles="cd ${DOTFILES}"
