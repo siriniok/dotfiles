@@ -5,30 +5,19 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 
 plugins=(
-  adb
-  alias-finder
   autoupdate
-  aws
-  brew
   catimg
-  colored-man-pages
-  colorize
+  encode64
   evalcache
   git
-  git-extras
-  lein
   macos
   postgres
   rails
-  rake
-  rake-fast
   ripgrep
   ruby
   safe-paste
-  sudo
   tmux
   web-search
-  yarn
   z
   zsh-syntax-highlighting
 )
