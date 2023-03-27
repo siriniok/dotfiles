@@ -151,6 +151,7 @@ cask_packages=(
   android-file-transfer
   android-studio
   clipy
+  cloudflare-warp
   coconutbattery
   dash
   docker
