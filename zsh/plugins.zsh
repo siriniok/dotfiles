@@ -9,7 +9,9 @@ plugins=(
   catimg
   encode64
   evalcache
+  fancy-ctrl-z
   git
+  isodate
   macos
   postgres
   rails
@@ -18,6 +20,7 @@ plugins=(
   safe-paste
   tmux
   web-search
+  universalarchive
   z
   zsh-syntax-highlighting
 )
