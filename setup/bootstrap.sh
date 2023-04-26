@@ -122,6 +122,7 @@ packages=(
   fzf
   gh
   git
+  git-crypt
   gnupg
   htop
   httpie
