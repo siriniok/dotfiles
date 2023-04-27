@@ -176,6 +176,7 @@ cask_packages=(
   ngrok
   postbird
   postman
+  superlist
   qlcolorcode
   qlimagesize
   qlmarkdown
