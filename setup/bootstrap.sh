@@ -105,7 +105,9 @@ tap_packages=(
 )
 
 packages=(
+  Azure/kubelogin/kubelogin
   awscli
+  azure-cli
   bat
   borkdude/brew/babashka
   borkdude/brew/clj-kondo
@@ -127,6 +129,7 @@ packages=(
   htop
   httpie
   jq
+  kubernetes-cli
   leiningen
   maven
   mc
@@ -189,6 +192,7 @@ cask_packages=(
   skype
   sourcetree
   spotify
+  superlist
   suspicious-package
   telegram
   temurin
