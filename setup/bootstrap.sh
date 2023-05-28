@@ -154,6 +154,7 @@ cask_packages=(
   alacritty
   android-file-transfer
   android-studio
+  beeper
   clipy
   cloudflare-warp
   coconutbattery
