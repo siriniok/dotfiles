@@ -128,6 +128,7 @@ packages=(
   gnupg
   htop
   httpie
+  hwloc
   jq
   kubernetes-cli
   leiningen
@@ -138,6 +139,7 @@ packages=(
   nyancat
   pgcli
   postgresql@14
+  pstree
   python@3.11
   ripgrep
   rlwrap
