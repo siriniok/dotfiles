@@ -154,6 +154,7 @@ packages=(
 cask_packages=(
   1password
   alacritty
+  alfred
   android-file-transfer
   android-studio
   beeper
