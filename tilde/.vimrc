@@ -101,6 +101,7 @@ Plug 'othree/yajs.vim'                  " Improved JS support
 Plug 'herringtondarkholme/yats.vim'     " TypeScript support
 Plug 'maxmellon/vim-jsx-pretty'         " JSX support
 Plug 'vim-ruby/vim-ruby'                " Vim Ruby
+Plug 'jparise/vim-graphql'              " Vim GraphQL
 
 " vim-markdown
 Plug 'godlygeek/tabular'                " Aligning text
