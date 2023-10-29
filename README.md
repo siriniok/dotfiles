@@ -54,6 +54,7 @@ Emacs Cheat Sheets ([First](http://sachachua.com/blog/wp-content/uploads/2013/05
 - [Remote Pair Programming Made Easy with SSH and tmux](http://www.hamvocke.com/blog/remote-pair-programming-with-tmux/)
 - [Vim for Ruby and Rails in 2019](https://www.vimfromscratch.com/articles/vim-for-ruby-and-rails-in-2019/)
 - [Vim for JavaScript and React in 2019](https://www.vimfromscratch.com/articles/vim-for-javascript-and-react-in-2019/)
+- [Fugitive.vim - resolving merge conflicts with vimdiff](http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/)
 
 ### Dotfiles
 
