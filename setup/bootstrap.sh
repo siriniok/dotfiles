@@ -116,6 +116,7 @@ packages=(
   clojure-lsp/brew/clojure-lsp-native
   clojure/tools/clojure
   cowsay
+  dust
   exa
   fabianishere/personal/pam_reattach
   fd
