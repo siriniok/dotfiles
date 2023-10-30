@@ -177,7 +177,6 @@ cask_packages=(
   inkscape
   iterm2
   macs-fan-control
-  macvim
   marvin
   mcgimp
   microsoft-edge
@@ -204,6 +203,7 @@ cask_packages=(
   the-unarchiver
   tor-browser
   typora
+  vimr
   visual-studio-code
   vlc
   zoom
