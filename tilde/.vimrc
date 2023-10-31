@@ -1,8 +1,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Vim Configuration                              "
+"                             Neovim Configuration                           "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Set utf8 as standard encoding and en_US as the standard language
+" Set utf8 as standard encoding
 set encoding=utf8
 scriptencoding utf8
 
@@ -59,6 +59,9 @@ set undodir=~/.vim/undo//
 " Ignore files when searching
 set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
 
+" Load plugins and indentation rules based on detected filetype
+filetype plugin on
+filetype indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                          Neovim Configuration                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -130,12 +133,16 @@ let g:coc_global_extensions = [
       \'coc-vimlsp'
       \]
 
+Plug 'eraserhd/parinfer-rust', {'do':  'cargo build --release'}
 Plug 'adelarsq/vim-matchit'             " Extended matching for the % operator
 Plug 'airblade/vim-gitgutter'           " GitGutter
 Plug 'tpope/vim-fugitive'               " Git tools
 Plug 'tpope/vim-rails'                  " Rails :/
 Plug 'tpope/vim-surround'               " Surround your code :)
 Plug 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
+Plug 'guns/vim-sexp'                    " sexp
+Plug 'tpope/vim-sexp-mappings-for-regular-people' " sexp mappings
+Plug 'radenling/vim-dispatch-neovim'    " Dispatch support for nvim
 Plug 'tpope/vim-commentary'             " Commenting and uncommenting stuff
 Plug 'ngmy/vim-rubocop'                 " Rubocop Integration
 Plug 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
@@ -143,16 +150,21 @@ Plug 'mattn/emmet-vim'                  " Emmet for Vim
 Plug 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
 Plug 'tpope/vim-projectionist'          " Vim Projectionist
 Plug 'janko-m/vim-test'                 " For tests
-Plug 'guns/vim-clojure-static'          " Neat Clojure plugin
-Plug 'tpope/vim-fireplace'              " Clojure REPL support
+Plug 'clojure-vim/vim-jack-in'          " Clojure jack in
 Plug 'vim-scripts/paredit.vim'          " Paredit for Vim
-Plug 'eapache/rainbow_parentheses.vim'  " Colorful parentheses
+Plug 'luochen1990/rainbow'              " Colorful parentheses
 Plug 'sgur/vim-editorconfig'            " Vim Editorconfig support
 Plug 'thaerkh/vim-workspace'            " Session management
 Plug 'junegunn/vim-easy-align'          " Vim easy align
 Plug 'kshenoy/vim-signature'            " Marks signature
 Plug 'mbbill/undotree'                  " Undotree
 Plug 'Olical/conjure'                   " Conjure
+Plug 'easymotion/vim-easymotion'        " EasyMotion
+Plug 'axelf4/vim-strip-trailing-whitespace' " Strip whitespaces
+Plug 'clojure-vim/async-clj-omni'       " Clojure completions
+Plug 'preservim/vim-pencil'             " Writing mode
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax
 
 " Fuzzy finder for vim (CTRL+P)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -173,6 +185,7 @@ Plug 'honza/vim-snippets'               " snipmate and ultisnip snippets
 " Plug 'YorickPeterse/vim-paper'      " paper
 Plug 'cideM/yui'      " yui
 " Plug 'reedes/vim-colors-pencil'         " pencil
+" Plug 'logico-dev/typewriter'            " typewriter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,8 +230,7 @@ endif
 
 set updatetime=250            " More frequent updates
 
-set scrolloff=3               " Display at least 3 lines around you cursor
-                              " (for scrolling)
+set scrolloff=5               " Display at least n lines around you cursor
 
 " Show matching brackets when text indicator is over them
 set showmatch
@@ -240,7 +252,7 @@ set iskeyword+=-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- Search
-
+set ignorecase                " Ignore case when searching
 set smartcase                 " If there is an uppercase in your search term
                               " search case sensitive again
 set incsearch                 " Highlight search results when typing
@@ -300,6 +312,12 @@ set statusline+=\ \ Buffer\ #%n\ --%p%%--\ \ L:\ %l\ C:\ %c\
 
 " Fix JSON syntax highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" Highlight yanks
+augroup highlight_yank
+  autocmd!
+  au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=300, on_visual=false}
+augroup END
 
 " A helper to add command abbreviations
 " Use it like this: call SetupCommandAbbrs('C', 'CocConfig')
@@ -414,14 +432,15 @@ nmap <leader>jA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- rainbow_parentheses
+" -- rainbow
 
-augroup rainbow
-  au VimEnter * RainbowParenthesesToggle
-  au Syntax   * RainbowParenthesesLoadRound
-  au Syntax   * RainbowParenthesesLoadSquare
-  au Syntax   * RainbowParenthesesLoadBraces
-augroup END
+let g:rainbow_active = 1
+
+let g:rainbow_conf = {
+\  'guifgs': ['royalblue3', 'seagreen3', 'darkorchid3', 'firebrick3'],
+\  'guis': ['bold'],
+\  'cterms': ['bold']
+\}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
