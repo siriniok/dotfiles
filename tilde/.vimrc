@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Neovim Configuration                           "
+"                                Vim Configuration                           "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set utf8 as standard encoding
@@ -44,9 +44,6 @@ augroup END
 set sessionoptions-=blank
 set sessionoptions-=options
 
-" Set ctags directory
-setglobal tags-=./tags tags-=./tags; tags^=./tags;
-
 " Set backup directory
 set backupdir=~/.vim/backup//
 
@@ -62,19 +59,8 @@ set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
 " Load plugins and indentation rules based on detected filetype
 filetype plugin on
 filetype indent on
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                          Neovim Configuration                              "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has('nvim')
-  " Highlight terminal cursor
-  highlight! link TermCursor Cursor
-  highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
-
-  " Switching back from the terminal mode
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-v><Esc> <Esc>
-
   " Set default editor to nvr in terminal mode to prevent
   " launching vim inside vim accidentally
   if executable('nvr')
@@ -83,17 +69,27 @@ if has('nvim')
   endif
 endif
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                  vim-plug                                  "
+"                                  Plugins                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- List of Plugs
 
-" Plugs
-Plug 'preservim/nerdtree'               " The NERD Tree file explorer
-Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status flags for NERD Tree
+" Navigation
+Plug 'preservim/nerdtree'                      " The NERD Tree file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'             " Git status flags for NERD Tree
+Plug 'PhilRunninger/nerdtree-visual-selection' " Git status flags for NERD Tree
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder for vim (CTRL+P)
+Plug 'junegunn/fzf.vim'
+Plug 'easymotion/vim-easymotion'        " EasyMotion
+
+Plug 'airblade/vim-gitgutter'           " GitGutter
+Plug 'tpope/vim-fugitive'               " Git tools
+
+" vim-markdown
+Plug 'godlygeek/tabular'                " Aligning text
+Plug 'plasticboy/vim-markdown'          " Improve the original Markdown
 
 " Vim Polyglot requires to declare configuration before initialization
 let g:polyglot_disabled = [
@@ -106,9 +102,9 @@ Plug 'maxmellon/vim-jsx-pretty'         " JSX support
 Plug 'vim-ruby/vim-ruby'                " Vim Ruby
 Plug 'jparise/vim-graphql'              " Vim GraphQL
 
-" vim-markdown
-Plug 'godlygeek/tabular'                " Aligning text
-Plug 'plasticboy/vim-markdown'          " Improve the original Markdown
+" Misc
+Plug 'editorconfig/editorconfig-vim' " EditorConfig support
+Plug 'luochen1990/rainbow'           " Colorful parentheses
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -135,16 +131,12 @@ let g:coc_global_extensions = [
 
 Plug 'eraserhd/parinfer-rust', {'do':  'cargo build --release'}
 Plug 'adelarsq/vim-matchit'             " Extended matching for the % operator
-Plug 'airblade/vim-gitgutter'           " GitGutter
-Plug 'tpope/vim-fugitive'               " Git tools
-Plug 'tpope/vim-rails'                  " Rails :/
 Plug 'tpope/vim-surround'               " Surround your code :)
 Plug 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
 Plug 'guns/vim-sexp'                    " sexp
 Plug 'tpope/vim-sexp-mappings-for-regular-people' " sexp mappings
 Plug 'radenling/vim-dispatch-neovim'    " Dispatch support for nvim
 Plug 'tpope/vim-commentary'             " Commenting and uncommenting stuff
-Plug 'ngmy/vim-rubocop'                 " Rubocop Integration
 Plug 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
 Plug 'mattn/emmet-vim'                  " Emmet for Vim
 Plug 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
@@ -152,40 +144,33 @@ Plug 'tpope/vim-projectionist'          " Vim Projectionist
 Plug 'janko-m/vim-test'                 " For tests
 Plug 'clojure-vim/vim-jack-in'          " Clojure jack in
 Plug 'vim-scripts/paredit.vim'          " Paredit for Vim
-Plug 'luochen1990/rainbow'              " Colorful parentheses
-Plug 'sgur/vim-editorconfig'            " Vim Editorconfig support
 Plug 'thaerkh/vim-workspace'            " Session management
 Plug 'junegunn/vim-easy-align'          " Vim easy align
 Plug 'kshenoy/vim-signature'            " Marks signature
 Plug 'mbbill/undotree'                  " Undotree
 Plug 'Olical/conjure'                   " Conjure
-Plug 'easymotion/vim-easymotion'        " EasyMotion
 Plug 'axelf4/vim-strip-trailing-whitespace' " Strip whitespaces
 Plug 'clojure-vim/async-clj-omni'       " Clojure completions
 Plug 'preservim/vim-pencil'             " Writing mode
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax
 
-" Fuzzy finder for vim (CTRL+P)
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'                 " A snippet engine
 Plug 'honza/vim-snippets'               " snipmate and ultisnip snippets
 
 " Themes
-" Plug 'Donearm/Laederon'                 " laederon
-" Plug 'treycucco/vim-monotonic'          " monotonic-light
-
-" Plug 'owickstrom/vim-colors-paramount'  " paramount
-" Plug 'andreypopp/vim-colors-plain'      " plain
-" Plug 'liuchengxu/space-vim-theme'       " space_vim_theme
-" Plug 'axvr/photon.vim'                  " antiphoton
-" Plug 'YorickPeterse/vim-paper'      " paper
-Plug 'cideM/yui'      " yui
-" Plug 'reedes/vim-colors-pencil'         " pencil
-" Plug 'logico-dev/typewriter'            " typewriter
+Plug 'aerosol/dumbotron.vim'           " dumbotron
+Plug 'seandewar/paragon.vim'           " paragon
+Plug 'alexblackie/lunarised'           " lunarised
+Plug 'ronisbr/nano-theme.nvim'         " nano-theme
+Plug 'cideM/yui'                       " yui
+Plug 'andreypopp/vim-colors-plain'     " plain
+Plug 'axvr/photon.vim'                 " antiphoton
+Plug 'owickstrom/vim-colors-paramount' " paramount
+Plug 'YorickPeterse/vim-paper'         " paper
+Plug 'reedes/vim-colors-pencil'        " pencil
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -214,7 +199,7 @@ set termguicolors
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
-colorscheme yui   " Default colorscheme
+colorscheme dumbotron   " Default colorscheme
 
 " Fixes for paramount
 " hi Normal      ctermbg=255 ctermfg=234  cterm=None
@@ -223,10 +208,11 @@ colorscheme yui   " Default colorscheme
 " hi MatchParen   ctermbg=None ctermfg=None cterm=Bold,Underline
 " hi ColorColumn  ctermbg=254  ctermfg=None  cterm=None
 
+" Highlight terminal cursor
+highlight! link TermCursor Cursor
+highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
+
 " autocmd Filetype ruby colorscheme railscasts  " Ruby colorscheme
-if !has('nvim')
-  set antialias
-endif
 
 set updatetime=250            " More frequent updates
 
@@ -391,6 +377,12 @@ nnoremap <leader>ct :!ctags -R<CR>
 
 " Toggle spell
 nnoremap <leader>z :setlocal invspell<CR>
+
+" Switching back from the terminal mode
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> <Esc>
+
+nnoremap Y y$ " Make Y consistent with C and D.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -413,22 +405,12 @@ autocmd FileType gitcommit setlocal spell
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- NERDTree
 
-nnoremap <leader>q :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1         " enable displaying hidden files
+let NERDTreeShowHidden=1 " enable displaying hidden files
 let g:NERDTreeWinSize=20
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- Ack
-
-" Default params for ack
-let g:ackprg='ack -H --nocolor --nogroup --column'
-" Add a mark and search
-nmap <leader>j mA:Ack<space>
-" Add a mark and search for the word under the cursor
-nmap <leader>ja mA:Ack "<C-r>=expand("<cword>")<cr>"
-nmap <leader>jA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
+let g:nerdtree_vis_confirm_open=0
+nnoremap <leader>q :NERDTreeToggle<CR>
+nnoremap <leader>qq :NERDTreeFocus<CR>
+nnoremap <leader>qw :NERDTreeFind<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -441,13 +423,6 @@ let g:rainbow_conf = {
 \  'guis': ['bold'],
 \  'cterms': ['bold']
 \}
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -- NERDCommenter
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -716,4 +691,10 @@ let g:vim_markdown_folding_disabled = 1
 " -- Paredit
 
 let g:paredit_electric_return=0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -- EditorConfig
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*'] " Avoid conflict with fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
