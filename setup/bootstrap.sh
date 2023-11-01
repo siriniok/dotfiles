@@ -206,6 +206,7 @@ cask_packages=(
   vimr
   visual-studio-code
   vlc
+  wezterm
   zoom
   zotero
 )
