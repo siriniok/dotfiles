@@ -9,6 +9,7 @@ plugins=(
   catimg
   encode64
   evalcache
+  fzf
   fancy-ctrl-z
   git
   isodate
