@@ -76,35 +76,24 @@ call plug#begin()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Navigation
-Plug 'preservim/nerdtree'                      " The NERD Tree file explorer
-Plug 'Xuyuanp/nerdtree-git-plugin'             " Git status flags for NERD Tree
-Plug 'PhilRunninger/nerdtree-visual-selection' " Git status flags for NERD Tree
-
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder for vim (CTRL+P)
-Plug 'junegunn/fzf.vim'
-Plug 'easymotion/vim-easymotion'        " EasyMotion
-
-Plug 'airblade/vim-gitgutter'           " GitGutter
-Plug 'tpope/vim-fugitive'               " Git tools
-
-" vim-markdown
-Plug 'godlygeek/tabular'                " Aligning text
-Plug 'plasticboy/vim-markdown'          " Improve the original Markdown
-
-" Vim Polyglot requires to declare configuration before initialization
-let g:polyglot_disabled = [
-      \'sensible', 'markdown', 'javascript.plugin', 'jsx.plugin', 'ruby', 'typescript'
-      \]
-Plug 'sheerun/vim-polyglot'             " A collection of language packs
-Plug 'othree/yajs.vim'                  " Improved JS support
-Plug 'herringtondarkholme/yats.vim'     " TypeScript support
-Plug 'maxmellon/vim-jsx-pretty'         " JSX support
-Plug 'vim-ruby/vim-ruby'                " Vim Ruby
-Plug 'jparise/vim-graphql'              " Vim GraphQL
+Plug 'preservim/nerdtree'                           " The NERD Tree file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'                  " Git status flags for NERD Tree
+Plug 'PhilRunninger/nerdtree-visual-selection'      " Git status flags for NERD Tree
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder
+Plug 'junegunn/fzf.vim'                             " fzf wrapper (ctrl+p)
 
 " Misc
+Plug 'tpope/vim-fugitive'            " Git tools
 Plug 'editorconfig/editorconfig-vim' " EditorConfig support
 Plug 'luochen1990/rainbow'           " Colorful parentheses
+Plug 'jiangmiao/auto-pairs'          " Autogenerate pairs for quotes & {[(
+
+Plug 'godlygeek/tabular'                " Aligning text
+
+Plug 'plasticboy/vim-markdown'          " Improve the original Markdown
+
+Plug 'sheerun/vim-polyglot'             " A collection of language packs
+Plug 'jparise/vim-graphql'              " Vim GraphQL
 
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -129,20 +118,19 @@ let g:coc_global_extensions = [
       \'coc-vimlsp'
       \]
 
-Plug 'eraserhd/parinfer-rust', {'do':  'cargo build --release'}
+" Plug 'eraserhd/parinfer-rust', {'do':  'cargo build --release'}
 Plug 'adelarsq/vim-matchit'             " Extended matching for the % operator
+Plug 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
+Plug 'tpope/vim-projectionist'          " Vim Projectionist
 Plug 'tpope/vim-surround'               " Surround your code :)
 Plug 'tpope/vim-dispatch'               " Dispatch test runner to tmux pane
 Plug 'guns/vim-sexp'                    " sexp
 Plug 'tpope/vim-sexp-mappings-for-regular-people' " sexp mappings
 Plug 'radenling/vim-dispatch-neovim'    " Dispatch support for nvim
 Plug 'tpope/vim-commentary'             " Commenting and uncommenting stuff
-Plug 'jiangmiao/auto-pairs'             " Autogenerate pairs for quotes & {[(
 Plug 'mattn/emmet-vim'                  " Emmet for Vim
-Plug 'terryma/vim-multiple-cursors'     " Sublime-like multiple cursors
-Plug 'tpope/vim-projectionist'          " Vim Projectionist
-Plug 'janko-m/vim-test'                 " For tests
 Plug 'clojure-vim/vim-jack-in'          " Clojure jack in
+Plug 'guns/vim-clojure-static'          " Neat Clojure plugin
 Plug 'vim-scripts/paredit.vim'          " Paredit for Vim
 Plug 'thaerkh/vim-workspace'            " Session management
 Plug 'junegunn/vim-easy-align'          " Vim easy align
