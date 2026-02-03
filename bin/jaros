@@ -1,0 +1,6 @@
+#!/usr/bin/env janet
+# Repository commands, inspired by hlissner/dotfiles' Janet-based bin/hey.
+(import ./jaros.d/cli :as cli)
+
+(defn main [_ & arguments]
+  (cli/run (os/realpath (dyn :current-file)) arguments))

@@ -1,0 +1,68 @@
+name: Update VS Code extensions
+
+on:
+  schedule:
+    - cron: '47 5 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-vscode-extensions
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    outputs:
+      pins: ${{ steps.pins.outputs.content }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Set up Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update declared VS Code extensions
+        run: nix develop --no-update-lock-file --command janet bin/update-vscode-exts
+      - name: Format updated extension definitions
+        run: nix develop --no-update-lock-file --command nixfmt lib/vscode-marketplace.nix
+      - name: Evaluate the updated Home Manager configuration
+        run: nix eval --no-update-lock-file --raw .#legacyPackages.x86_64-linux.homeConfigurations.default.activationPackage.drvPath
+      - name: Pass only the generated pins to the publishing job
+        id: pins
+        run: printf 'content=%s\n' "$(base64 -w0 lib/vscode-marketplace.nix)" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: update
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      # Treat the previous job's output as data. Never evaluate Nix or run package
+      # tooling in the job holding a write token; the PR still requires review.
+      - name: Restore generated pins
+        env:
+          EXTENSION_PINS: ${{ needs.update.outputs.pins }}
+        run: printf '%s' "$EXTENSION_PINS" | base64 --decode > lib/vscode-marketplace.nix
+      - name: Open or update the extension update pull request
+        uses: peter-evans/create-pull-request@98357b18bf14b5342f975ff684046ec3b2a07725 # v8.0.0
+        with:
+          branch: automation/vscode-extensions
+          delete-branch: true
+          add-paths: lib/vscode-marketplace.nix
+          commit-message: 'chore: update VS Code extensions'
+          title: 'chore: update VS Code extensions'
+          body: |
+            Weekly update of the VS Code extensions declared in lib/vscode-marketplace.nix.
+
+            The Janet updater uses tools from locked nixpkgs and hashes the
+            version-specific Marketplace downloads.

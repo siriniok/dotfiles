@@ -6,11 +6,14 @@
 # 2. Interactively narrow down the list using fzf
 # 3. Open the file in Vim
 IFS=: read -ra selected < <(
-  rg --color=always --line-number --no-heading --smart-case -. "${*:-}" |
+  rg --color=always --line-number --no-heading --smart-case -. -- "${*:-}" |
     fzf --ansi \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
-        --preview 'bat --color=always {1} --highlight-line {2}' \
+        --preview 'bat --color=always --highlight-line {2} -- {1}' \
         --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
 )
-[ -n "${selected[0]}" ] && nvim "${selected[0]}" "+${selected[1]}"
+# The colon-delimited selector cannot represent every filename. Reject ambiguous
+# line fields so an untrusted filename cannot become an Ex command via +{line}.
+[[ -n ${selected[0]:-} && ${selected[1]:-} =~ ^[0-9]+$ ]] || exit 1
+nvim "+${selected[1]}" -- "${selected[0]}"

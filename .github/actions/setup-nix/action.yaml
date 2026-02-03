@@ -1,0 +1,24 @@
+name: Set up Nix
+description: Install Nix and share its cache across checks, builds, and updates.
+inputs:
+  github-token:
+    description: GitHub token for authenticated input downloads.
+    required: false
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: Install Nix
+      uses: cachix/install-nix-action@d9186cbdca7adedf113a159fa91f725a27866771 # v31
+      with:
+        github_access_token: ${{ inputs.github-token }}
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+    - name: Cache Nix store
+      if: ${{ !env.ACT }}
+      uses: nix-community/cache-nix-action@d8cff2f74b9341e0d90fbf3c0c0212a161ceaef6 # v6
+      with:
+        primary-key: nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('flake.lock') }}-${{ github.job }}-${{ github.sha }}
+        restore-prefixes-first-match: |
+          nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('flake.lock') }}-
+          nix-${{ runner.os }}-${{ runner.arch }}-

@@ -24,8 +24,8 @@ FACES=(
 if [[ -z $1 ]]; then
   echo 'Choose a face:'
   i=0
-  for face in ${FACES[@]}; do
-    echo $((i++)) $face
+  for face in "${FACES[@]}"; do
+    echo $((i++)) "$face"
   done
 else
   face="${FACES[$1]}"

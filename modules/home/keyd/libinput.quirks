@@ -1,0 +1,5 @@
+[Dotfiles keyd keyboard]
+
+MatchUdevType=keyboard
+MatchName=keyd*keyboard
+AttrKeyboardIntegration=internal

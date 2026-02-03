@@ -1,0 +1,10 @@
+#!/usr/bin/env janet
+(import ./jaros.d/process :as process)
+(import ./jaros.d/vscode :as vscode)
+
+(defn main [_]
+  (def [ok problem] (protect
+    (vscode/update (process/repository-root (os/realpath (dyn :current-file))))))
+  (unless ok
+    (eprintf "update-vscode-exts: %s" problem)
+    (os/exit 1)))

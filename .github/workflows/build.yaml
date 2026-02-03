@@ -1,0 +1,73 @@
+name: Nix configuration builds
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 4 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nix-builds-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  home:
+    name: Home Manager (${{ matrix.system }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            system: x86_64-linux
+          - os: ubuntu-24.04-arm
+            system: aarch64-linux
+          - os: macos-15
+            system: aarch64-darwin
+          - os: macos-15-intel
+            system: x86_64-darwin
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Set up Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build all standalone Home Manager configurations
+        env:
+          NIX_SYSTEM: ${{ matrix.system }}
+        shell: bash
+        run: nix shell --no-update-lock-file --inputs-from . nixpkgs#janet --command janet bin/jaros ci-home
+
+  system:
+    name: System (${{ matrix.configuration }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            configuration: nixos-laptop
+            target: nixosConfigurations.nixos-laptop.config.system.build.toplevel
+          - os: macos-15
+            configuration: darwin-laptop
+            target: darwinConfigurations.darwin-laptop.system
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Set up Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build system without activating it
+        env:
+          BUILD_TARGET: ${{ matrix.target }}
+        run: nix build --no-update-lock-file --no-link --print-build-logs ".#${BUILD_TARGET}"

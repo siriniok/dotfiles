@@ -1,3 +1,16 @@
+# Nix build output links (including multiple-output builds)
+result
+result-*
+.direnv
+.pre-commit-config.yaml
+# JPM build outputs and local dependency tree
+/build/
+/jpm_tree/
+__pycache__/
+node_modules/
+# Machine-specific identity; supplied explicitly through the local-config input.
+/config.local.nix
+
 # OS generated files
 .DS_Store
 .DS_Store?
@@ -10,8 +23,18 @@ Thumbs.db
 .vagrant/
 
 # Secrets
-tilde/.zshlocal
-tilde/.secret
+secrets/
+.secrets/
+.env
+.env.*
+!.env.example
+/.aws/
+/.codex/
+/vulnerability-review*.json
+# Private audit inventories, original history and rewrite previews.
+/.privacy-review/
+# Local security audit report.
+/SECURITY.md
 
 # Helpers
 .rake_tasks

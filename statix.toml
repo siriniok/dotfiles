@@ -1,0 +1,3 @@
+# Dotted option assignments are conventional in this module-based configuration.
+# Keep correctness checks and other style diagnostics enabled.
+disabled = ["repeated_keys"]

@@ -1,0 +1,57 @@
+name: Nix CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  nix:
+    name: Check (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            system: x86_64-linux
+          - os: macos-15
+            system: aarch64-darwin
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate workflows, formatting, and flake
+        run: nix develop --no-update-lock-file --command janet bin/jaros ci-check
+
+      - name: Scan Git history for secrets
+        if: runner.os == 'Linux'
+        run: nix develop --no-update-lock-file --command janet bin/jaros secrets-history
+
+      - name: Evaluate macOS system configuration
+        if: runner.os == 'macOS'
+        run: nix eval --no-update-lock-file --raw .#darwinConfigurations.darwin-laptop.system.drvPath
+
+      - name: Evaluate standalone Home Manager configurations
+        env:
+          NIX_SYSTEM: ${{ matrix.system }}
+        run: >-
+          nix eval --no-update-lock-file --json
+          ".#legacyPackages.${NIX_SYSTEM}.homeConfigurations"
+          --apply 'configs: builtins.mapAttrs (_: home: home.activationPackage.drvPath) configs'

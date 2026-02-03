@@ -1,0 +1,34 @@
+# Explicit composition avoids importing new files or legacy directories by accident.
+{
+  imports = [
+    ./identity.nix
+    ./locale.nix
+    ./files.nix
+    ./secrets.nix
+    ./packages.nix
+    ./development.nix
+    ./editor-tools.nix
+    ./desktop-apps.nix
+    ./platforms/linux.nix
+    ./platforms/darwin.nix
+    ./android.nix
+    ./codex
+    ./direnv.nix
+    ./emacs.nix
+    ./fonts.nix
+    ./ghostty.nix
+    ./gnome
+    ./git.nix
+    ./gpg.nix
+    ./helix.nix
+    ./keyd
+    ./neovim
+    ./nix.nix
+    ./nix-index.nix
+    ./path.nix
+    ./runtimes.nix
+    ./shell.nix
+    ./ssh.nix
+    ./vscode.nix
+  ];
+}

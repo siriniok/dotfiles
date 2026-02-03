@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "project": {
+    "kind": "application",
+    "minimum_zsh": "5.8",
+    "identifier": "dotfiles"
+  },
+  "sources": [
+    { "root": ".", "profile": "sourced-library" },
+    { "root": "lib/zsh-boilerplate.zsh", "profile": "standalone-executable" },
+    { "root": "modules/home/tilde", "profile": "startup-file" }
+  ]
+}
